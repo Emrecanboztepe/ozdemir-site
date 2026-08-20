@@ -1,0 +1,95 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /*
+   * Marka paleti — tek kaynak. Tailwind token'ları (brand / ink / surface)
+   * bu değerlerin aynısıdır; buradaki değişkenler Tailwind dışında kalan
+   * yerler (inline style, SVG, üçüncü parti gömme) için durur.
+   * Zemin her zaman beyaz: renkler yalnızca vurgu içindir.
+   */
+  :root {
+    --color-primary: #2c65a8;
+    --color-primary-2: #ff7029;
+    --color-secondary: #1f1f25;
+    --color-body: #6e777d;
+    --color-heading-1: #1f1f25;
+    --color-white: #fff;
+
+    /* Palete uyumlanmış ara tonlar */
+    --color-primary-light: #1ba2db; /* gradyanın açık ucu */
+    --color-primary-soft: #8fd0ee; /* serinlik vurgusu */
+    --color-surface-50: #f6f8fb;
+    --color-surface-100: #e7ecf3;
+    --color-muted: #8a9197;
+
+    --color-success: #3eb75e;
+    --color-danger: #ff0003;
+    --color-warning: #ff8f3c;
+    --color-info: #1ba2db;
+
+    --color-facebook: #3b5997;
+    --color-twitter: #1ba1f2;
+    --color-youtube: #ed4141;
+    --color-linkedin: #0077b5;
+    --color-pinterest: #e60022;
+    --color-instagram: #c231a1;
+    --color-vimeo: #00adef;
+    --color-twitch: #6441a3;
+    --color-discord: #7289da;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-surface-0 text-ink-600 font-sans antialiased;
+    /* Yatay taşma yasak */
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-heading text-ink-900;
+  }
+
+  ::selection {
+    background: rgba(44, 101, 168, 0.18);
+    color: #1f1f25;
+  }
+}
+
+@layer utilities {
+  /* Mobil tarayıcı adres çubuğuyla uyumlu tam ekran */
+  .h-screen-dynamic {
+    height: 100svh;
+    min-height: 100svh;
+  }
+}
+
+/* Hareket hassasiyeti: tüm süslemeler durur */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Isı / serinlik akışı — pompadan eve doğru "akıyor" hissi */
+@keyframes heat-flow {
+  to {
+    stroke-dashoffset: -48;
+  }
+}
+
+.heat-flow {
+  stroke-dasharray: 10 14;
+  animation: heat-flow 3.2s linear infinite;
+}
