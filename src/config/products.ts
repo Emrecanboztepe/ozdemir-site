@@ -2,10 +2,10 @@
  * Ürün kataloğu — hem ürünler şeridi hem de "size özel" seçici bunu kullanır.
  *
  * NOT: Veriler ve görseller YER TUTUCUDUR. Görseller başka üreticilerin cihazlarını
- * gösterir; yayına çıkmadan önce Bosch / NIBE / Grandpower ürün fotoğraf ve
+ * gösterir; yayına çıkmadan önce Bosch / NIBE / Gram Power ürün fotoğraf ve
  * verileriyle değiştirilmelidir.
  */
-export const BRANDS = ["Bosch", "NIBE", "Grandpower"] as const;
+export const BRANDS = ["Bosch", "NIBE", "Gram Power"] as const;
 export type Brand = (typeof BRANDS)[number];
 
 export type Product = {
@@ -63,7 +63,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     image: "/urun-5.jpg",
-    brand: "Grandpower",
+    brand: "Gram Power",
     name: "Monoblok 16 kW",
     note: "Villa ve büyük konutlar; sıcak kullanım suyu ile birlikte çalışır.",
     specs: [
@@ -74,7 +74,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     image: "/urun-6.jpg",
-    brand: "Grandpower",
+    brand: "Gram Power",
     name: "Ticari 30 kW",
     note: "Ofis, atölye ve işletmeler için kaskad bağlanabilir çözüm.",
     specs: [

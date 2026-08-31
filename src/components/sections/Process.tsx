@@ -1,9 +1,14 @@
 "use client";
 
-import Image from "next/image";
+import Image, { type StaticImageData } from "next/image";
 import { useCallback, useEffect, useId, useRef, useState } from "react";
 import { motion, useMotionValueEvent, useScroll } from "motion/react";
 import { useMediaQuery } from "@/hooks/useEnvironment";
+import step1Image from "../../../public/adim-1.jpg";
+import step2Image from "../../../public/adim-2.jpg";
+import step3Image from "../../../public/adim-3.jpg";
+import step4Image from "../../../public/adim-4.jpg";
+import step5Image from "../../../public/adim-5.jpg";
 
 /**
  * Süreç — "bizimle yolculuk" zaman çizelgesi.
@@ -15,38 +20,38 @@ import { useMediaQuery } from "@/hooks/useEnvironment";
  *
  * Mobilde tek sütun olduğu için şerit sola yaslanmış düz bir çizgiye iner.
  */
-type Step = { image: string; alt: string; title: string; text: string };
+type Step = { image: StaticImageData; alt: string; title: string; text: string };
 
 const STEPS: Step[] = [
   {
-    image: "/adim-1.jpg",
+    image: step1Image,
     alt: "Sahada inceleme yapan tekniker",
-    title: "Keşif",
-    text: "Evinizi yerinde görürüz. Isı kaybını, mevcut tesisatı ve elektrik altyapısını ölçeriz. Keşif ücretsizdir.",
+    title: "Ücretsiz yerinde keşif",
+    text: "Balıkesir, Bursa ve Çanakkale'da evin büyüklüğünü, yalıtımını, mevcut tesisatı ve ısı ihtiyacını yerinde değerlendiririz.",
   },
   {
-    image: "/adim-2.jpg",
+    image: step2Image,
     alt: "Teknik proje üzerinde çalışan iki mühendis",
-    title: "Proje ve teklif",
-    text: "Ölçümlere göre doğru kapasiteyi hesaplar, cihazı ve tesisat işini kalem kalem yazdığımız net bir teklif veririz.",
+    title: "Eve özel seçim ve teklif",
+    text: "İhtiyaca uygun kapasiteyi ve marka seçeneklerini karşılaştırır, kapsamı ve tutarı net bir teklife dönüştürürüz. Ödemede vade farksız altı taksit sunarız.",
   },
   {
-    image: "/adim-3.jpg",
+    image: step3Image,
     alt: "Tesisat ve yalıtım işi yapan usta",
     title: "Kurulum",
-    text: "Dış ünite, iç ünite ve boru tesisatını kendi ekibimiz kurar. Taşeron çalıştırmıyoruz.",
+    text: "Isı pompası ve gerekli mekanik bağlantıları planlı biçimde kurarız. Firma sahibi Burak Özdemir süreci başından sonuna takip eder.",
   },
   {
-    image: "/adim-4.jpg",
+    image: step4Image,
     alt: "Cihaz ayarı yapan tekniker",
     title: "Devreye alma",
-    text: "Sistemi çalıştırır, ayarlarını evinize göre yapar ve nasıl kullanacağınızı yerinde anlatırız.",
+    text: "Sistemi evin kullanımına göre ayarlar, ilk çalışmayı kontrol eder ve temel kullanım bilgilerini anlaşılır biçimde aktarırız.",
   },
   {
-    image: "/adim-5.jpg",
+    image: step5Image,
     alt: "Ölçüm cihazıyla bakım yapan tekniker",
-    title: "Bakım ve servis",
-    text: "Yılda bir bakımla sistemi verimli tutarız. Bir sorun olursa kuran ekip gelir, aynı numaradan ulaşırsınız.",
+    title: "İki yıllık güvence ve servis",
+    text: "Montajdan sonra iki yıl Özdemir Mühendislik güvencesi sunarız. Servis talebinde ücretsiz gelir, süreci başlatır ve müşteriyi yalnız bırakmayız.",
   },
 ];
 
@@ -171,12 +176,12 @@ export default function Process() {
         >
           <h2 className="text-h2 font-semibold text-ink-950">
             <span className="bg-gradient-to-r from-brand-blue to-brand-teal bg-clip-text text-transparent">
-              Bizimle yolculuk
+              Ücretsiz keşiften iki yıllık güvenceye
             </span>
           </h2>
           <p className="max-w-[46ch] text-[1.0625rem] leading-relaxed text-ink-600 md:justify-self-end">
-            İlk telefondan yıllar sonraki bakıma kadar süreç aynı ekiple yürür.
-            Hangi aşamada ne yapıldığını baştan bilirsiniz.
+            İlk görüşmeden satış sonrasına kadar ne yapılacağını, hangi markanın neden
+            önerildiğini ve tutarın nasıl oluştuğunu açıkça bilirsiniz.
           </p>
         </motion.div>
 

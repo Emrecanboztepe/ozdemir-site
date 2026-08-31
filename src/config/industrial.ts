@@ -1,8 +1,14 @@
+import {
+  BRAND_CATALOG,
+  PRODUCT_CATEGORY_LABELS,
+} from "@/config/brand-catalog";
+
 /**
  * Endüstriyel sayfasının hero varlıkları ve metinleri.
  *
- * Sahne ana sayfanın tersi: koyu fotoğraf değil, AÇIK bir tesis illüstrasyonu.
- * Bu yüzden arayüz koyu temaya dönmez — metin `ink`, navbar `light` tonunda kalır.
+ * Sahne ana sayfayla AYNI yapıyı kullanır (`CinematicHero`): tam ekran kare,
+ * üstünde sessiz klip, altta h1 + CTA, yanında dev poster başlık. Değişen tek
+ * şey buradaki medya ve metinlerdir.
  */
 
 export const INDUSTRIAL_HERO = {
@@ -12,6 +18,20 @@ export const INDUSTRIAL_HERO = {
   bgMobile: { src: "/endustriyel-bg-mobile.jpg", width: 1200, height: 2150 },
   bgAlt:
     "Endüstriyel tesis kesiti: çatıda güneş panelleri, teknik odalar ve mekanik tesisat hatları.",
+
+  /**
+   * Sahnenin sessiz klibi — evsel hero'daki `hero-magnific-*` klipleriyle aynı
+   * rolde, ama bu sayfaya özel. Klip HENÜZ YOK; dosyalar hazır olduğunda
+   * `public/` içine koyup burayı doldurmak yeterli, başka değişiklik gerekmez:
+   *
+   *   video: {
+   *     desktop: "/endustriyel-hero-desktop-v1.mp4",
+   *     mobile: "/endustriyel-hero-mobile-v1.mp4",
+   *   }
+   *
+   * `null` kaldığı sürece sahne yalnızca yukarıdaki kareyle çalışır.
+   */
+  video: null,
 
   /**
    * Ön plandaki ürün. Kaynak JPEG'in içine damalı zemin basılmıştı;
@@ -24,107 +44,62 @@ export const INDUSTRIAL_HERO = {
 
 export const INDUSTRIAL_COPY = {
   /**
-   * Poster başlık — iki satır. Vurgu tek bir yere düşer: `accent` kelimesi
-   * marka gradyanıyla yazılır (mavi → turkuaz → turuncu), gerisi düz primary.
+   * Poster başlık — evsel sahnedeki "TEK SİSTEM" ile aynı yerde duran dev
+   * satır. Üstündeki küçük satır (`eyebrow`) işin kapsamını sayar.
    */
-  title: { first: "Üretim durmaz,", second: "iklim ", accent: "şaşmaz." },
+  eyebrow: "Projelendirme · Kurulum · Devreye alma",
+  poster: "ÜRETİM DURMAZ",
+  heading:
+    "Balıkesir, Bursa ve Çanakkale'da endüstriyel ısı pompası ve chiller sistemleri",
   lead:
-    "Fabrika, otel ve iş merkezleri için endüstriyel ısı pompası ve chiller sistemleri. Projelendirmeden devreye almaya kadar tek elden.",
-  credits: "( Projelendirme · Kurulum · Devreye alma )",
+    "Fabrika, otel ve iş merkezleri için projelendirmeden devreye almaya kadar tek elden.",
 } as const;
 
 /**
- * Endüstriyel katalog.
- *
- * DİKKAT: burada model adı ve model bazlı teknik veri YOKTUR — kartlar
- * kurduğumuz SİSTEM TİPLERİNİ anlatır, kapasiteler aralık olarak verilir.
- * Marka etiketi "bu kategoride hangi markayla çalışıyoruz" demektir.
- * Gerçek model, kapasite ve verim değerleri geldiğinde burası güncellenmeli.
- * Görseller tesis illüstrasyonundan kırpılmıştır, gerçek saha fotoğrafı değildir.
+ * Ticari/endüstriyel ürünler, marka kataloglarındaki doğrulanmış kayıtlardan
+ * türetilir. Böylece konut sayfalarına yüksek kapasiteli ürün sızmaz ve
+ * temsili sistem kartları gerçek ürün gibi görünmez.
  */
-export const INDUSTRIAL_BRANDS = [
-  "LG",
-  "Bosch",
-  "Viessmann",
-  "Baymak",
-  "NIBE",
-  "Varmeks",
-] as const;
+export const INDUSTRIAL_BRANDS = BRAND_CATALOG.filter(
+  (brand) => brand.industrialProducts.length > 0,
+).map((brand) => brand.name);
 
-export const INDUSTRIAL_PRODUCTS = [
-  {
-    image: "/endustriyel-urun-1.jpg",
-    brand: "LG",
-    name: "Hava Soğutmalı Chiller",
-    note: "Makine dairesi ve kule gerektirmez; çatıya ya da saha zeminine kurulur.",
+export const INDUSTRIAL_PRODUCTS = BRAND_CATALOG.flatMap((brand) =>
+  brand.industrialProducts.map((product) => ({
+    image: product.image,
+    imageAlt: product.alt,
+    imageFit: "contain" as const,
+    brand: brand.name,
+    name: product.name,
+    meta: product.meta,
+    note:
+      product.note ??
+      "Üreticinin resmi ticari/endüstriyel ürün gamındaki yüksek kapasiteli çözüm.",
     specs: [
-      { label: "Kapasite aralığı", value: "100–500 kW" },
-      { label: "Uygulama", value: "Fabrika, iş merkezi" },
-      { label: "Kurulum", value: "Dış ortam" },
+      {
+        label: "Ürün grubu",
+        value: PRODUCT_CATEGORY_LABELS[product.category],
+      },
+      ...(product.variants?.length
+        ? [
+            {
+              label: "Modeller",
+              value: product.variants.join(" · "),
+            },
+          ]
+        : []),
     ],
-  },
-  {
-    image: "/endustriyel-urun-2.jpg",
-    brand: "Bosch",
-    name: "Endüstriyel Isı Pompası",
-    note: "Isıtma ve sıcak su yükünü birlikte karşılar, kaskad bağlanabilir.",
-    specs: [
-      { label: "Kapasite aralığı", value: "60–300 kW" },
-      { label: "Uygulama", value: "Otel, yurt, hastane" },
-      { label: "Kurulum", value: "Kaskad / modüler" },
-    ],
-  },
-  {
-    image: "/endustriyel-urun-3.jpg",
-    brand: "Viessmann",
-    name: "Su Soğutmalı Chiller",
-    note: "Yüksek kapasitede daha yüksek verim; soğutma kulesiyle çalışır.",
-    specs: [
-      { label: "Kapasite aralığı", value: "300 kW ve üzeri" },
-      { label: "Uygulama", value: "Üretim tesisi" },
-      { label: "Kurulum", value: "Makine dairesi" },
-    ],
-  },
-  {
-    image: "/endustriyel-urun-4.jpg",
-    brand: "Baymak",
-    name: "VRF Sistem",
-    note: "Bölge bölge kontrol; ofis katlarında ve otel odalarında bağımsız konfor.",
-    specs: [
-      { label: "Kapasite aralığı", value: "40–250 kW" },
-      { label: "Uygulama", value: "Ofis, otel, AVM" },
-      { label: "Kontrol", value: "Zon bazlı" },
-    ],
-  },
-  {
-    image: "/endustriyel-urun-5.jpg",
-    brand: "Varmeks",
-    name: "Proses Soğutma Grubu",
-    note: "Üretim hattının ihtiyacı olan sabit sıcaklıkta soğutma suyu.",
-    specs: [
-      { label: "Kapasite aralığı", value: "50–400 kW" },
-      { label: "Uygulama", value: "Proses hatları" },
-      { label: "Çalışma", value: "Yıl boyu" },
-    ],
-  },
-  {
-    image: "/endustriyel-urun-6.jpg",
-    brand: "NIBE",
-    name: "Mekanik Tesisat ve Otomasyon",
-    note: "Kollektör, pompa grubu, boru hattı ve otomasyon — sistemin geri kalanı.",
-    specs: [
-      { label: "Kapsam", value: "Anahtar teslim" },
-      { label: "Uygulama", value: "Tüm sistemler" },
-      { label: "Devreye alma", value: "Kendi ekibimiz" },
-    ],
-  },
-];
+    detailHref: product.sourceUrl,
+    detailExternal: true,
+  })),
+);
 
-/** Ürün şeridinin beslendiği katalog — sayfa bunu olduğu gibi geçirir */
+/** Ürün şeridinin beslendiği doğrulanmış endüstriyel katalog. */
 export const INDUSTRIAL_CATALOG = {
   id: "urunler",
-  title: "Endüstriyel sistemler",
-  lead: "Tesisin yüküne, çalışma saatlerine ve mevcut tesisata göre doğru sistemi birlikte seçelim. Aşağıdaki kapasiteler yaygın aralıklardır.",
+  title: "Endüstriyel ısı pompası serileri",
+  lead:
+    "Bosch, NIBE, Gram Power ve Varmeks'in üretici kataloglarında doğrulanan ticari ürünleri burada ayrı tutuyoruz. Nihai kapasite tesis yükü ve çalışma rejimiyle projelendirilir.",
   brands: INDUSTRIAL_BRANDS,
   products: INDUSTRIAL_PRODUCTS,
 } as const;

@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# yerel calisma ciktilari (derleme/lint loglari, kazinmis sayfalar)
+/tmp/

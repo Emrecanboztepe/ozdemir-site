@@ -133,8 +133,9 @@ export default function Finder() {
                   </span>
                 </h2>
                 <p className="mt-4 max-w-[38ch] text-[0.9375rem] leading-relaxed text-white/70">
-                  Dört soruya cevap verin, evinize uygun kapasiteyi ve modeli
-                  hemen görün. Kesin seçim ücretsiz keşifte netleşir.
+                  Dört soruyla yaklaşık kapasiteyi görün. Net cihaz, marka ve tutar;
+                  evin büyüklüğü, yalıtımı ve tesisatı ücretsiz keşifte incelendikten
+                  sonra belirlenir.
                 </p>
               </div>
             </div>
@@ -261,7 +262,7 @@ export default function Finder() {
                   <div className="mt-5 flex flex-col gap-2.5 sm:flex-row sm:items-center">
                     <SolidButton href={PHONE_HREF} className="h-11 px-6 text-[0.9375rem]">
                       <Phone size={16} strokeWidth={2.2} />
-                      Teklif Al
+                      Ücretsiz keşif iste
                     </SolidButton>
                     <button
                       type="button"

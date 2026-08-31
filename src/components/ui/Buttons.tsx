@@ -1,31 +1,60 @@
-import type { ReactNode } from "react";
+import type { MouseEventHandler, ReactNode } from "react";
+import Link from "next/link";
+
+const isInternalHref = (href: string) => href.startsWith("/") || href.startsWith("#");
 
 /**
  * Hero'nun iki buton dili. İkisi de koyu sahne için tasarlandı ve
  * navbar ile hero arasında paylaşılır.
  */
 
-/** Koyu, parlak birincil buton — cam üstünde tek dolu yüzey, kompozisyonun çıpası */
+/** Animasyonlu, parlak birincil buton — tüm ana CTA'ların ortak yüzeyi */
 export function SolidButton({
   href,
   children,
   className = "",
+  onClick,
 }: {
   href: string;
   children: ReactNode;
   className?: string;
+  onClick?: MouseEventHandler<HTMLAnchorElement>;
 }) {
-  return (
-    <a
-      href={href}
-      className={`group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full border border-white/15 bg-gradient-to-b from-[#3A76BC] to-[#141A24] font-medium text-white shadow-[0_10px_28px_rgba(0,0,0,0.45),inset_0_1px_0_rgba(255,255,255,0.3)] transition-all duration-300 hover:from-[#4A8AD4] hover:to-[#1E2733] hover:shadow-[0_14px_36px_rgba(44,101,168,0.40),inset_0_1px_0_rgba(255,255,255,0.45)] ${className}`}
-    >
-      {/* Üst yarıda parlaklık — "cilalı" his */}
-      <span
-        aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-white/25 to-transparent"
-      />
-      <span className="relative flex items-center gap-2">{children}</span>
+  const classes = `shiny-cta group relative isolate inline-flex items-center justify-center gap-2 overflow-hidden rounded-full border border-transparent font-medium text-white ${className}`;
+  const content = <span className="shiny-cta__content z-[1] flex items-center gap-2">{children}</span>;
+
+  return isInternalHref(href) ? (
+    <Link href={href} onClick={onClick} className={classes}>
+      {content}
+    </Link>
+  ) : (
+    <a href={href} onClick={onClick} className={classes}>
+      {content}
+    </a>
+  );
+}
+
+/** 21st.dev outline yaklaşımının proje renkleri ve pill diliyle uyarlanmış hali. */
+export function OutlineButton({
+  href,
+  children,
+  className = "",
+  onClick,
+}: {
+  href: string;
+  children: ReactNode;
+  className?: string;
+  onClick?: MouseEventHandler<HTMLAnchorElement>;
+}) {
+  const classes = `group inline-flex items-center justify-center gap-2 rounded-full border border-ink-900/15 bg-transparent font-medium text-ink-900 shadow-sm transition-[color,background-color,border-color,box-shadow,transform] duration-200 hover:border-brand-blue/40 hover:bg-surface-50 hover:text-brand-blue active:translate-y-px active:shadow-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue/35 focus-visible:ring-offset-2 ${className}`;
+
+  return isInternalHref(href) ? (
+    <Link href={href} onClick={onClick} className={classes}>
+      {children}
+    </Link>
+  ) : (
+    <a href={href} onClick={onClick} className={classes}>
+      {children}
     </a>
   );
 }
@@ -47,15 +76,12 @@ export function GlassButton({
 }) {
   const surface =
     tone === "dark"
-      ? "border-white/25 bg-white/10 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.4),inset_0_-1px_0_rgba(255,255,255,0.06),0_8px_24px_rgba(0,0,0,0.28)] hover:border-white/40 hover:bg-white/[0.16]"
-      : "border-ink-900/12 bg-white/70 text-ink-900 shadow-[inset_0_1px_0_rgba(255,255,255,0.9),0_8px_24px_rgba(31,31,37,0.10)] hover:border-brand-blue/40 hover:bg-white";
+      ? "border-white/25 bg-white/10 text-white shadow-card hover:border-white/40 hover:bg-white/[0.16]"
+      : "border-ink-900/15 bg-white/80 text-ink-900 shadow-card hover:border-brand-blue/40 hover:bg-white";
 
-  return (
-    <a
-      href={href}
-      {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-      className={`group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full border font-medium backdrop-blur-xl backdrop-saturate-150 transition-all duration-300 ${surface} ${className}`}
-    >
+  const classes = `group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full border font-medium backdrop-blur-xl backdrop-saturate-150 transition-[color,background-color,border-color,box-shadow,transform] duration-300 ${surface} ${className}`;
+  const content = (
+    <>
       <span
         aria-hidden
         className={`pointer-events-none absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b to-transparent ${
@@ -63,6 +89,20 @@ export function GlassButton({
         }`}
       />
       <span className="relative flex items-center gap-2">{children}</span>
+    </>
+  );
+
+  return isInternalHref(href) && !external ? (
+    <Link href={href} className={classes}>
+      {content}
+    </Link>
+  ) : (
+    <a
+      href={href}
+      {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+      className={classes}
+    >
+      {content}
     </a>
   );
 }

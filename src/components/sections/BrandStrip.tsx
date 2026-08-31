@@ -22,15 +22,17 @@ export default function BrandStrip({
   className = "",
   itemClassName = "px-7 md:px-10",
   logoClassName = "h-6 w-auto md:h-7",
+  mask = true,
 }: {
   className?: string;
   itemClassName?: string;
   logoClassName?: string;
+  mask?: boolean;
 }) {
   return (
     <div
       className={`overflow-hidden ${className}`}
-      style={{ maskImage: MASK, WebkitMaskImage: MASK }}
+      style={mask ? { maskImage: MASK, WebkitMaskImage: MASK } : undefined}
     >
       <div className="flex w-max motion-safe:animate-marquee">
         {[0, 1].map((half) => (

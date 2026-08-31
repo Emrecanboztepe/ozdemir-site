@@ -3,10 +3,10 @@
 import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { motion } from "motion/react";
-import { ArrowLeft, ArrowRight, Phone } from "lucide-react";
+import { ArrowLeft, ArrowRight, ArrowUpRight, Phone } from "lucide-react";
 import { PHONE_HREF } from "@/config/site";
 import { usePrefersReducedMotion } from "@/hooks/useEnvironment";
-import { BRANDS, PRODUCTS } from "@/config/products";
+import { BRAND_CATALOG } from "@/config/brand-catalog";
 import { GlassButton, SolidButton } from "@/components/ui/Buttons";
 
 /**
@@ -18,17 +18,21 @@ import { GlassButton, SolidButton } from "@/components/ui/Buttons";
  * etkileşim olduğunda durur, bir süre sonra kaldığı yerden devam eder.
  * Masaüstünde 3, mobilde 1 kart görünür (`basis` yüzdeleri kabın genişliğine göre).
  *
- * NOT: Ürün bilgileri ve görseller YER TUTUCUDUR. Görseller başka üreticilerin
- * cihazlarını gösterir; yayına çıkmadan önce Bosch / NIBE / Grandpower ürün
- * fotoğraf ve verileriyle değiştirilmelidir.
+ * Ana sayfa kataloğu marka detay sayfalarıyla aynı doğrulanmış veri kaynağını
+ * kullanır. Böylece model adları, görseller ve marka bağlantıları tek yerden güncellenir.
  */
 /** Şeridin beslendiği katalog — ana sayfa ve endüstriyel sayfa aynı bileşeni kullanır */
 export type CatalogProduct = {
   image: string;
+  imageAlt?: string;
+  imageFit?: "cover" | "contain";
   brand: string;
   name: string;
+  meta?: string;
   note: string;
-  specs: { label: string; value: string }[];
+  specs?: { label: string; value: string }[];
+  detailHref?: string;
+  detailExternal?: boolean;
 };
 
 export type Catalog = {
@@ -42,13 +46,27 @@ export type Catalog = {
   imageAltSuffix?: string;
 };
 
+const HOME_PRODUCTS: readonly CatalogProduct[] = BRAND_CATALOG.flatMap((brand) =>
+  brand.products.map((product) => ({
+    image: product.image,
+    imageAlt: product.alt,
+    imageFit: "contain" as const,
+    brand: brand.name,
+    name: product.name,
+    meta: product.meta,
+    note:
+      product.note ??
+      "Model ve kapasite kararı yapınıza özel ücretsiz keşif sonrasında netleşir.",
+    detailHref: `/urunler/${brand.id}`,
+  })),
+);
+
 const HOME_CATALOG: Catalog = {
   id: "urunler",
-  title: "Isı pompaları",
-  lead: "Evin büyüklüğüne, yalıtımına ve mevcut tesisata göre doğru kapasiteyi birlikte seçelim. Aşağıdaki kapasiteler yaygın uygulamalardır.",
-  brands: BRANDS,
-  products: PRODUCTS,
-  imageAltSuffix: "ısı pompası dış ünitesi",
+  title: "Evsel ısı pompası ve sıcak su seçenekleri",
+  lead: "Dört markanın konut tipi ısı pompası, boyler, kullanım sıcak suyu ve sistem bileşenleri tek doğrulanmış katalogda. Doğru sistem, evin ısı ihtiyacı ve mevcut tesisatı keşifte görüldükten sonra netleşir.",
+  brands: BRAND_CATALOG.map((brand) => brand.name),
+  products: HOME_PRODUCTS,
 };
 
 /** Otomatik ilerleme aralığı ve etkileşim sonrası bekleme */
@@ -198,20 +216,27 @@ export default function Products({ catalog = HOME_CATALOG }: { catalog?: Catalog
             ref={trackRef}
             onPointerDown={pause}
             onWheel={pause}
-            className="flex snap-x snap-mandatory gap-4 overflow-x-auto overscroll-x-contain pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+            className="flex snap-x snap-mandatory gap-4 overflow-x-auto overscroll-x-contain pb-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
           >
           {items.map((p) => (
             <article
-              key={p.name}
-              className="flex shrink-0 basis-full snap-start flex-col overflow-hidden rounded-2xl border border-surface-100 bg-surface-0 shadow-card-lg transition-shadow duration-300 hover:shadow-[0_22px_60px_rgba(31,31,37,0.18)] md:basis-[calc((100%-2rem)/3)]"
+              key={p.brand + "-" + p.name}
+              className="flex shrink-0 basis-full snap-start flex-col overflow-hidden rounded-2xl border border-surface-100 bg-surface-0 shadow-[0_8px_22px_rgba(31,31,37,0.06)] transition-shadow duration-300 hover:shadow-[0_12px_30px_rgba(31,31,37,0.09)] md:basis-[calc((100%-2rem)/3)]"
             >
-              <div className="relative aspect-[4/3] bg-surface-100">
+              <div
+                className={`relative aspect-[4/3] ${
+                  p.imageFit === "contain" ? "bg-white" : "bg-surface-100"
+                }`}
+              >
                 <Image
                   src={p.image}
-                  alt={[p.name, catalog.imageAltSuffix].filter(Boolean).join(" ")}
+                  alt={
+                    p.imageAlt ??
+                    [p.name, catalog.imageAltSuffix].filter(Boolean).join(" ")
+                  }
                   fill
                   sizes="(max-width: 767px) 92vw, 400px"
-                  className="object-cover"
+                  className={p.imageFit === "contain" ? "object-contain p-6" : "object-cover"}
                 />
                 <span className="absolute left-4 top-4 rounded-full bg-ink-900/55 px-3 py-1 text-[0.6875rem] font-semibold uppercase tracking-[0.12em] text-white backdrop-blur-md">
                   {p.brand}
@@ -219,6 +244,11 @@ export default function Products({ catalog = HOME_CATALOG }: { catalog?: Catalog
               </div>
 
               <div className="flex flex-1 flex-col p-6">
+                {p.meta ? (
+                  <span className="mb-4 inline-flex self-start rounded-full bg-surface-50 px-3 py-1.5 text-xs font-medium text-ink-600">
+                    {p.meta}
+                  </span>
+                ) : null}
                 <h3 className="font-heading text-xl font-semibold text-ink-900">
                   {p.name}
                 </h3>
@@ -226,33 +256,43 @@ export default function Products({ catalog = HOME_CATALOG }: { catalog?: Catalog
                   {p.note}
                 </p>
 
-                <dl className="mt-5 space-y-2 border-t border-surface-100 pt-4 [&+a]:mt-auto">
-                  {p.specs.map((sp) => (
-                    <div key={sp.label} className="flex items-baseline justify-between gap-4">
-                      <dt className="text-[0.8125rem] text-ink-400">{sp.label}</dt>
-                      <dd className="text-[0.875rem] font-medium text-ink-900">
-                        {sp.value}
-                      </dd>
-                    </div>
-                  ))}
-                </dl>
+                {p.specs?.length ? (
+                  <dl className="mt-5 space-y-2 border-t border-surface-100 pt-4">
+                    {p.specs.map((sp) => (
+                      <div key={sp.label} className="flex items-baseline justify-between gap-4">
+                        <dt className="text-[0.8125rem] text-ink-400">{sp.label}</dt>
+                        <dd className="text-[0.875rem] font-medium text-ink-900">
+                          {sp.value}
+                        </dd>
+                      </div>
+                    ))}
+                  </dl>
+                ) : null}
 
-                {/* Her kartın kendi çağrıları — ikisi de telefona */}
-                <div className="mt-5 flex gap-2">
+                <div className="mt-auto flex gap-2 pt-5">
                   <SolidButton
                     href={PHONE_HREF}
                     className="h-10 flex-1 px-3 text-[0.8125rem]"
                   >
                     <Phone size={14} strokeWidth={2.2} />
-                    Teklif Al
+                    {p.detailHref ? "Ücretsiz Keşif" : "Teklif Al"}
                   </SolidButton>
                   <GlassButton
-                    href={PHONE_HREF}
+                    href={p.detailHref ?? PHONE_HREF}
                     tone="light"
+                    external={p.detailExternal}
                     className="h-10 flex-1 px-3 text-[0.8125rem]"
                   >
-                    <Phone size={14} strokeWidth={2.2} />
-                    Ücretsiz Keşif
+                    {p.detailHref ? (
+                      <ArrowUpRight size={14} strokeWidth={2.2} />
+                    ) : (
+                      <Phone size={14} strokeWidth={2.2} />
+                    )}
+                    {p.detailExternal
+                      ? "Resmî Katalog"
+                      : p.detailHref
+                        ? "Detayı Gör"
+                        : "Ücretsiz Keşif"}
                   </GlassButton>
                 </div>
               </div>

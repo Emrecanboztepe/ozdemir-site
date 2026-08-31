@@ -1,4 +1,5 @@
 import { ABOUT_HREF } from "@/config/site";
+import { ROUTES } from "@/config/routes";
 
 /**
  * "Hakkımızda" bento içeriği — aynı kart dili, sayfaya göre farklı içerik.
@@ -9,13 +10,9 @@ import { ABOUT_HREF } from "@/config/site";
 /** Kartın üst köşesindeki ikon rozeti — bileşen bunu ikona çevirir */
 export type AboutBadge = "award" | "wrench" | "factory";
 
-export type AboutCard = {
+type AboutCardBase = {
   /** Bento'daki yeri (md ve üstü) */
   className?: string;
-  src: string;
-  alt: string;
-  sizes: string;
-  badge?: AboutBadge;
   eyebrow?: string;
   title: string;
   titleClass?: string;
@@ -23,6 +20,22 @@ export type AboutCard = {
   /** Verilirse kart bağlantıya döner ve sağ alt köşede ok rozeti çıkar */
   href?: string;
 };
+
+export type AboutPhotoCard = AboutCardBase & {
+  variant?: "photo";
+  src: string;
+  alt: string;
+  sizes: string;
+  badge?: AboutBadge;
+};
+
+export type AboutCtaCard = AboutCardBase & {
+  variant: "cta";
+  href: string;
+  ctaLabel: string;
+};
+
+export type AboutCard = AboutPhotoCard | AboutCtaCard;
 
 export type AboutContent = {
   id: string;
@@ -35,62 +48,65 @@ export type AboutContent = {
   moreHref?: string;
 };
 
-/** Bosch 2024 ödülü — sitedeki tek ödül */
+/** Bosch 2024 satış başarısı */
 const AWARD = {
   year: "2024",
   brand: "Bosch",
-  title: "En Yüksek Ciro Isı Pompası Taahhütçü Yetkili Satıcı",
-  holder: "Burak Özdemir",
+  title: "En çok satış yapan yetkili bayi",
 };
 
 export const ABOUT_HOME: AboutContent = {
   id: "hakkimizda",
   moreHref: ABOUT_HREF,
-  titleAccent: "Özdemir Mühendislik",
-  titleRest: "hakkında",
-  lead: "Özdemir Mühendislik olarak ısı pompası, ısıtma-soğutma ve mekanik tesisat işleri yapıyoruz. Keşiften kuruluma, devreye almadan bakıma kadar süreci baştan sona kendimiz yürütüyoruz.",
+  titleAccent: "Bandırma merkezli",
+  titleRest: "sekiz yıllık ısı pompası deneyimi",
+  lead: "Özdemir Mühendislik, Bandırma'daki ana merkezi ve Biga şubesiyle evsel ısı pompası satışı ve montajı yapar. Firma sahibi Burak Özdemir kuruluşundan beri işin başındadır; doğru seçim, temiz uygulama ve satış sonrası ulaşılabilirlik her işin önceliğidir.",
   cards: [
     {
       className: "md:col-span-2 md:row-span-2",
-      src: "/hakkimizda-odul.jpg",
-      alt: "Alacakaranlıkta ışıkları yanan modern ev",
+      src: "/bosch-ozdemir-odul.webp",
+      alt: "Bosch 2024 birincilik ödülü",
       sizes: "(max-width: 767px) 100vw, 66vw",
-      badge: "award",
       eyebrow: `${AWARD.year} · ${AWARD.brand}`,
       title: AWARD.title,
-      titleClass: "text-[clamp(1.375rem,2.6vw,2rem)] max-w-[20ch]",
-      description: `Yetkili satıcılar arasında birinci olduk. Ödülü firma sahibimiz ${AWARD.holder} adına aldık.`,
+      titleClass:
+        "text-[clamp(1.125rem,4.6vw,1.5rem)] sm:text-[clamp(1.25rem,2.6vw,2rem)] lg:whitespace-nowrap",
+      description: "Bosch'un 2024 yılında en çok satış yapan yetkili bayisi ödülünü aldık.",
     },
     {
       className: "md:row-span-2",
-      src: "/hakkimizda-kurulum.jpg",
-      alt: "Cihaz montajı yapan teknisyen",
+      src: "/hakkimizda-saha.jpg",
+      alt: "Burak Özdemir, Özdemir Mühendislik'in fuar standında plaket takdiminde",
       sizes: "(max-width: 767px) 100vw, 33vw",
-      title: "Kurulumu kendi ekibimiz yapar",
-      description: "Taşeron yok. Cihazı kuran ekip, bakımını da yapan ekiptir.",
+      title: "Burak Özdemir işin başında",
+      titleClass: "text-xl lg:whitespace-nowrap",
+      description: "Kuruluştan bugüne keşif, seçim ve uygulama süreciyle bizzat ilgileniyor.",
     },
     {
-      src: "/hakkimizda-tesisat.jpg",
-      alt: "Boru kaynağı yapan tesisat ustası",
+      src: "/nibe-ozdemir-odul.png",
+      alt: "NIBE 2024 Güney Marmara birincilik ödülü",
       sizes: "(max-width: 767px) 100vw, 33vw",
-      title: "Mekanik tesisat",
-      description: "Isı pompasının bağlandığı sistemi de biz kurarız.",
+      eyebrow: "NIBE",
+      title: "Güney Marmara birincisi",
+      titleClass: "text-[clamp(1.0625rem,1.75vw,1.25rem)] lg:whitespace-nowrap",
+      description: "NIBE'nin Güney Marmara bölgesindeki satış başarısında birinci olduk.",
     },
     {
-      src: "/hakkimizda-surec.jpg",
-      alt: "Teknik proje çizimi üzerinde çalışan mühendis",
+      src: "/grampower-odul-ozdemir.png",
+      alt: "Gram Power 2024 Türkiye beşincilik ödülü",
       sizes: "(max-width: 767px) 100vw, 33vw",
-      badge: "wrench",
-      title: "Tek elden süreç",
-      description: "Keşif, proje, kurulum, devreye alma ve bakım — hepsi aynı ekipte.",
+      eyebrow: "GRAM POWER",
+      title: "Satışta Türkiye beşincisi",
+      titleClass: "text-[clamp(1.0625rem,1.75vw,1.25rem)] lg:whitespace-nowrap",
+      description: "Gram Power'ın en çok satış yapan beşinci yetkili bayisi olduk.",
     },
     {
-      href: "#iletisim",
-      src: "/hakkimizda-kesif.jpg",
-      alt: "Akşam saatinde ışıkları yanan ev",
-      sizes: "(max-width: 767px) 100vw, 33vw",
-      title: "Ücretsiz keşif",
-      description: "Evinize uygun sistemi yerinde görüp anlatalım.",
+      variant: "cta",
+      href: ROUTES.isiPompasiTeklifi.href,
+      title: "Üç bölgede ücretsiz keşif",
+      titleClass: "text-[clamp(1.125rem,1.75vw,1.25rem)] lg:whitespace-nowrap",
+      description: "Balıkesir, Bursa ve Çanakkale'de evinizi yerinde değerlendiriyoruz.",
+      ctaLabel: "Ücretsiz keşif talebi",
     },
   ],
 };

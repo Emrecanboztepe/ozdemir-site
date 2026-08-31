@@ -47,6 +47,7 @@ const config: Config = {
           vimeo: "#00ADEF",
           twitch: "#6441A3",
           discord: "#7289DA",
+          whatsapp: "#25D366",
         },
       },
       fontFamily: {

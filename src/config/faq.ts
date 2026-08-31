@@ -12,32 +12,40 @@ export type FaqContent = {
 
 export const FAQ_HOME: FaqContent = {
   id: "sss",
-  title: "Sıkça sorulanlar",
-  lead: "En çok merak edilenleri buraya topladık. Aradığınızı bulamazsanız telefonla sormanız yeterli.",
+  title: "Evsel ısı pompası hakkında sık sorulanlar",
+  lead: "Bandırma, Balıkesir, Bursa ve Çanakkale'daki keşif, fiyat, marka seçimi, ödeme ve servis sürecini açıkça yanıtlıyoruz.",
   items: [
     {
-      q: "Isı pompası kışın gerçekten yetiyor mu?",
-      a: "Evet. Kurduğumuz cihazlar −20 °C dış hava sıcaklığına kadar ısıtmayı sürdürür. Kapasiteyi evin ısı kaybına göre seçtiğimiz için en soğuk günlerde de konfor düşmez.",
+      q: "Hangi bölgelerde ücretsiz keşif yapıyorsunuz?",
+      a: "Balıkesir'de özellikle Bandırma ve çevresiyle birlikte Bursa ve Çanakkale'da yerinde ücretsiz keşif yapıyoruz. Bu illerin dışındaki taleplerde bilgilerinizi alıp ekibimize iletiyoruz; bölge uygunluğu netleşmeden randevu sözü vermiyoruz.",
     },
     {
-      q: "Mevcut radyatörlerimle çalışır mı?",
-      a: "Çoğu durumda çalışır. Radyatörlü sistemlerde su sıcaklığı daha yüksek istendiği için verim bir miktar düşer; keşifte radyatör yüzeylerini ölçer, gerekiyorsa birkaç radyatörün büyütülmesini öneririz.",
+      q: "Yerinde keşif gerçekten ücretsiz mi?",
+      a: "Evet. Ekibimiz evin büyüklüğünü, yalıtımını, mevcut tesisatı ve ısı ihtiyacını yerinde değerlendirir. Bu keşif için ücret alınmaz; sonrasında eve özel sistem ve teklif hazırlanır.",
     },
     {
-      q: "Elektrik faturam ne kadar artar?",
-      a: "Isı pompası harcadığı 1 kW elektriğe karşılık 4–5 kW ısı üretir. Doğalgaz veya elektrikli ısıtmaya göre işletme gideri belirgin şekilde düşer. Keşif sonrası evinize özel tüketim tahminini yazılı veririz.",
+      q: "Isı pompası fiyatı neden keşiften sonra netleşiyor?",
+      a: "Fiyat; ısıtılacak alanın büyüklüğüne, yalıtım durumuna, mevcut tesisata, gerekli kapasiteye ve seçilecek markaya göre değişir. Bu nedenle doğru ve bağlayıcı rakamı ancak ücretsiz keşiften sonra verebiliyoruz.",
     },
     {
-      q: "Kurulum ne kadar sürer?",
-      a: "Tipik bir müstakil evde dış ünite, iç ünite ve tesisat bağlantıları 1–2 gün sürer. Yerden ısıtma da yapılacaksa süre projeye göre değişir; teklifte net gün sayısı yazar.",
+      q: "Bosch, NIBE, Gram Power ve Varmeks arasından hangisini seçmeliyim?",
+      a: "Bosch ve NIBE premium segmentte; Gram Power ve Varmeks ise güçlü fiyat-performans seçenekleridir. Doğru marka yalnızca bütçeye göre değil, evin ısı ihtiyacı ve mevcut tesisatına göre ücretsiz keşifte belirlenir.",
     },
     {
-      q: "Bakım gerekiyor mu?",
-      a: "Yılda bir bakım öneriyoruz: filtre temizliği, basınç ve akışkan kontrolü, ayarların gözden geçirilmesi. Bakımı da kuran ekip yapar, aynı numaradan ulaşırsınız.",
+      q: "Ödemede taksit seçeneği var mı?",
+      a: "Evet. Vade farksız 6 taksit imkânı sunuyoruz. Toplam tutar evinize özel sistem ve uygulama kapsamı ücretsiz keşiften sonra belirlendiği için taksit tutarı da teklifle birlikte netleşir.",
     },
     {
-      q: "Keşif ücretli mi?",
-      a: "Hayır. Keşif ve teklif ücretsizdir. Yerinde ölçüm yapar, uygun kapasiteyi ve maliyeti kalem kalem anlatırız; karar tamamen size kalır.",
+      q: "Garanti ve montaj sonrası servis nasıl işliyor?",
+      a: "Sisteminizi 2 yıl Özdemir Mühendislik güvencesiyle teslim ediyoruz. Montaj sonrasında servis ihtiyacınız olduğunda ücretsiz olarak gelip süreci başlatıyor, çözüm tamamlanana kadar sizi yalnız bırakmıyoruz.",
+    },
+    {
+      q: "Çalışma ve randevu saatleriniz nedir?",
+      a: "Keşif ve görüşme randevularını 09.00–18.00 saatleri arasında planlıyoruz. Uygun zamanı belirlemek için +90 542 186 90 90 numaralı telefondan bize ulaşabilirsiniz.",
+    },
+    {
+      q: "Özdemir Mühendislik şubeleri nerede?",
+      a: "Ana merkezimiz 100. Yıl, Nato Cd. 94/B, Bandırma/Balıkesir adresindedir. İkinci şubemiz Merkez, Atatürk Caddesi Atatürk Sokak No:31, Balıklıçeşme/Biga/Çanakkale adresinde hizmet verir.",
     },
   ],
 };

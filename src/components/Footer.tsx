@@ -1,7 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowUpRight, Phone } from "lucide-react";
-import { ABOUT_HREF, MODES, PHONE, PHONE_HREF, type ModeLink } from "@/config/site";
+import { MODES, PHONE, PHONE_HREF, type ModeLink } from "@/config/site";
+import { ROUTES } from "@/config/routes";
 import { BRANDS } from "@/config/products";
 
 /**
@@ -11,8 +12,8 @@ import { BRANDS } from "@/config/products";
  * süzülen marka gradyanı. Alt kısmı kırpılır — sayfanın bittiği yere basılmış
  * bir mühür gibi durması için.
  *
- * NOT: Kurumsal ve yasal bağlantıların bir kısmı henüz sayfa değil; şu an sayfa
- * içi bölümlere gidiyor. Gerçek sayfalar açılınca `href`'ler güncellenmeli.
+ * NOT: "Kullanım Şartları" sayfası henüz yok; sayfa açılınca LEGAL listesindeki
+ * ilgili girişe `href` eklenmesi yeterli (render, href'siz girişleri düz metin gösterir).
  */
 const COLUMNS: { title: string; links: { label: string; href: string }[] }[] = [
   {
@@ -20,27 +21,27 @@ const COLUMNS: { title: string; links: { label: string; href: string }[] }[] = [
     links: [
       { label: "Evsel çözümler", href: MODES.evsel.href },
       { label: "Endüstriyel çözümler", href: MODES.endustriyel.href },
-      { label: "Hakkımızda", href: ABOUT_HREF },
-      { label: "Bizimle yolculuk", href: "#surec" },
-      { label: "Sahadan", href: "#saha" },
-      { label: "Sosyal medya", href: "#sosyal" },
-      { label: "Sıkça sorulanlar", href: "#sss" },
+      { label: "Hakkımızda", href: ROUTES.hakkimizda.href },
+      { label: "Bizimle yolculuk", href: ROUTES.hizmetler.href },
+      { label: "Sahadan", href: ROUTES.sahadan.href },
+      { label: "Sosyal medya", href: "/#sosyal" },
+      { label: "Sıkça sorulanlar", href: "/#sss" },
     ],
   },
   {
     title: "Ürünler",
     links: [
-      { label: "Isı pompaları", href: "#urunler" },
-      { label: "Size özel seçim", href: "#secici" },
-      ...BRANDS.map((b) => ({ label: b, href: "#urunler" })),
+      { label: "Isı pompaları", href: ROUTES.urunler.href },
+      { label: "Size özel seçim", href: "/#secici" },
+      ...BRANDS.map((b) => ({ label: b, href: ROUTES.urunler.href })),
     ],
   },
   {
     title: "Hizmetler",
     links: [
-      { label: "Isı pompası kurulumu", href: "#urunler" },
-      { label: "Mekanik tesisat", href: "#hakkimizda" },
-      { label: "Bakım ve servis", href: "#surec" },
+      { label: "Isı pompası kurulumu", href: "/hizmetler/isi-pompasi-kurulumu" },
+      { label: "Mekanik tesisat", href: "/hizmetler/mekanik-tesisat" },
+      { label: "Bakım ve servis", href: "/hizmetler/bakim-servis" },
       { label: "Ücretsiz keşif", href: PHONE_HREF },
     ],
   },
@@ -48,16 +49,16 @@ const COLUMNS: { title: string; links: { label: string; href: string }[] }[] = [
     title: "İletişim",
     links: [
       { label: PHONE, href: PHONE_HREF },
-      { label: "Teklif al", href: PHONE_HREF },
+      { label: "Isı pompası teklifi", href: ROUTES.isiPompasiTeklifi.href },
       { label: "Google yorumları", href: "https://share.google/XGZSqidhWAXZvq8pP" },
     ],
   },
 ];
 
 const LEGAL = [
-  { label: "Gizlilik", href: "#" },
-  { label: "KVKK", href: "#" },
-  { label: "Kullanım Şartları", href: "#" },
+  { label: "Gizlilik (Taslak)", href: ROUTES.gizlilik.href },
+  { label: "KVKK (Taslak)", href: ROUTES.kvkk.href },
+  { label: "Kullanım Şartları" },
 ];
 
 /** İmzanın dolgusu: sakin gri üzerinde gezinen marka gradyanı */
@@ -71,9 +72,13 @@ const SIGNATURE = [
   "rgba(255,255,255,0.055) 100%)",
 ].join(", ");
 
-export default function Footer({ crossLink = MODES.endustriyel }: { crossLink?: ModeLink }) {
+export default function Footer({
+  crossLink = MODES.endustriyel,
+}: {
+  crossLink?: ModeLink | null;
+}) {
   return (
-    <footer className="relative overflow-hidden bg-ink-950 text-white">
+    <footer id="iletisim" className="relative overflow-hidden bg-ink-950 text-white">
       <div className="mx-auto max-w-7xl px-5 pt-20 md:px-8 md:pt-24">
         <div className="grid gap-12 md:grid-cols-[1.2fr_2.8fr] md:gap-16">
           {/* Marka */}
@@ -104,13 +109,15 @@ export default function Footer({ crossLink = MODES.endustriyel }: { crossLink?: 
               </a>
 
               {/* Diğer kol — evselde endüstriyel, endüstriyelde evsel */}
-              <Link
-                href={crossLink.href}
-                className="inline-flex h-11 items-center gap-2 rounded-full border border-white/20 bg-white/[0.07] px-5 text-[0.9375rem] font-medium text-white backdrop-blur-md transition-colors hover:border-white/35 hover:bg-white/[0.12]"
-              >
-                {crossLink.label}
-                <ArrowUpRight size={15} strokeWidth={2.2} />
-              </Link>
+              {crossLink && (
+                <Link
+                  href={crossLink.href}
+                  className="inline-flex h-11 items-center gap-2 rounded-full border border-white/20 bg-white/[0.07] px-5 text-[0.9375rem] font-medium text-white backdrop-blur-md transition-colors hover:border-white/35 hover:bg-white/[0.12]"
+                >
+                  {crossLink.label}
+                  <ArrowUpRight size={15} strokeWidth={2.2} />
+                </Link>
+              )}
             </div>
           </div>
 
@@ -124,24 +131,38 @@ export default function Footer({ crossLink = MODES.endustriyel }: { crossLink?: 
                 <ul className="mt-4 space-y-3">
                   {col.links.map((l) => {
                     const external = l.href.startsWith("http");
+                    const phone = l.href.startsWith("tel:");
+                    const content = (
+                      <>
+                        {l.label}
+                        {external && (
+                          <ArrowUpRight
+                            size={13}
+                            strokeWidth={2.2}
+                            className="opacity-0 transition-opacity group-hover:opacity-100"
+                          />
+                        )}
+                      </>
+                    );
+                    const className =
+                      "group inline-flex items-center gap-1 text-[0.875rem] text-white/55 transition-colors hover:text-brand-cool";
                     return (
                       <li key={l.label}>
-                        <a
-                          href={l.href}
-                          {...(external
-                            ? { target: "_blank", rel: "noopener noreferrer" }
-                            : {})}
-                          className="group inline-flex items-center gap-1 text-[0.875rem] text-white/55 transition-colors hover:text-brand-cool"
-                        >
-                          {l.label}
-                          {external && (
-                            <ArrowUpRight
-                              size={13}
-                              strokeWidth={2.2}
-                              className="opacity-0 transition-opacity group-hover:opacity-100"
-                            />
-                          )}
-                        </a>
+                        {external || phone ? (
+                          <a
+                            href={l.href}
+                            {...(external
+                              ? { target: "_blank", rel: "noopener noreferrer" }
+                              : {})}
+                            className={className}
+                          >
+                            {content}
+                          </a>
+                        ) : (
+                          <Link href={l.href} className={className}>
+                            {content}
+                          </Link>
+                        )}
                       </li>
                     );
                   })}
@@ -163,9 +184,16 @@ export default function Footer({ crossLink = MODES.endustriyel }: { crossLink?: 
           <ul className="flex flex-wrap items-center gap-x-5 gap-y-2">
             {LEGAL.map((l) => (
               <li key={l.label}>
-                <a href={l.href} className="transition-colors hover:text-white/80">
-                  {l.label}
-                </a>
+                {l.href ? (
+                  <Link
+                    href={l.href}
+                    className="transition-colors duration-300 hover:text-white/80"
+                  >
+                    {l.label}
+                  </Link>
+                ) : (
+                  <span>{l.label}</span>
+                )}
               </li>
             ))}
           </ul>

@@ -48,12 +48,16 @@ export default function Splash() {
 
   return (
     <main className="relative isolate h-screen-dynamic min-h-[600px] overflow-hidden bg-surface-0">
+      <h1 className="sr-only">Evsel ve endüstriyel çözümler</h1>
       {/* Sahne */}
       <picture>
         <source media="(max-width: 767px)" srcSet={mobileSrcSet} sizes="100vw" />
         <source media="(min-width: 768px)" srcSet={desktop.srcSet} sizes="100vw" />
-        {/* eslint-disable-next-line jsx-a11y/alt-text */}
-        <img {...desktop} className="absolute inset-0 h-full w-full object-cover" />
+        <img
+          {...desktop}
+          alt={IMAGE.alt}
+          className="absolute inset-0 h-full w-full object-cover"
+        />
       </picture>
 
       {/* Üst kenarda ince koyu perde: logonun altındaki bölge solda yaprak,
@@ -90,9 +94,9 @@ export default function Splash() {
             />
 
             <div className="relative z-10 w-full px-4 pb-10 text-center md:px-8 md:pb-16">
-              <h1 className="font-heading text-[clamp(1.5rem,5.5vw,3rem)] font-extrabold leading-none tracking-[-0.03em] text-white [text-shadow:0_2px_16px_rgba(0,0,0,0.55)]">
+              <h2 className="font-heading text-[clamp(1.5rem,5.5vw,3rem)] font-extrabold leading-none tracking-[-0.03em] text-white [text-shadow:0_2px_16px_rgba(0,0,0,0.55)]">
                 {c.title}
-              </h1>
+              </h2>
               <p className="mx-auto mt-3 hidden max-w-[32ch] text-[0.9375rem] leading-relaxed text-white/80 [text-shadow:0_1px_8px_rgba(0,0,0,0.6)] sm:block">
                 {c.text}
               </p>

@@ -2,11 +2,10 @@
 
 import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { AnimatePresence, motion } from "motion/react";
+import { motion } from "motion/react";
 import { ArrowLeft, ArrowRight, ArrowUpRight, Play } from "lucide-react";
-import { INSTAGRAM_URL, REELS, type Reel } from "@/config/social";
+import { getInstagramContentUrl, INSTAGRAM_URL, REELS, type Reel } from "@/config/social";
 import { usePrefersReducedMotion } from "@/hooks/useEnvironment";
-import ReelDialog from "./ReelDialog";
 
 /**
  * Reels — 3B karusel ("coverflow").
@@ -21,7 +20,7 @@ import ReelDialog from "./ReelDialog";
  * ilkine geçerken şerit geri sarmaz.
  *
  * Kapaklar YEREL dosya olmalı (Instagram CDN adresleri süreli). Kodu girilmemiş
- * kart pop-up açmaz, doğrudan profile gider (bkz. skill §28).
+ * kart doğrudan profile gider.
  */
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -58,7 +57,7 @@ function InstagramMark({ size = 17 }: { size?: number }) {
 export default function ReelsCarousel({
   id = "sosyal",
   title = "Sahadan videolar",
-  lead = "Kurulum, devreye alma ve bakım anları. Kartın üstüne basınca video burada açılır.",
+  lead = "Kurulum, devreye alma ve bakım anları. Kartın üstüne basınca video Instagram'da açılır.",
   reels = REELS,
 }: {
   id?: string;
@@ -68,7 +67,6 @@ export default function ReelsCarousel({
 }) {
   const reduced = usePrefersReducedMotion();
   const [index, setIndex] = useState(0);
-  const [open, setOpen] = useState<Reel | null>(null);
   const pausedUntil = useRef(0);
   const dragStart = useRef<number | null>(null);
 
@@ -159,8 +157,11 @@ export default function ReelsCarousel({
                 onClick={() => {
                   pause();
                   if (!isActive) return setIndex(i);
-                  if (reel.shortcode) setOpen(reel);
-                  else window.open(INSTAGRAM_URL, "_blank", "noopener,noreferrer");
+                  window.open(
+                    reel.shortcode ? getInstagramContentUrl(reel) : INSTAGRAM_URL,
+                    "_blank",
+                    "noopener,noreferrer",
+                  );
                 }}
                 className="absolute aspect-[9/16] w-[210px] overflow-hidden rounded-2xl border border-white/40 bg-surface-100 shadow-[0_24px_60px_rgba(31,31,37,0.28)] transition-all duration-500 ease-out md:w-[290px]"
                 style={{
@@ -268,9 +269,6 @@ export default function ReelsCarousel({
         </a>
       </div>
 
-      <AnimatePresence>
-        {open && <ReelDialog reel={open} onClose={() => setOpen(null)} />}
-      </AnimatePresence>
     </section>
   );
 }

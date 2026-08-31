@@ -63,7 +63,7 @@ export default function ReelDialog({
 
         <div className="overflow-hidden rounded-2xl bg-black">
           <iframe
-            src={`https://www.instagram.com/reel/${reel.shortcode}/embed/captioned/`}
+            src={`https://www.instagram.com/${reel.path}/${reel.shortcode}/embed/captioned/`}
             title={reel.title}
             className="h-[min(78vh,700px)] w-full"
             frameBorder="0"

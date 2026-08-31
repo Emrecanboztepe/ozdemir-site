@@ -26,6 +26,8 @@ export function useImageRect(
   ref: RefObject<HTMLElement | null>,
   naturalWidth: number,
   naturalHeight: number,
+  positionX = 0.5,
+  positionY = 0.5,
 ): ImageRect {
   const [rect, setRect] = useState<ImageRect>(EMPTY);
 
@@ -34,7 +36,11 @@ export function useImageRect(
     if (!el || !naturalWidth || !naturalHeight) return;
 
     const measure = () => {
-      const { width: cw, height: ch } = el.getBoundingClientRect();
+      // `getBoundingClientRect()` üst katmandaki kamera transformunu da ölçer.
+      // Overlay ve görsel aynı transformu paylaştığı için burada ham yerleşim
+      // boyutları kullanılmalı; aksi halde ölçek iki kez hesaba katılır.
+      const cw = el.clientWidth;
+      const ch = el.clientHeight;
       if (!cw || !ch) return;
 
       // cover: iki eksenden büyük olan ölçek kazanır
@@ -44,9 +50,9 @@ export function useImageRect(
 
       setRect((prev) => {
         const next: ImageRect = {
-          // object-position: center
-          left: (cw - width) / 2,
-          top: (ch - height) / 2,
+          // Görselde kullanılan `object-position` ile aynı oranlar.
+          left: (cw - width) * positionX,
+          top: (ch - height) * positionY,
           width,
           height,
           scale,
@@ -62,7 +68,7 @@ export function useImageRect(
     const ro = new ResizeObserver(measure);
     ro.observe(el);
     return () => ro.disconnect();
-  }, [ref, naturalWidth, naturalHeight]);
+  }, [ref, naturalWidth, naturalHeight, positionX, positionY]);
 
   return rect;
 }

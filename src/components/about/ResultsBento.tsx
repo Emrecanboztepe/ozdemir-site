@@ -3,7 +3,13 @@ import { Phone } from "lucide-react";
 import StatCounter from "./StatCounter";
 import GoogleRating from "@/components/hero/GoogleRating";
 import { SolidButton } from "@/components/ui/Buttons";
-import { PHONE, PHONE_HREF } from "@/config/site";
+import {
+  EXPERIENCE_YEARS,
+  LOCATIONS,
+  PHONE,
+  PHONE_HREF,
+  SERVICE_AREAS,
+} from "@/config/site";
 
 /**
  * Rakamlar + işler — üç sütunlu bento.
@@ -21,9 +27,9 @@ import { PHONE, PHONE_HREF } from "@/config/site";
  * belirip söner. `motion-safe:` — hareket hassasiyetinde durur.
  */
 const STATS = [
-  { to: 12, suffix: " yıl", label: "Saha tecrübesi" },
-  { to: 600, suffix: "+", label: "Tamamlanan iş" },
-  { to: 18, suffix: " MW", label: "Kurulu kapasite" },
+  { to: EXPERIENCE_YEARS, suffix: " yıl", label: "Deneyim" },
+  { to: LOCATIONS.length, suffix: "", label: "Şube" },
+  { to: SERVICE_AREAS.length, suffix: "", label: "Hizmet ili" },
 ];
 
 /** Sağdaki dikey şeritte akan kareler */
@@ -93,8 +99,8 @@ export default function ResultsBento() {
           {/* ── Orta: tam boy saha fotoğrafı ── */}
           <article className="relative min-h-[420px] overflow-hidden rounded-2xl border border-surface-100 lg:min-h-[620px]">
             <Image
-              src="/hakkimizda-kurulum.jpg"
-              alt="Cihaz montajı yapan teknisyen"
+              src="/adim-5.jpg"
+              alt="Özdemir Mühendislik servis aracı, işi tamamlanan modern bir villanın önünde"
               fill
               sizes="(max-width: 1023px) 100vw, 42vw"
               className="object-cover"

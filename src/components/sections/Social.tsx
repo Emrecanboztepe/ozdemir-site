@@ -1,19 +1,17 @@
 "use client";
 
 import Image from "next/image";
-import { useCallback, useRef, useState } from "react";
-import { AnimatePresence, motion } from "motion/react";
+import { useCallback, useRef } from "react";
+import { motion } from "motion/react";
 import { ArrowLeft, ArrowRight, ArrowUpRight, Play } from "lucide-react";
-import { INSTAGRAM_URL, REELS, type Reel } from "@/config/social";
-import ReelDialog from "./ReelDialog";
+import { getInstagramContentUrl, INSTAGRAM_URL, REELS } from "@/config/social";
 import { useDragScroll } from "@/hooks/useDragScroll";
 
 /**
  * Sosyal medya içerikleri ve röportajlar.
  *
  * 9:16 kartlar yatay bir şeritte; sürükleyerek, tekerlekle ya da ok tuşlarıyla
- * gezilir. Karta basınca içerik pop-up'ta açılır: Instagram'ın RESMÎ embed
- * çerçevesi kullanılır (anahtar veya kazıma yok). Kodu girilmemiş kartlar
+ * gezilir. Karta basınca içerik Instagram'da açılır. Kodu girilmemiş kartlar
  * doğrudan profile gider.
  */
 const ease = [0.22, 1, 0.36, 1] as const;
@@ -45,7 +43,6 @@ const ARROW =
 export default function Social() {
   const trackRef = useRef<HTMLDivElement>(null);
   const drag = useDragScroll(trackRef);
-  const [active, setActive] = useState<Reel | null>(null);
 
   const step = useCallback((dir: 1 | -1) => {
     const el = trackRef.current;
@@ -69,12 +66,12 @@ export default function Social() {
         >
           <h2 className="text-h2 font-semibold text-ink-950">
             <span className="bg-gradient-to-r from-brand-blue to-brand-teal bg-clip-text text-transparent">
-              Sosyal medya ve röportajlar
+              Isı pompası uygulamaları ve röportajlar
             </span>
           </h2>
           <p className="max-w-[46ch] text-[1.0625rem] leading-relaxed text-ink-600 md:justify-self-end">
-            Sahadan çektiğimiz videolar ve söyleşiler. Karta basınca içerik burada
-            açılır; tamamı için Instagram hesabımıza göz atabilirsiniz.
+            Bandırma, Balıkesir, Bursa ve Çanakkale çevresindeki sahalardan videolar,
+            montaj ayrıntıları ve Burak Özdemir&apos;in sektöre dair anlatımları.
           </p>
         </motion.div>
 
@@ -96,9 +93,13 @@ export default function Social() {
               >
                 <button
                   type="button"
-                  onClick={() =>
-                    linked ? setActive(reel) : window.open(INSTAGRAM_URL, "_blank")
-                  }
+                  onClick={() => {
+                    window.open(
+                      linked ? getInstagramContentUrl(reel) : INSTAGRAM_URL,
+                      "_blank",
+                      "noopener,noreferrer",
+                    );
+                  }}
                   className="group relative block aspect-[9/16] w-full overflow-hidden rounded-2xl bg-ink-950 text-left shadow-card-lg"
                 >
                   {reel.poster ? (
@@ -172,9 +173,6 @@ export default function Social() {
         </div>
       </div>
 
-      <AnimatePresence>
-        {active && <ReelDialog reel={active} onClose={() => setActive(null)} />}
-      </AnimatePresence>
     </section>
   );
 }

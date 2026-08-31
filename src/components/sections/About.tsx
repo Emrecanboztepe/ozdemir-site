@@ -5,13 +5,13 @@ import { motion } from "motion/react";
 import { ArrowUpRight, Award, Factory, Wrench } from "lucide-react";
 import type { ReactNode } from "react";
 import { ABOUT_HOME, type AboutBadge, type AboutContent } from "@/config/about";
+import { SolidButton } from "@/components/ui/Buttons";
 
 /**
  * Hakkımızda — fotoğraf bento'su.
  *
- * Ortak kart dili: fotoğraf kartı kaplar, ALT YARISI buzlu cam olur
- * (`backdrop-blur`) ve yazı bu buzlu yarının üstünde durur. Fotoğrafın üst yarısı
- * net kalır, alt yarı okunurluğu taşır — hero'daki cam diliyle aynı aile.
+ * Ortak kart dili: fotoğraf kartı kaplar; alttan yukarı şeffaflaşan koyu
+ * gradient metnin okunurluğunu korurken görseli bulanıklaştırmadan gösterir.
  */
 
 /** Rozet anahtarları — içerik `.ts` dosyasında JSX duramaz, ikona burada çevrilir */
@@ -31,7 +31,7 @@ const fadeUp = {
   transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] as const },
 };
 
-/** Fotoğraf + alt yarısı buzlu cam panel */
+/** Fotoğraf + alttan yukarı şeffaflaşan metin gradienti */
 function PhotoCard({
   src,
   alt,
@@ -74,10 +74,12 @@ function PhotoCard({
       {/* Net kalan üst yarıdaki rozet */}
       {badge && <div className="absolute left-7 top-7 z-10">{badge}</div>}
 
-      {/* Alt yarı: buzlu cam + yazı */}
-      {/* Buzlu cam panel yüksekliğini İÇERİĞİ belirler: blur tam olarak yazının
-          başladığı yerde başlar, fotoğrafın gereğinden fazlası bulanmaz. */}
-      <div className="absolute inset-x-0 bottom-0 border-t border-white/15 bg-ink-900/45 p-7 backdrop-blur-md">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-3/4 bg-gradient-to-t from-ink-950/95 via-ink-950/55 to-transparent"
+      />
+
+      <div className="absolute inset-x-0 bottom-0 z-[1] p-7">
         {eyebrow && (
           <span className="mb-2 font-heading text-[0.8125rem] font-semibold uppercase tracking-[0.14em] text-brand-heat">
             {eyebrow}
@@ -98,6 +100,45 @@ function PhotoCard({
         )}
       </div>
     </Tag>
+  );
+}
+
+/** Görselsiz keşif kartı — yalnızca metin ve ana aksiyon. */
+function TextCtaCard({
+  className = "",
+  title,
+  titleClass = "text-xl",
+  description,
+  href,
+  ctaLabel,
+}: {
+  className?: string;
+  title: string;
+  titleClass?: string;
+  description: string;
+  href: string;
+  ctaLabel: string;
+}) {
+  return (
+    <motion.article
+      {...fadeUp}
+      className={`${cardBase} flex flex-col justify-between bg-ink-950 p-7 ${className}`}
+    >
+      <div>
+        <h3
+          className={`font-heading font-semibold leading-tight tracking-tight text-white ${titleClass}`}
+        >
+          {title}
+        </h3>
+        <p className="mt-3 max-w-[34ch] text-[0.875rem] leading-relaxed text-white/70">
+          {description}
+        </p>
+      </div>
+
+      <SolidButton href={href} className="mt-6 h-11 self-start px-5 text-[0.875rem]">
+        {ctaLabel}
+      </SolidButton>
+    </motion.article>
   );
 }
 
@@ -128,13 +169,17 @@ export default function About({ content = ABOUT_HOME }: { content?: AboutContent
         </motion.div>
 
         <div className="mt-12 grid auto-rows-[260px] grid-cols-1 gap-4 md:mt-14 md:grid-cols-3">
-          {content.cards.map((card) => (
-            <PhotoCard
-              key={card.title}
-              {...card}
-              badge={card.badge ? iconBadge(BADGES[card.badge]) : undefined}
-            />
-          ))}
+          {content.cards.map((card) =>
+            card.variant === "cta" ? (
+              <TextCtaCard key={card.title} {...card} />
+            ) : (
+              <PhotoCard
+                key={card.title}
+                {...card}
+                badge={card.badge ? iconBadge(BADGES[card.badge]) : undefined}
+              />
+            ),
+          )}
         </div>
 
         {content.moreHref && (

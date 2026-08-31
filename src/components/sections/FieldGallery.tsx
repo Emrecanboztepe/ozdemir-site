@@ -15,22 +15,25 @@ import { useDragScroll } from "@/hooks/useDragScroll";
  * tam sayıya yuvarlandığı için kare başına düşen ~0.5px doğrudan yazılırsa
  * hiç ilerlemez.
  *
- * NOT: Görseller stok. Kendi saha fotoğraflarınızla değiştirilmelidir.
+ * Görseller Özdemir Mühendislik'in kendi tamamlanmış kurulumlarıdır
+ * (`public/saha-1..12.jpg`); alt metinler karede gerçekten görüneni yazar.
  */
 const ROW_A = [
-  { src: "/saha-2.jpg", alt: "Şantiyede çalışan ekip" },
-  { src: "/adim-1.jpg", alt: "Sahada inceleme yapan tekniker" },
-  { src: "/hakkimizda-kurulum.jpg", alt: "Cihaz montajı" },
-  { src: "/saha-1.jpg", alt: "Atölyede hazırlık" },
-  { src: "/adim-3.jpg", alt: "Tesisat ve yalıtım işi" },
+  { src: "/saha-1.jpg", alt: "Bahçe duvarı üzerine kurulmuş Bosch ısı pompası dış ünitesi; arkada Özdemir Mühendislik servis aracı" },
+  { src: "/saha-4.jpg", alt: "Bina cephesinde yan yana sıralanmış üç LG Therma V ısı pompası dış ünitesi" },
+  { src: "/saha-2.jpg", alt: "Çelik konstrüksiyon üzerine alınmış ikiz NIBE ısı pompası dış üniteleri" },
+  { src: "/saha-11.jpg", alt: "Bosch dış ünitesi ile yanındaki boyler ve kolektörlü tesisat bağlantısı" },
+  { src: "/saha-6.jpg", alt: "Kırmızı çelik sehpaya alınmış siyah Gram Power monoblok ısı pompası ve boyleri" },
+  { src: "/saha-8.jpg", alt: "Villa bahçesinde zeytin ağacının altına yerleştirilmiş Bosch ısı pompası dış ünitesi" },
 ];
 
 const ROW_B = [
-  { src: "/hakkimizda-tesisat.jpg", alt: "Boru kaynağı" },
-  { src: "/saha-3.jpg", alt: "İnşaat sahası" },
-  { src: "/adim-4.jpg", alt: "Cihaz ayarı" },
-  { src: "/saha-4.jpg", alt: "Metal işçiliği" },
-  { src: "/adim-5.jpg", alt: "Ölçüm ve devreye alma" },
+  { src: "/saha-12.jpg", alt: "Çelik şase üzerinde Bosch ısı pompası, boyler ve kırmızı genleşme tankı" },
+  { src: "/saha-3.jpg", alt: "Apartman duvarı önünde çift katlı çelik sehpaya alınmış iki Bosch dış ünitesi" },
+  { src: "/saha-10.jpg", alt: "Teknik hacimde ikiz NIBE dış üniteleri, boyler ve duvara monte iç modüller" },
+  { src: "/saha-5.jpg", alt: "Gram Power monoblok ısı pompası, denge deposu ve genleşme tankıyla birlikte" },
+  { src: "/saha-7.jpg", alt: "Bina cephesindeki çelik sehpaya alınmış iki gri NIBE ısı pompası dış ünitesi" },
+  { src: "/saha-9.jpg", alt: "Fuar standında sergilenen Bosch ısı pompası, NIBE ve Solimpeks boyler grubu" },
 ];
 
 /** Kayma hızı (px/sn) */

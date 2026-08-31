@@ -1,5 +1,9 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Manrope } from "next/font/google";
+import RouteScrollManager from "@/components/navigation/RouteScrollManager";
+import JsonLd from "@/components/seo/JsonLd";
+import { SITE_URL } from "@/config/site";
+import { ORGANIZATION_JSON_LD } from "@/lib/seo";
 import "./globals.css";
 
 const manrope = Manrope({
@@ -17,6 +21,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: "Özdemir Mühendislik — Isı Pompası, Isıtma ve Soğutma",
   description:
     "Havadan suya ısı pompası satışı, mekanik tesisat ve iklimlendirme. Keşiften kuruluma, bakımdan servise kadar tek elden.",
@@ -31,7 +36,11 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="tr" className={`${manrope.variable} ${inter.variable}`}>
-      <body>{children}</body>
+      <body>
+        <RouteScrollManager />
+        <JsonLd data={ORGANIZATION_JSON_LD} />
+        {children}
+      </body>
     </html>
   );
 }

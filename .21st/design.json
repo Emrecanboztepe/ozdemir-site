@@ -1,0 +1,312 @@
+{
+  "version": 1,
+  "project": {
+    "name": "ozdemir-muhendislik",
+    "productType": null,
+    "stack": [
+      "nextjs",
+      "react",
+      "tailwind-v3"
+    ]
+  },
+  "sources": {
+    "tokens": [
+      "src/app/globals.css"
+    ],
+    "components": [
+      "src/components/ui"
+    ],
+    "assets": [],
+    "instructions": [
+      "AGENTS.md",
+      "CLAUDE.md"
+    ]
+  },
+  "design": {
+    "colorMode": "light",
+    "colors": {
+      "--color-primary": {
+        "value": "#2c65a8",
+        "source": "src/app/globals.css"
+      },
+      "--color-primary-2": {
+        "value": "#ff7029",
+        "source": "src/app/globals.css"
+      },
+      "--color-secondary": {
+        "value": "#1f1f25",
+        "source": "src/app/globals.css"
+      },
+      "--color-body": {
+        "value": "#6e777d",
+        "source": "src/app/globals.css"
+      },
+      "--color-heading-1": {
+        "value": "#1f1f25",
+        "source": "src/app/globals.css"
+      },
+      "--color-white": {
+        "value": "#fff",
+        "source": "src/app/globals.css"
+      },
+      "--color-primary-light": {
+        "value": "#1ba2db",
+        "source": "src/app/globals.css"
+      },
+      "--color-primary-soft": {
+        "value": "#8fd0ee",
+        "source": "src/app/globals.css"
+      },
+      "--color-surface-50": {
+        "value": "#f6f8fb",
+        "source": "src/app/globals.css"
+      },
+      "--color-surface-100": {
+        "value": "#e7ecf3",
+        "source": "src/app/globals.css"
+      },
+      "--color-muted": {
+        "value": "#8a9197",
+        "source": "src/app/globals.css"
+      },
+      "--color-success": {
+        "value": "#3eb75e",
+        "source": "src/app/globals.css"
+      },
+      "--color-danger": {
+        "value": "#ff0003",
+        "source": "src/app/globals.css"
+      },
+      "--color-warning": {
+        "value": "#ff8f3c",
+        "source": "src/app/globals.css"
+      },
+      "--color-info": {
+        "value": "#1ba2db",
+        "source": "src/app/globals.css"
+      },
+      "--color-facebook": {
+        "value": "#3b5997",
+        "source": "src/app/globals.css"
+      },
+      "--color-twitter": {
+        "value": "#1ba1f2",
+        "source": "src/app/globals.css"
+      },
+      "--color-youtube": {
+        "value": "#ed4141",
+        "source": "src/app/globals.css"
+      },
+      "--color-linkedin": {
+        "value": "#0077b5",
+        "source": "src/app/globals.css"
+      },
+      "--color-pinterest": {
+        "value": "#e60022",
+        "source": "src/app/globals.css"
+      },
+      "--color-instagram": {
+        "value": "#c231a1",
+        "source": "src/app/globals.css"
+      },
+      "--color-vimeo": {
+        "value": "#00adef",
+        "source": "src/app/globals.css"
+      },
+      "--color-twitch": {
+        "value": "#6441a3",
+        "source": "src/app/globals.css"
+      },
+      "--color-discord": {
+        "value": "#7289da",
+        "source": "src/app/globals.css"
+      }
+    },
+    "typography": {},
+    "spacing": {
+      "--shiny-space": {
+        "value": "calc(var(--shiny-position) * 2)",
+        "source": "src/app/globals.css"
+      }
+    },
+    "radius": {},
+    "shadows": {
+      "--shiny-shadow-size": {
+        "value": "2px",
+        "source": "src/app/globals.css"
+      }
+    },
+    "motion": {
+      "--shiny-animation": {
+        "value": "shiny-shimmer linear infinite",
+        "source": "src/app/globals.css"
+      },
+      "--shiny-duration": {
+        "value": "3s",
+        "source": "src/app/globals.css"
+      },
+      "--shiny-transition": {
+        "value": "800ms cubic-bezier(0.25, 1, 0.5, 1)",
+        "source": "src/app/globals.css"
+      }
+    },
+    "density": "unknown"
+  },
+  "components": {
+    "installed": [
+      "Buttons"
+    ],
+    "preferredPrimitives": [],
+    "patterns": []
+  },
+  "constraints": {
+    "must": [
+      "Use the evsel experience as the primary / homepage; keep /endustriyel as the separate industrial branch and redirect the legacy /evsel route to /.",
+      "Use the existing Tailwind v3 brand tokens, Manrope headings, Inter body copy, and real logo assets.",
+      "Keep approved evsel homepage copy and verified business facts as the source of truth.",
+      "Search 21st.dev before hand-writing new UI and adapt selected patterns to existing project primitives.",
+      "Meet mobile-first, keyboard, visible-focus, reduced-motion, semantic HTML, and 44px touch-target requirements.",
+      "Use only verified trust claims. Placeholder product names, specs, and images may appear only when visibly labeled as representative draft catalog content; never use them as proof, SEO claims, or conversion promises."
+    ],
+    "avoid": [
+      "Do not introduce shadcn token names or Tailwind v4 utilities into this Tailwind v3 non-shadcn project.",
+      "Do not replace the approved homepage copy or disrupt existing user changes.",
+      "Avoid generic AI landing-page aesthetics: excessive gradients, glass, cards, huge headlines, or decorative motion.",
+      "Avoid dark heavy page sections except for purposeful proof or CTA anchors already supported by the design system.",
+      "Do not fabricate testimonials, ratings, savings, capacities, project counts, awards, guarantees, or model specifications."
+    ]
+  },
+  "decisions": [
+    {
+      "decision": "Google Ads landing direction: Kanıt İlk Ekranda (proof-first)",
+      "reason": "The +35 audience should see service-region fit, free discovery, verified awards, phone, and WhatsApp before deeper product exploration."
+    },
+    {
+      "decision": "Service details use one config-driven dynamic template with four seeded slugs",
+      "reason": "Content can be updated centrally while each route retains distinct SEO/GEO metadata, scope, products, proof, field work, and FAQs."
+    },
+    {
+      "decision": "Short lead forms prepare a WhatsApp message and do not persist submitted data",
+      "reason": "This supports the requested phone + WhatsApp + form flow without introducing an unapproved backend or silent data collection."
+    },
+    {
+      "decision": "Sahadan uses an evidence-methodology page with an explicit empty archive and separately labeled representative imagery",
+      "reason": "No permissioned case records exist yet, so gallery composition must not imply that stock imagery is project proof."
+    },
+    {
+      "decision": "Contact uses local-channel cards, two physical locations, and the shared WhatsApp draft form",
+      "reason": "The +35 audience can choose phone, WhatsApp, or a short assisted form while business identity and data flow remain clear."
+    },
+    {
+      "decision": "Routes open at the top unless the URL contains an intentional hash target",
+      "reason": "Browser scroll restoration was carrying prior footer positions into newly opened pages; explicit anchors must continue to work."
+    },
+    {
+      "decision": "The evsel experience is the canonical homepage and /evsel permanently redirects to /",
+      "reason": "The selection gateway is retired so visitors and search engines enter through one primary residential landing URL without duplicate content."
+    },
+    {
+      "decision": "EvselFooter is the universal footer across all rendered site pages",
+      "reason": "A single shared footer keeps navigation, trust copy, locations, phone, WhatsApp, and legal links consistent across residential, industrial, product, service, contact, landing, and legal routes."
+    },
+    {
+      "decision": "About photo cards use bottom-to-top dark gradient overlays instead of backdrop blur",
+      "reason": "The gradient preserves text contrast while keeping award and field imagery sharp and visible behind the copy."
+    },
+    {
+      "decision": "Homepage product cards share the verified brand catalog and use phone-first discovery plus brand-detail actions",
+      "reason": "A single catalog source keeps Bosch, NIBE, Gram Power, and Varmeks model names and imagery synchronized across homepage and detail routes."
+    },
+    {
+      "decision": "The universal footer contact column includes compact icon links for Instagram, Facebook, and YouTube",
+      "reason": "Social destinations remain discoverable beside the primary phone and WhatsApp channels without competing with them."
+    },
+    {
+      "decision": "Verified achievement cards on the product hub show the real award photography above the brand and result copy",
+      "reason": "The physical award is stronger visual evidence than a logo-only card while the lower text panel preserves fast comparison."
+    },
+    {
+      "decision": "The product hub marquee presents transparent PNG product cutouts directly on the hero surface without card containers",
+      "reason": "Removing white cards, borders, radii, and shadows keeps the moving band visually light and lets the product silhouettes remain the focus."
+    },
+    {
+      "decision": "The product hub reuses the homepage's filterable product carousel instead of a separate brand-summary grid",
+      "reason": "One shared component keeps product imagery, model copy, filters, discovery actions, and brand-detail links consistent across the homepage and product hub."
+    },
+    {
+      "decision": "The product hub places selection steps and the discovery CTA directly after award proof, followed by the product carousel",
+      "reason": "Visitors first see verified credibility, then understand the assisted selection process and receive a clear contact action before browsing individual products; the redundant decision-guide cards are removed."
+    },
+    {
+      "decision": "The product hero removes its eyebrow, uses a two-line home-system headline, and pairs discovery with a direct product-scroll action",
+      "reason": "The simplified hierarchy makes the core promise dominant while giving visitors an immediate choice between contacting the team and browsing the catalog."
+    },
+    {
+      "decision": "The services hub opens with an animated two-column hero pairing existing service copy and contact actions with a restrained three-image field collage",
+      "reason": "The collage gives the broad service offer a tangible technical context while verified experience, branch, and service-region facts remain visible beside the primary actions."
+    },
+    {
+      "decision": "The services hero omits breadcrumb and eyebrow labels so the primary heading opens the content directly",
+      "reason": "Removing two stacked navigation labels simplifies the hero hierarchy and reduces unused vertical space beneath the persistent navigation."
+    },
+    {
+      "decision": "The services hero collage shows only the three photographs without decorative shapes, visible labels, frames, backgrounds, or shadows",
+      "reason": "A frameless collage keeps the technical imagery visually quiet and prevents ornamental UI from competing with the service message."
+    },
+    {
+      "decision": "The services hub removes the separate suitability-routing card section",
+      "reason": "The primary four-service cards already provide scope previews and detail links, making the second routing grid repetitive before the shared process section."
+    },
+    {
+      "decision": "The service lead area removes its decorative wrench and groups a 'Bizi Ara' action beside the WhatsApp draft submit button",
+      "reason": "Keeping both response channels at the form's decision point reduces visual noise and prevents the phone action from being separated from the primary WhatsApp workflow."
+    },
+    {
+      "decision": "Each primary service card includes a distinct full-width contextual image above its existing icon and service details",
+      "reason": "The visual headers make installation, mechanical work, project planning, and maintenance easier to distinguish while preserving the established card hierarchy and actions."
+    },
+    {
+      "decision": "The Sahadan route uses a full bento-style field gallery with an accessible lightbox, followed by the homepage's Instagram video strip",
+      "reason": "A visual-first archive makes field stages easier to explore while the reused social content provides a separate stream of permissioned real videos and interviews; representative gallery imagery remains explicitly labeled."
+    },
+    {
+      "decision": "Brand catalogs group verified residential heat pumps, hot-water products, system units, and pool products by use category while commercial products feed only the industrial catalog",
+      "reason": "The shared source of truth keeps every official product family available without presenting commercial capacities as household products."
+    }
+  ],
+  "evidence": [
+    {
+      "fact": "components.installed",
+      "source": "src/components/ui"
+    },
+    {
+      "fact": "design.colorMode:light",
+      "source": "src/app/globals.css"
+    },
+    {
+      "fact": "design.tokens",
+      "source": "src/app/globals.css"
+    },
+    {
+      "fact": "project.instructions",
+      "source": "AGENTS.md"
+    },
+    {
+      "fact": "project.instructions",
+      "source": "CLAUDE.md"
+    },
+    {
+      "fact": "project.stack:nextjs",
+      "source": "package.json"
+    },
+    {
+      "fact": "project.stack:react",
+      "source": "package.json"
+    },
+    {
+      "fact": "project.stack:tailwind-v3",
+      "source": "package.json"
+    }
+  ],
+  "generatedAt": "2026-08-22T13:21:11.343Z"
+}

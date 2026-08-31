@@ -34,12 +34,25 @@ export default function HeroDebug({
 
   if (!rect.ready) return null;
 
+  const flowMarkers: Marker[] = [
+    { label: "home.from", p: variant.flow.from, color: "#FF7029" },
+    { label: "home.c1", p: variant.flow.c1, color: "#FFB98F" },
+    { label: "home.c2", p: variant.flow.c2, color: "#FFB98F" },
+    { label: "home.to", p: variant.flow.to, color: "#FF7029" },
+  ];
+
+  if (variant.poolFlow) {
+    flowMarkers.push(
+      { label: "pool.from", p: variant.poolFlow.from, color: "#56D8FF" },
+      { label: "pool.c1", p: variant.poolFlow.c1, color: "#8FD0EE" },
+      { label: "pool.c2", p: variant.poolFlow.c2, color: "#8FD0EE" },
+      { label: "pool.to", p: variant.poolFlow.to, color: "#56D8FF" },
+    );
+  }
+
   const markers: Marker[] = [
     { label: "fan", p: variant.fan, color: "#FF2D55" },
-    { label: "flow.from", p: variant.flow.from, color: "#FF7029" },
-    { label: "flow.c1", p: variant.flow.c1, color: "#FFB98F" },
-    { label: "flow.c2", p: variant.flow.c2, color: "#FFB98F" },
-    { label: "flow.to", p: variant.flow.to, color: "#FF7029" },
+    ...flowMarkers,
     ...variant.windows.map((w, i) => ({
       label: `win${i}`,
       p: { x: w.left + w.width / 2, y: w.top + w.height / 2 },
@@ -47,17 +60,33 @@ export default function HeroDebug({
     })),
   ];
 
-  const onClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    const box = e.currentTarget.getBoundingClientRect();
-    const x = ((e.clientX - box.left - rect.left) / rect.width) * 100;
-    const y = ((e.clientY - box.top - rect.top) / rect.height) * 100;
-    const p = { x: +x.toFixed(2), y: +y.toFixed(2) };
+  const recordPoint = (p: { x: number; y: number }) => {
     setLast(p);
     console.log(`{ x: ${p.x}, y: ${p.y} }`, p);
   };
 
+  const onClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const box = e.currentTarget.getBoundingClientRect();
+    const x = ((e.clientX - box.left - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - box.top - rect.top) / rect.height) * 100;
+    const p = { x: +x.toFixed(2), y: +y.toFixed(2) };
+    recordPoint(p);
+  };
+
+  const onKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>) => {
+    if (e.key !== "Enter" && e.key !== " ") return;
+    e.preventDefault();
+    recordPoint({ x: 50, y: 50 });
+  };
+
   return (
-    <div className="absolute inset-0 z-40 cursor-crosshair" onClick={onClick}>
+    <button
+      type="button"
+      aria-label="Hero koordinat yüzeyi; Enter veya Boşluk görsel merkezini seçer"
+      className="absolute inset-0 z-40 cursor-crosshair appearance-none border-0 bg-transparent p-0 text-left"
+      onClick={onClick}
+      onKeyDown={onKeyDown}
+    >
       {/* Görselin gerçek sınırları */}
       <div
         className="pointer-events-none absolute border border-dashed border-fuchsia-500/70"
@@ -108,6 +137,6 @@ export default function HeroDebug({
           görsel {Math.round(rect.width)}×{Math.round(rect.height)} @ {rect.scale.toFixed(3)}×
         </div>
       </div>
-    </div>
+    </button>
   );
 }

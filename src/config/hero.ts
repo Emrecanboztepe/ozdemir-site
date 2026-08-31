@@ -18,6 +18,8 @@ export type Flow = { from: Point; c1: Point; c2: Point; to: Point };
 
 export type HeroVariant = {
   image: { src: string; width: number; height: number };
+  /** `object-position` oranı: 0 = başlangıç, 0.5 = merkez, 1 = bitiş */
+  objectPosition: { x: number; y: number };
   /**
    * Fotoğraftan üretilmiş gökyüzü matte'i (alfa kanallı PNG). Bulut videosu
    * bununla kırpılır: bulutlar evin ve ağaçların ARKASINDA kalır.
@@ -34,6 +36,8 @@ export type HeroVariant = {
   fan: Point & { r: number };
   /** Pompadan cam kapıya giden tek ısı akışı */
   flow: Flow;
+  /** Aynı sistemin havuza verdiği ikinci, daha serin tonlu akış */
+  poolFlow: Flow | null;
   /** Sıcak parıltı bindirilecek pencereler */
   windows: { left: number; top: number; width: number; height: number }[];
 };
@@ -41,41 +45,44 @@ export type HeroVariant = {
 export const aspectRatio = (v: HeroVariant) => v.image.width / v.image.height;
 
 export const HERO_DESKTOP: HeroVariant = {
-  image: { src: "/hero-desktop.jpg", width: 2822, height: 1504 },
-  skyMask: "/sky-mask-desktop.png",
-  cutoutMask: "/fg-cut-desktop.png",
-  fan: { x: 86.6, y: 80.7, r: 2.85 },
-  // dış ünitenin dibinden zemin hattı boyunca ilerler, pencereye ALTTAN girer
+  image: { src: "/hero-cinematic-desktop-v3.webp", width: 1536, height: 1024 },
+  objectPosition: { x: 0.5, y: 0.5 },
+  skyMask: null,
+  cutoutMask: null,
+  fan: { x: 79.1, y: 65.4, r: 3.95 },
+  // dış üniteden villanın cam cephesine uzanan tek, sinematik akış
   flow: {
-    from: { x: 83.5, y: 83.5 },
-    c1: { x: 78.0, y: 90.2 },
-    c2: { x: 71.0, y: 90.6 },
-    to: { x: 65.9, y: 86.3 },
+    from: { x: 75.8, y: 78.0 },
+    c1: { x: 73.8, y: 77.5 },
+    c2: { x: 71.0, y: 73.5 },
+    to: { x: 68.0, y: 71.4 },
   },
+  poolFlow: null,
   windows: [
-    { left: 54.0, top: 63.3, width: 4.8, height: 24.9 },
-    { left: 63.5, top: 63.3, width: 4.8, height: 24.9 },
-    { left: 73.0, top: 63.3, width: 5.0, height: 24.9 },
+    { left: 40.6, top: 58.0, width: 6.0, height: 17.2 },
+    { left: 47.6, top: 56.5, width: 6.8, height: 19.0 },
+    { left: 55.5, top: 54.5, width: 10.8, height: 21.5 },
   ],
 };
 
 export const HERO_MOBILE: HeroVariant = {
-  image: { src: "/hero-mobile.jpg", width: 1696, height: 2528 },
-  skyMask: "/sky-mask-mobile.png",
-  // Mobilde başlık gökyüzünde duruyor, evin önüne gelmiyor — kesime gerek yok
+  image: { src: "/hero-cinematic-mobile-v3.webp", width: 941, height: 1672 },
+  // Cihaz sağda fakat merkez güvenli alanında: kırpım sağ tarafı biraz korur.
+  objectPosition: { x: 0.72, y: 0.5 },
+  skyMask: null,
   cutoutMask: null,
-  fan: { x: 75.0, y: 75.9, r: 3.9 },
-  // ünitenin dibinden temel hattı boyunca, mutfak penceresine ALTTAN
+  fan: { x: 65.0, y: 60.8, r: 5.75 },
   flow: {
-    from: { x: 68.5, y: 82.0 },
-    c1: { x: 62.0, y: 87.0 },
-    c2: { x: 52.0, y: 87.2 },
-    to: { x: 43.5, y: 82.5 },
+    from: { x: 59.5, y: 69.7 },
+    c1: { x: 56.5, y: 69.0 },
+    c2: { x: 53.5, y: 65.0 },
+    to: { x: 50.5, y: 62.5 },
   },
+  poolFlow: null,
   windows: [
-    { left: 37.6, top: 64.5, width: 11.9, height: 18.8 }, // mutfak
-    { left: 52.2, top: 64.5, width: 11.6, height: 18.8 }, // salon
-    { left: 22.0, top: 67.8, width: 3.7, height: 12.3 }, // giriş kapısı
+    { left: 25.5, top: 53.5, width: 9.0, height: 13.5 },
+    { left: 36.0, top: 52.0, width: 9.5, height: 15.0 },
+    { left: 47.0, top: 50.5, width: 9.0, height: 16.5 },
   ],
 };
 
