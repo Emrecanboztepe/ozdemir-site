@@ -70,7 +70,7 @@ export default function Social() {
             </span>
           </h2>
           <p className="max-w-[46ch] text-[1.0625rem] leading-relaxed text-ink-600 md:justify-self-end">
-            Bandırma, Balıkesir, Bursa ve Çanakkale çevresindeki sahalardan videolar,
+            Türkiye&apos;nin farklı noktalarındaki sahalardan videolar,
             montaj ayrıntıları ve Burak Özdemir&apos;in sektöre dair anlatımları.
           </p>
         </motion.div>

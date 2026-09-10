@@ -60,7 +60,7 @@ export const ABOUT_HOME: AboutContent = {
   moreHref: ABOUT_HREF,
   titleAccent: "Bandırma merkezli",
   titleRest: "sekiz yıllık ısı pompası deneyimi",
-  lead: "Özdemir Mühendislik, Bandırma'daki ana merkezi ve Biga şubesiyle evsel ısı pompası satışı ve montajı yapar. Firma sahibi Burak Özdemir kuruluşundan beri işin başındadır; doğru seçim, temiz uygulama ve satış sonrası ulaşılabilirlik her işin önceliğidir.",
+  lead: "Özdemir Mühendislik, Bandırma'daki ana merkezi ve Biga şubesiyle Türkiye genelinde evsel ısı pompası satışı ve montajı yapar. Firma sahibi Burak Özdemir kuruluşundan beri işin başındadır; doğru seçim, temiz uygulama ve satış sonrası ulaşılabilirlik her işin önceliğidir.",
   cards: [
     {
       className: "md:col-span-2 md:row-span-2",
@@ -93,19 +93,19 @@ export const ABOUT_HOME: AboutContent = {
     },
     {
       src: "/grampower-odul-ozdemir.png",
-      alt: "Gram Power 2024 Türkiye beşincilik ödülü",
+      alt: "Gram Power Türkiye satış birinciliği ödülü",
       sizes: "(max-width: 767px) 100vw, 33vw",
       eyebrow: "GRAM POWER",
-      title: "Satışta Türkiye beşincisi",
+      title: "Türkiye satış birincisi",
       titleClass: "text-[clamp(1.0625rem,1.75vw,1.25rem)] lg:whitespace-nowrap",
-      description: "Gram Power'ın en çok satış yapan beşinci yetkili bayisi olduk.",
+      description: "Gram Power'da Türkiye satış birincisi olduk.",
     },
     {
       variant: "cta",
       href: ROUTES.isiPompasiTeklifi.href,
-      title: "Üç bölgede ücretsiz keşif",
+      title: "Türkiye genelinde montaj",
       titleClass: "text-[clamp(1.125rem,1.75vw,1.25rem)] lg:whitespace-nowrap",
-      description: "Balıkesir, Bursa ve Çanakkale'de evinizi yerinde değerlendiriyoruz.",
+      description: "Ücretsiz keşif önceliğimiz Balıkesir, Bursa ve Çanakkale; kapsamlı projeleri Türkiye genelinde değerlendiriyoruz.",
       ctaLabel: "Ücretsiz keşif talebi",
     },
   ],

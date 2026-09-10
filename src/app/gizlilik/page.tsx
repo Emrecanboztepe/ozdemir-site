@@ -116,9 +116,8 @@ export default function GizlilikPage() {
 
       <LegalSection title="9. Değişiklikler">
         <p>
-          Bu taslak hukuk danışmanı incelemesi sonrasında güncellenebilir. Taslak
-          hazırlanma tarihi: {UPDATED}. Hukuki inceleme tamamlanmadan resmî politika
-          olarak değerlendirilmemelidir.
+          Bu politika gerektiğinde güncellenebilir; güncel sürüm her zaman bu sayfada
+          yayımlanır. Son güncelleme tarihi: {UPDATED}.
         </p>
       </LegalSection>
       </LegalPage>

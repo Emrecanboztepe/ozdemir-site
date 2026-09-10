@@ -10,6 +10,7 @@ import {
   type LeadDraft,
   type LeadErrors,
 } from "@/lib/lead";
+import { trackLead } from "@/lib/analytics";
 
 const EMPTY_DRAFT: LeadDraft = {
   fullName: "",
@@ -57,6 +58,11 @@ export default function ServiceLeadForm({ serviceName }: { serviceName?: string 
     }
 
     const popup = window.open("", "_blank");
+    trackLead("whatsapp_form", {
+      province: draft.province,
+      has_property_size: Boolean(draft.propertySize),
+      has_current_heating: Boolean(draft.currentHeating),
+    });
     if (popup) {
       popup.opener = null;
       popup.location.href = result.url;

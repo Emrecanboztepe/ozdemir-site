@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Manrope } from "next/font/google";
+import Analytics from "@/components/analytics/Analytics";
 import RouteScrollManager from "@/components/navigation/RouteScrollManager";
 import JsonLd from "@/components/seo/JsonLd";
 import { SITE_URL } from "@/config/site";
@@ -37,6 +38,7 @@ export default function RootLayout({
   return (
     <html lang="tr" className={`${manrope.variable} ${inter.variable}`}>
       <body>
+        <Analytics />
         <RouteScrollManager />
         <JsonLd data={ORGANIZATION_JSON_LD} />
         {children}

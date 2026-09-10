@@ -3,9 +3,9 @@ import { notFound } from "next/navigation";
 import ServiceDetailPage from "@/components/services/ServiceDetailPage";
 import JsonLd from "@/components/seo/JsonLd";
 import { SERVICES, getService, type ServiceContent } from "@/config/services";
-import { SERVICE_AREAS } from "@/config/site";
 import {
   ORGANIZATION_ID,
+  SERVICE_AREA_JSON_LD,
   WEBSITE_ID,
   absoluteUrl,
   buildPageMetadata,
@@ -52,7 +52,17 @@ function buildServiceJsonLd(service: ServiceContent): JsonLdValue {
         description: service.answer,
         serviceType: service.shortTitle,
         provider: { "@id": ORGANIZATION_ID },
-        areaServed: SERVICE_AREAS.map((name) => ({ "@type": "AdministrativeArea", name })),
+        areaServed: SERVICE_AREA_JSON_LD,
+        offers: {
+          "@type": "Offer",
+          name: "Öncelikli bölgelerde ücretsiz yerinde keşif",
+          price: "0",
+          priceCurrency: "TRY",
+          eligibleRegion: ["Balıkesir", "Bursa", "Çanakkale"].map((name) => ({
+            "@type": "AdministrativeArea",
+            name,
+          })),
+        },
       },
       {
         "@type": "BreadcrumbList",

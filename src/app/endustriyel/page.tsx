@@ -8,11 +8,12 @@ import FieldGallery from "@/components/sections/FieldGallery";
 import ReelsCarousel from "@/components/sections/ReelsCarousel";
 import Faq from "@/components/sections/Faq";
 import EvselFooter from "@/components/EvselFooter";
-import { ABOUT_INDUSTRIAL } from "@/config/about";
+import { ABOUT_HOME } from "@/config/about";
 import { INDUSTRIAL_CATALOG } from "@/config/industrial";
 import { WHY_INDUSTRIAL } from "@/config/why";
 import { FAQ_INDUSTRIAL } from "@/config/faq";
 import { ROUTES } from "@/config/routes";
+import { MODES } from "@/config/site";
 import { buildPageMetadata } from "@/lib/seo";
 
 export const metadata = buildPageMetadata(ROUTES.endustriyel);
@@ -27,14 +28,14 @@ export default function EndustriyelPage() {
         {/* Marka şeridi artık hero'nun içinde değil, ana sayfadaki gibi
             sahnenin hemen altında ayrı bir bölüm. */}
         <BrandMarquee />
-        <About content={ABOUT_INDUSTRIAL} />
+        <About content={ABOUT_HOME} />
         <Products catalog={INDUSTRIAL_CATALOG} />
-        <Why content={WHY_INDUSTRIAL} />
+        <Why content={WHY_INDUSTRIAL} coolProofValues />
         <FieldGallery />
         <ReelsCarousel />
         <Faq content={FAQ_INDUSTRIAL} />
       </main>
-      <EvselFooter />
+      <EvselFooter crossLink={MODES.evsel} />
     </>
   );
 }

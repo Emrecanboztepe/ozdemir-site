@@ -39,8 +39,8 @@ export default function Hero() {
       stageRef={stageRef}
       eyebrow="Isıtma · Serinletme · Sıcak su"
       poster={{ text: "TEK SİSTEM", asterisk: true }}
-      heading="Bandırma, Balıkesir, Bursa ve Çanakkale'da evsel ısı pompası"
-      lead="Sekiz yıllık ekibimiz ücretsiz keşif, satış, montaj ve servisi tek elden yürütür."
+      heading="Türkiye genelinde evsel ısı pompası montajı"
+      lead="Balıkesir, Bursa ve Çanakkale'de ücretsiz keşif; Türkiye genelinde satış, montaj ve servis desteği sunuyoruz."
       primary={{ href: "#iletisim", label: "Ücretsiz keşif" }}
       secondary={{ href: "#secici", label: "Isı pompanızı bulun" }}
     >

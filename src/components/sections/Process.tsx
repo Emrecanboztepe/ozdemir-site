@@ -27,7 +27,7 @@ const STEPS: Step[] = [
     image: step1Image,
     alt: "Sahada inceleme yapan tekniker",
     title: "Ücretsiz yerinde keşif",
-    text: "Balıkesir, Bursa ve Çanakkale'da evin büyüklüğünü, yalıtımını, mevcut tesisatı ve ısı ihtiyacını yerinde değerlendiririz.",
+    text: "Balıkesir, Bursa ve Çanakkale'de ücretsiz keşif yaparız. Diğer illerde saha planını projenin kapsamına göre netleştiririz.",
   },
   {
     image: step2Image,

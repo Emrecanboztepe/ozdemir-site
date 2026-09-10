@@ -7,7 +7,6 @@ import {
   Clock3,
   MapPin,
   Phone,
-  ShieldCheck,
 } from "lucide-react";
 import EvselFooter from "@/components/EvselFooter";
 import Navbar from "@/components/Navbar";
@@ -26,7 +25,7 @@ import {
   PHONE_HREF,
   SECONDARY_PHONE,
   SECONDARY_PHONE_HREF,
-  SERVICE_AREAS,
+  SERVICE_SCOPE,
   WHATSAPP_HREF,
 } from "@/config/site";
 
@@ -39,7 +38,7 @@ const CONTACT_STEPS = [
   {
     index: "02",
     title: "Bölge ve uygunluğu kontrol ederiz",
-    description: "Balıkesir, Bursa ve Çanakkale taleplerini değerlendirir; uygunluk netleşmeden randevu sözü vermeyiz.",
+    description: "Balıkesir, Bursa ve Çanakkale'de ücretsiz keşif; diğer illerde proje kapsamına göre saha planı yaparız.",
   },
   {
     index: "03",
@@ -63,7 +62,7 @@ export default function ContactPage() {
         <PageHero
           eyebrow="İLETİŞİM VE KEŞİF"
           title="Ücretsiz keşif için doğrudan ekibimize ulaşın."
-          lead="Balıkesir, Bursa ve Çanakkale'deki evsel ve ticari talepler için telefon, WhatsApp veya kısa mesaj taslağından size uygun olanı seçin."
+          lead="Türkiye genelindeki evsel ve ticari montaj talepleri için telefon, WhatsApp veya kısa mesaj taslağından size uygun olanı seçin."
           breadcrumb={[{ label: "Ana Sayfa", href: ROUTES.home.href }, { label: "İletişim" }]}
           aside={
             <aside className="rounded-2xl bg-brand-blue p-6 text-white shadow-card-lg md:p-8">
@@ -99,7 +98,8 @@ export default function ContactPage() {
           <p className="mt-5 flex items-start gap-3 text-[0.9375rem] leading-relaxed text-ink-600">
             <MapPin className="mt-0.5 size-5 shrink-0 text-brand-blue" aria-hidden />
             <span>
-              <strong className="font-semibold text-ink-900">Hizmet bölgesi:</strong> {SERVICE_AREAS.join(" · ")}
+              <strong className="font-semibold text-ink-900">{SERVICE_SCOPE.surveyLabel}:</strong>{" "}
+              {SERVICE_SCOPE.surveyAreas} — {SERVICE_SCOPE.beyond}
             </span>
           </p>
         </PageHero>
@@ -242,16 +242,6 @@ export default function ContactPage() {
           </div>
         </section>
 
-        <section className="border-t border-surface-100 bg-surface-0 py-14">
-          <div className="mx-auto flex max-w-7xl flex-col gap-5 px-5 md:px-8 lg:flex-row lg:items-center lg:justify-between">
-            <p className="flex max-w-[64ch] items-start gap-3 text-[0.9375rem] leading-relaxed text-ink-600">
-              <ShieldCheck className="mt-0.5 size-5 shrink-0 text-brand-blue" aria-hidden /> Telefon ve WhatsApp kanalları aynı kurumsal iletişim bilgilerine bağlıdır; form siteye kayıt yazmaz.
-            </p>
-            <a href={PHONE_HREF} className="inline-flex min-h-11 items-center gap-2 rounded-full text-sm font-semibold text-brand-blue underline decoration-brand-blue/30 underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue/40">
-              <CheckCircle2 className="size-4" aria-hidden /> Ücretsiz keşif için arayın
-            </a>
-          </div>
-        </section>
       </main>
       <EvselFooter />
       <StickyContactBar />

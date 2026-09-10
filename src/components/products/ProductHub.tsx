@@ -128,7 +128,7 @@ export default function ProductHub() {
                 Ürün adından önce yapınızı konuşalım.
               </h2>
               <p className="mt-4 max-w-[62ch] text-[0.9375rem] leading-relaxed text-white/70">
-                Bandırma merkez ve Biga şubemizden Balıkesir, Bursa ve Çanakkale için keşif planlıyoruz. İlk görüşme kısa, seçim gerekçesi açık.
+                Türkiye genelindeki montaj taleplerini değerlendiriyor; Balıkesir, Bursa ve Çanakkale&apos;de ücretsiz keşif planlıyoruz. İlk görüşme kısa, seçim gerekçesi açık.
               </p>
             </div>
             <ContactActions tone="dark" className="lg:justify-end" />

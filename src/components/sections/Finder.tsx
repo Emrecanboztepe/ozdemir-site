@@ -2,10 +2,11 @@
 
 import { useMemo, useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { ArrowLeft, Check, Phone, RotateCcw } from "lucide-react";
+import { ArrowLeft, Check, RotateCcw } from "lucide-react";
 import { PRODUCTS } from "@/config/products";
-import { PHONE_HREF } from "@/config/site";
+import { WHATSAPP_HREF } from "@/config/site";
 import { SolidButton } from "@/components/ui/Buttons";
+import { WhatsAppMark } from "@/components/ui/WhatsAppIcon";
 
 /**
  * "Size özel ısı pompasını bulalım" — iki kutuluk bento.
@@ -78,15 +79,49 @@ function recommend(answers: number[]) {
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
-export default function Finder() {
+type FinderProps = {
+  locationName?: string;
+  lead?: string;
+};
+
+export default function Finder({ locationName, lead }: FinderProps = {}) {
   const [step, setStep] = useState(0);
-  const [answers, setAnswers] = useState<number[]>([]);
+  const [answers, setAnswers] = useState<Option[]>([]);
 
   const done = answers.length === QUESTIONS.length;
-  const result = useMemo(() => (done ? recommend(answers) : null), [done, answers]);
+  const result = useMemo(
+    () => (done ? recommend(answers.map((answer) => answer.value)) : null),
+    [done, answers],
+  );
 
-  const pick = (value: number) => {
-    const next = [...answers.slice(0, step), value];
+  const whatsappHref = useMemo(() => {
+    if (!result) return WHATSAPP_HREF;
+
+    const url = new URL(WHATSAPP_HREF);
+    const answerLines = QUESTIONS.map(
+      (question, index) => `${question.title}: ${answers[index]?.label}`,
+    );
+    url.searchParams.set(
+      "text",
+      [
+        "Ücretsiz keşif talebi",
+        "Isı pompası seçim aracını tamamladım.",
+        ...(locationName ? [`Bölge: ${locationName}`] : []),
+        "",
+        ...answerLines,
+        "",
+        `Yaklaşık ısı yükü: ${result.load.toFixed(1)} kW`,
+        `Önerilen kapasite: ${result.capacity} kW`,
+        `Önerilen ürün: ${result.product.brand} ${result.product.name}`,
+        "",
+        "Detaylı ücretsiz keşif için görüşmek istiyorum.",
+      ].join("\n"),
+    );
+    return url.toString();
+  }, [answers, locationName, result]);
+
+  const pick = (option: Option) => {
+    const next = [...answers.slice(0, step), option];
     setAnswers(next);
     setStep(step + 1);
   };
@@ -118,14 +153,15 @@ export default function Finder() {
           >
             <div
               aria-hidden
-              className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full"
-              style={{
-                background:
-                  "radial-gradient(circle, rgba(44,101,168,0.40) 0%, rgba(27,162,219,0.14) 45%, rgba(0,0,0,0) 72%)",
-              }}
+              className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-brand-blue/25 blur-3xl"
             />
             <div className="relative flex h-full flex-col justify-end">
               <div>
+                {locationName && (
+                  <p className="mb-4 text-[0.8125rem] font-semibold uppercase tracking-[0.14em] text-brand-cool">
+                    {locationName} için ön kapasite seçimi
+                  </p>
+                )}
                 <h2 className="font-heading text-[clamp(1.75rem,3.4vw,2.75rem)] font-semibold leading-[1.1] tracking-tight text-white">
                   Size özel ısı pompasını
                   <span className="block bg-gradient-to-r from-brand-cool to-brand-teal bg-clip-text text-transparent">
@@ -133,9 +169,8 @@ export default function Finder() {
                   </span>
                 </h2>
                 <p className="mt-4 max-w-[38ch] text-[0.9375rem] leading-relaxed text-white/70">
-                  Dört soruyla yaklaşık kapasiteyi görün. Net cihaz, marka ve tutar;
-                  evin büyüklüğü, yalıtımı ve tesisatı ücretsiz keşifte incelendikten
-                  sonra belirlenir.
+                  {lead ??
+                    "Dört soruyla yaklaşık kapasiteyi görün. Net cihaz, marka ve tutar; evin büyüklüğü, yalıtımı ve tesisatı ücretsiz keşifte incelendikten sonra belirlenir."}
                 </p>
               </div>
             </div>
@@ -197,8 +232,8 @@ export default function Finder() {
                       <button
                         key={o.label}
                         type="button"
-                        onClick={() => pick(o.value)}
-                        className="group flex items-center justify-between gap-3 rounded-xl border border-surface-100 bg-surface-0 px-4 py-3.5 text-left transition-all hover:border-brand-blue/50 hover:bg-surface-50"
+                        onClick={() => pick(o)}
+                        className="group flex items-center justify-between gap-3 rounded-xl border border-surface-100 bg-surface-0 px-4 py-3.5 text-left transition-colors hover:border-brand-blue/50 hover:bg-surface-50"
                       >
                         <span>
                           <span className="block text-[0.9375rem] font-medium text-ink-900">
@@ -260,9 +295,13 @@ export default function Finder() {
                   </p>
 
                   <div className="mt-5 flex flex-col gap-2.5 sm:flex-row sm:items-center">
-                    <SolidButton href={PHONE_HREF} className="h-11 px-6 text-[0.9375rem]">
-                      <Phone size={16} strokeWidth={2.2} />
-                      Ücretsiz keşif iste
+                    <SolidButton
+                      href={whatsappHref}
+                      external
+                      className="h-11 px-6 text-[0.9375rem]"
+                    >
+                      <WhatsAppMark className="size-4" />
+                      WhatsApp&apos;tan ücretsiz keşif iste
                     </SolidButton>
                     <button
                       type="button"

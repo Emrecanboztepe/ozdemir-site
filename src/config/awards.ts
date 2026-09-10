@@ -28,7 +28,7 @@ export const VERIFIED_AWARDS: readonly VerifiedAward[] = [
   },
   {
     brand: "Gram Power",
-    title: "Satışta Türkiye beşincisi",
-    detail: "Gram Power'ın en çok satış yapan beşinci yetkili bayisi olduk.",
+    title: "Türkiye satış birincisi",
+    detail: "Gram Power'da Türkiye satış birincisi olduk.",
   },
 ];

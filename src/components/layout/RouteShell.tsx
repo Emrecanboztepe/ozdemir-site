@@ -7,7 +7,7 @@ import JsonLd from "@/components/seo/JsonLd";
 import ContactActions from "@/components/ui/ContactActions";
 import type { SiteRoute } from "@/config/routes";
 import { ROUTES } from "@/config/routes";
-import { SERVICE_AREAS } from "@/config/site";
+import { SERVICE_SCOPE } from "@/config/site";
 import type { JsonLdValue } from "@/lib/seo";
 
 export default function RouteShell({
@@ -59,8 +59,10 @@ export default function RouteShell({
                 <p className="mt-6 flex max-w-[58ch] items-start gap-2.5 text-[0.9375rem] leading-relaxed text-ink-600">
                   <MapPin className="mt-0.5 size-5 shrink-0 text-brand-blue" aria-hidden />
                   <span>
-                    <strong className="font-semibold text-ink-900">Hizmet bölgesi:</strong>{" "}
-                    {SERVICE_AREAS.join(" · ")}
+                    <strong className="font-semibold text-ink-900">
+                      {SERVICE_SCOPE.surveyLabel}:
+                    </strong>{" "}
+                    {SERVICE_SCOPE.surveyAreas} — {SERVICE_SCOPE.beyond}
                   </span>
                 </p>
                 <ContactActions className="mt-8" />

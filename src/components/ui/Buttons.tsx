@@ -14,11 +14,13 @@ export function SolidButton({
   children,
   className = "",
   onClick,
+  external = false,
 }: {
   href: string;
   children: ReactNode;
   className?: string;
   onClick?: MouseEventHandler<HTMLAnchorElement>;
+  external?: boolean;
 }) {
   const classes = `shiny-cta group relative isolate inline-flex items-center justify-center gap-2 overflow-hidden rounded-full border border-transparent font-medium text-white ${className}`;
   const content = <span className="shiny-cta__content z-[1] flex items-center gap-2">{children}</span>;
@@ -28,7 +30,12 @@ export function SolidButton({
       {content}
     </Link>
   ) : (
-    <a href={href} onClick={onClick} className={classes}>
+    <a
+      href={href}
+      onClick={onClick}
+      {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+      className={classes}
+    >
       {content}
     </a>
   );

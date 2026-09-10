@@ -13,11 +13,11 @@ export type FaqContent = {
 export const FAQ_HOME: FaqContent = {
   id: "sss",
   title: "Evsel ısı pompası hakkında sık sorulanlar",
-  lead: "Bandırma, Balıkesir, Bursa ve Çanakkale'daki keşif, fiyat, marka seçimi, ödeme ve servis sürecini açıkça yanıtlıyoruz.",
+  lead: "Türkiye genelindeki montaj talepleri ile ücretsiz keşif, fiyat, marka seçimi, ödeme ve servis sürecini açıkça yanıtlıyoruz.",
   items: [
     {
       q: "Hangi bölgelerde ücretsiz keşif yapıyorsunuz?",
-      a: "Balıkesir'de özellikle Bandırma ve çevresiyle birlikte Bursa ve Çanakkale'da yerinde ücretsiz keşif yapıyoruz. Bu illerin dışındaki taleplerde bilgilerinizi alıp ekibimize iletiyoruz; bölge uygunluğu netleşmeden randevu sözü vermiyoruz.",
+      a: "Montaj hizmetimiz Türkiye genelindedir. Ücretsiz yerinde keşfi Balıkesir'de özellikle Bandırma ve çevresiyle birlikte Bursa ve Çanakkale'de planlıyoruz. Diğer illerde saha ziyareti, projenin kapsamına göre ön görüşmede netleştirilir.",
     },
     {
       q: "Yerinde keşif gerçekten ücretsiz mi?",
@@ -41,7 +41,7 @@ export const FAQ_HOME: FaqContent = {
     },
     {
       q: "Çalışma ve randevu saatleriniz nedir?",
-      a: "Keşif ve görüşme randevularını 09.00–18.00 saatleri arasında planlıyoruz. Uygun zamanı belirlemek için +90 542 186 90 90 numaralı telefondan bize ulaşabilirsiniz.",
+      a: "Keşif ve görüşme randevularını 09.00–18.00 saatleri arasında planlıyoruz. Uygun zamanı belirlemek için +90 549 878 87 00 numaralı telefondan bize ulaşabilirsiniz.",
     },
     {
       q: "Özdemir Mühendislik şubeleri nerede?",
@@ -101,7 +101,7 @@ export const FAQ_ABOUT: FaqContent = {
   items: [
     {
       q: "Hangi bölgelerde iş yapıyorsunuz?",
-      a: "Merkezimizin bulunduğu il ve çevre illerde çalışıyoruz. Endüstriyel projelerde mesafe daha esnek; keşif talebinizi aldığımızda o bölgeye gelip gelemeyeceğimizi net olarak söylüyoruz.",
+      a: "Montaj hizmetimiz Türkiye genelindedir. Balıkesir, Bursa ve Çanakkale'de ücretsiz yerinde keşif önceliğimiz bulunur; diğer illerde saha planını projenin kapsamına göre netleştiriyoruz.",
     },
     {
       q: "Hem eve hem fabrikaya aynı ekip mi bakıyor?",

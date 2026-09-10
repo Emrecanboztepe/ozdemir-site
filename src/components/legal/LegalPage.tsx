@@ -21,12 +21,6 @@ export default function LegalPage({ title, lead, updated, children }: LegalPageP
       <main className="bg-surface-0">
         <section className="pb-20 pt-32 md:pb-28 md:pt-40">
           <div className="mx-auto max-w-3xl px-5 md:px-8">
-            <div
-              role="status"
-              className="mb-8 border-l-4 border-brand-blue bg-brand-blue/10 px-5 py-4 text-sm font-semibold text-ink-900"
-            >
-              Taslak — hukuki inceleme bekliyor
-            </div>
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-blue">
               Özdemir Mühendislik
             </p>
@@ -34,7 +28,7 @@ export default function LegalPage({ title, lead, updated, children }: LegalPageP
               {title}
             </h1>
             <p className="mt-6 text-[1.0625rem] leading-relaxed text-ink-600">{lead}</p>
-            <p className="mt-3 text-sm text-ink-400">Taslak hazırlanma tarihi: {updated}</p>
+            <p className="mt-3 text-sm text-ink-400">Son güncelleme: {updated}</p>
 
             <div className="mt-12 space-y-10">{children}</div>
           </div>

@@ -37,16 +37,16 @@ const testimonials: Testimonial[] = [
     role: "Bölge birincisi",
   },
   {
-    text: "Gram Power'ın en çok satış yapan yetkili bayileri arasında beşinci sırada yer aldık.",
+    text: "Gram Power'da Türkiye satış birincisi olduk.",
     image: "/urun-5.jpg",
     name: "Gram Power",
-    role: "Satışta 5. yetkili bayi",
+    role: "Türkiye satış birincisi",
   },
   {
-    text: "Balıkesir, Bursa ve Çanakkale'da evi yerinde görür; büyüklük, yalıtım ve mevcut tesisata göre ücretsiz keşif yaparız.",
+    text: "Balıkesir, Bursa ve Çanakkale'de ücretsiz yerinde keşif yapar; montaj taleplerini Türkiye genelinde proje kapsamına göre değerlendiririz.",
     image: "/hakkimizda-kesif.jpg",
     name: "Ücretsiz yerinde keşif",
-    role: "Üç hizmet bölgesi",
+    role: "Yerel keşif · Türkiye geneli montaj",
   },
   {
     text: "Keşiften sonra netleşen evinize özel teklif için vade farksız altı taksit imkânı sunarız.",

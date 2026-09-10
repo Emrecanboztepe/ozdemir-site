@@ -50,7 +50,7 @@ export const INDUSTRIAL_COPY = {
   eyebrow: "Projelendirme · Kurulum · Devreye alma",
   poster: "ÜRETİM DURMAZ",
   heading:
-    "Balıkesir, Bursa ve Çanakkale'da endüstriyel ısı pompası ve chiller sistemleri",
+    "Türkiye genelinde endüstriyel ısı pompası ve chiller sistemleri",
   lead:
     "Fabrika, otel ve iş merkezleri için projelendirmeden devreye almaya kadar tek elden.",
 } as const;

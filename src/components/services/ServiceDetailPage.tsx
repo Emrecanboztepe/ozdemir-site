@@ -2,15 +2,18 @@ import Link from "next/link";
 import { ArrowRight, CheckCircle2, MapPin, ShieldCheck } from "lucide-react";
 import EvselFooter from "@/components/EvselFooter";
 import Navbar from "@/components/Navbar";
+import AwardPlates from "@/components/kit/AwardPlates";
 import NumberedFaq from "@/components/kit/NumberedFaq";
 import PageHero from "@/components/kit/PageHero";
 import ProcessRail from "@/components/kit/ProcessRail";
 import StatPlates from "@/components/kit/StatPlates";
+import ReelsCarousel from "@/components/sections/ReelsCarousel";
+import LocationLinks from "@/components/locations/LocationLinks";
 import ContactActions from "@/components/ui/ContactActions";
 import StickyContactBar from "@/components/ui/StickyContactBar";
 import { FIELD_PROOF_POINTS } from "@/config/field-work";
 import type { ServiceContent } from "@/config/services";
-import { SERVICE_AREAS } from "@/config/site";
+import { INSTALLATION_AREA, SERVICE_AREAS } from "@/config/site";
 import ServiceLeadForm from "./ServiceLeadForm";
 
 /**
@@ -21,6 +24,8 @@ import ServiceLeadForm from "./ServiceLeadForm";
  * Shadcn/Tailwind v4 kodu alınmadı; kompozisyon mevcut tokenlarla kuruldu.
  */
 export default function ServiceDetailPage({ service }: { service: ServiceContent }) {
+  const showInstallationProof = service.slug === "isi-pompasi-kurulumu";
+
   return (
     <>
       <Navbar />
@@ -45,7 +50,10 @@ export default function ServiceDetailPage({ service }: { service: ServiceContent
           <p className="mt-5 flex items-start gap-3 text-[0.9375rem] leading-relaxed text-ink-600">
             <MapPin className="mt-0.5 size-5 shrink-0 text-brand-blue" aria-hidden />
             <span>
-              <strong className="font-semibold text-ink-900">Hizmet bölgesi:</strong> {SERVICE_AREAS.join(" · ")}
+              <strong className="font-semibold text-ink-900">Montaj:</strong> {INSTALLATION_AREA}
+              <span aria-hidden> · </span>
+              <strong className="font-semibold text-ink-900">Ücretsiz keşif:</strong>{" "}
+              {SERVICE_AREAS.join(" · ")}
             </span>
           </p>
           <ContactActions className="mt-8" />
@@ -79,6 +87,32 @@ export default function ServiceDetailPage({ service }: { service: ServiceContent
           band="tinted"
         />
 
+        {showInstallationProof && (
+          <section aria-labelledby="kurulum-kaniti" className="py-16 md:py-24">
+            <div className="mx-auto max-w-7xl px-5 md:px-8">
+              <div className="grid gap-6 md:grid-cols-2 md:items-end md:gap-16">
+                <div>
+                  <p className="text-[0.8125rem] font-semibold uppercase tracking-[0.14em] text-brand-teal">
+                    BELGELİ DENEYİM
+                  </p>
+                  <h2
+                    id="kurulum-kaniti"
+                    className="mt-3 max-w-[18ch] font-heading text-[clamp(1.9rem,4vw,3rem)] font-semibold text-ink-950"
+                  >
+                    Kurulum kararını sahada kanıtlanmış deneyime dayandırın
+                  </h2>
+                </div>
+                <p className="max-w-[48ch] text-[1rem] leading-relaxed text-ink-600 md:justify-self-end">
+                  Bosch, NIBE ve Gram Power ile elde ettiğimiz satış başarıları;
+                  marka seçiminden devreye almaya uzanan uygulama deneyimimizin belgeli
+                  göstergeleridir.
+                </p>
+              </div>
+              <AwardPlates className="mt-10" />
+            </div>
+          </section>
+        )}
+
         <section aria-labelledby="urun-iliskisi" className="py-16 md:py-24">
           <div className="mx-auto max-w-7xl px-5 md:px-8">
             <p className="text-[0.8125rem] font-semibold uppercase tracking-[0.14em] text-brand-teal">İLGİLİ ÜRÜN AİLELERİ</p>
@@ -103,6 +137,16 @@ export default function ServiceDetailPage({ service }: { service: ServiceContent
             <StatPlates items={FIELD_PROOF_POINTS} />
           </div>
         </section>
+
+        {showInstallationProof && (
+          <ReelsCarousel
+            id="kurulum-videolari"
+            title="Kurulumları sahadan izleyin"
+            lead="Gerçek uygulama ayrıntılarını, devreye alma anlarını ve Burak Özdemir'in teknik anlatımlarını Instagram videolarımızda görün."
+          />
+        )}
+
+        {showInstallationProof && <LocationLinks compact />}
 
         <NumberedFaq
           items={service.faqs}

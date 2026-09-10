@@ -5,6 +5,7 @@ import GoogleRating from "@/components/hero/GoogleRating";
 import { SolidButton } from "@/components/ui/Buttons";
 import {
   EXPERIENCE_YEARS,
+  INSTALLATION_AREA,
   LOCATIONS,
   PHONE,
   PHONE_HREF,
@@ -26,10 +27,25 @@ import {
  * yarı tam bir kopya olduğu için dikiş görünmez. Üst ve alt kenarda maske ile
  * belirip söner. `motion-safe:` — hareket hassasiyetinde durur.
  */
-const STATS = [
+/**
+ * `note` yalnız üçüncü karta düşüyor: sayı tek başına "yalnız üç ile
+ * gidiyoruz" gibi okunuyordu. Üç il ücretsiz keşfin günübirlik verildiği
+ * alan; montaj ve servis Türkiye geneli.
+ */
+const STATS: {
+  to: number;
+  suffix: string;
+  label: string;
+  note?: string;
+}[] = [
   { to: EXPERIENCE_YEARS, suffix: " yıl", label: "Deneyim" },
   { to: LOCATIONS.length, suffix: "", label: "Şube" },
-  { to: SERVICE_AREAS.length, suffix: "", label: "Hizmet ili" },
+  {
+    to: SERVICE_AREAS.length,
+    suffix: "",
+    label: "Ücretsiz keşif ili",
+    note: `Montaj ve servis ${INSTALLATION_AREA}`,
+  },
 ];
 
 /** Sağdaki dikey şeritte akan kareler */
@@ -70,6 +86,11 @@ export default function ResultsBento() {
                         suffix={s.suffix}
                         className="font-heading text-[clamp(1.75rem,2.6vw,2.25rem)] font-extrabold leading-none tracking-[-0.03em] text-ink-950"
                       />
+                      {s.note && (
+                        <span className="mt-2 block text-[0.8125rem] leading-snug text-ink-600">
+                          {s.note}
+                        </span>
+                      )}
                     </dd>
                   </div>
                 ))}

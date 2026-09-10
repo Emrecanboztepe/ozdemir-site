@@ -56,8 +56,8 @@ const COLUMNS: { title: string; links: { label: string; href: string }[] }[] = [
 ];
 
 const LEGAL = [
-  { label: "Gizlilik (Taslak)", href: ROUTES.gizlilik.href },
-  { label: "KVKK (Taslak)", href: ROUTES.kvkk.href },
+  { label: "Gizlilik", href: ROUTES.gizlilik.href },
+  { label: "KVKK", href: ROUTES.kvkk.href },
   { label: "Kullanım Şartları" },
 ];
 

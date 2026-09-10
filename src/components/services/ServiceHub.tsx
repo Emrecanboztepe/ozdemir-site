@@ -53,7 +53,7 @@ const HUB_STEPS = [
   {
     title: "Yerinde keşfederiz",
     description:
-      "Balıkesir, Bursa ve Çanakkale'de ücretsiz keşifle kararları etkileyen saha verisini toplarız.",
+      "Balıkesir, Bursa ve Çanakkale'de ücretsiz keşif yapar; diğer illerde saha planını proje kapsamına göre netleştiririz.",
   },
   {
     title: "Kapsamı netleştiririz",
@@ -75,7 +75,7 @@ const HUB_STEPS = [
 /**
  * 21st.dev uyarlama kaydı (Section Kit üzerinden):
  * - Hero Section: iki sütunlu açılış + temsili saha kolajı (ServicesHero).
- * - Stats 2, ID 8977: doğrulanmış 8 yıl / 2 şube / 3 il bilgileri hero içine alındı.
+ * - Stats 2, ID 8977: doğrulanmış 8 yıl / 2 şube / Türkiye geneli montaj bilgileri hero içine alındı.
  * - Service Card, ID 8223: ikon plaka + kapsam önizlemesi + süreç meta'sı + tek net CTA.
  * - How It Works Timeline, ID 19863: bağlayıcı raylı beş adım (ProcessRail).
  * Shadcn/Tailwind v4 kodu alınmadı; kompozisyon mevcut tokenlarla kuruldu.

@@ -272,6 +272,26 @@
     {
       "decision": "Brand catalogs group verified residential heat pumps, hot-water products, system units, and pool products by use category while commercial products feed only the industrial catalog",
       "reason": "The shared source of truth keeps every official product family available without presenting commercial capacities as household products."
+    },
+    {
+      "decision": "The heat-pump installation service page reuses verified award plates and the existing Instagram field-video carousel",
+      "reason": "The service detail gains real visual proof without introducing a parallel component language or unverified project claims."
+    },
+    {
+      "decision": "Industrial proof statistics use a cool-blue-to-teal brand gradient without the orange endpoint",
+      "reason": "The cool-only gradient keeps the dark CTA panel calm while retaining the brand's dimensional accent treatment."
+    },
+    {
+      "decision": "Local heat-pump intent is served through one browseable regions hub and four evidence-oriented location pages",
+      "reason": "Bandırma, Balıkesir, Çanakkale, and Bursa pages each expose distinct discovery logistics, local checks, districts, pricing factors, and buyer questions instead of thin city-name doorway copies."
+    },
+    {
+      "decision": "Region pages share a proof-to-selection sequence using the existing About award bento and Finder",
+      "reason": "One dynamic template keeps verified award imagery, founder context, capacity guidance, and WhatsApp discovery consistent while city-specific copy and location context remain unique on each page."
+    },
+    {
+      "decision": "Blog uses footer-only navigation, the shared page hero and a restrained article reading layout",
+      "reason": "Editorial content remains separate from primary sales navigation. Empty states, draft exclusion, a development-only preview, and publication-driven metadata let content be added later without indexing placeholders."
     }
   ],
   "evidence": [

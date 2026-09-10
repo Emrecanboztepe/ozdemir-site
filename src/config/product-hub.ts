@@ -27,9 +27,9 @@ export const PRODUCT_BRAND_PROOF = [
     brand: "Gram Power",
     logo: "/markalar/gram-power.png",
     image: "/grampower-odul-ozdemir.png",
-    imageAlt: "Gram Power 2024 Türkiye satış beşinciliği ödülü",
+    imageAlt: "Gram Power Türkiye satış birinciliği ödülü",
     eyebrow: "Türkiye",
-    achievement: "Satışta beşinci yetkili bayi",
+    achievement: "Türkiye satış birincisi",
   },
 ] as const;
 
@@ -69,7 +69,7 @@ export const PRODUCT_SELECTION_STEPS = [
   {
     index: "02",
     title: "Yerinde ölçeriz",
-    description: "Balıkesir, Bursa ve Çanakkale için ücretsiz keşif planlarız.",
+    description: "Balıkesir, Bursa ve Çanakkale'de ücretsiz keşif; diğer illerde proje kapsamına göre saha planı yaparız.",
   },
   {
     index: "03",

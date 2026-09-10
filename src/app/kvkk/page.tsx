@@ -127,11 +127,11 @@ export default function KvkkPage() {
         </p>
       </LegalSection>
 
-      <LegalSection title="9. Taslak Durumu">
+      <LegalSection title="9. Güncellemeler">
         <p>
-          Bu taslak {UPDATED} tarihinde hazırlanmıştır ve hukuk danışmanı incelemesi
-          beklemektedir. Hukuki inceleme tamamlanmadan resmî aydınlatma metni olarak
-          değerlendirilmemelidir.
+          Bu aydınlatma metni {UPDATED} tarihinde güncellenmiştir. Mevzuat veya veri
+          işleme süreçlerimizdeki değişikliklere bağlı olarak güncellenebilir; güncel
+          sürüm her zaman bu sayfada yayımlanır.
         </p>
       </LegalSection>
       </LegalPage>

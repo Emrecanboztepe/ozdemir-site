@@ -50,9 +50,9 @@ export const SERVICES: readonly ServiceContent[] = [
     eyebrow: "UYGULAMA HİZMETİ",
     title: "Isı pompası kurulumu",
     shortTitle: "Isı pompası kurulumu",
-    seoTitle: "Isı Pompası Kurulumu | Keşif ve Uygulama",
+    seoTitle: "Isı Pompası Satış ve Montajı | Ücretsiz Keşif",
     seoDescription:
-      "Isı pompası kurulumu için keşif, sistem seçimi, uygulama ve devreye alma adımlarını inceleyin. Balıkesir, Bursa ve Çanakkale için iletişime geçin.",
+      "Ev ve villa için ısı pompası satışı, kapasite hesabı ve anahtar teslim montaj. Balıkesir, Bursa ve Çanakkale'de ücretsiz keşif isteyin.",
     answer:
       "Kurulum kararını yalnız cihaz seçimi olarak görmüyoruz. Yapının ısı ihtiyacını, mevcut dağıtım sistemini, dış ünite yerleşimini ve elektrik altyapısını yerinde değerlendirip uygulama kapsamını açıkça planlıyoruz.",
     scope: [

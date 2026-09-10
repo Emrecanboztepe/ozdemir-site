@@ -8,8 +8,8 @@ export const FIELD_PROOF_POINTS = [
     label: "Bandırma ve Biga",
   },
   {
-    value: "3 il",
-    label: "Balıkesir, Bursa, Çanakkale",
+    value: "Türkiye",
+    label: "genelinde montaj",
   },
 ] as const;
 

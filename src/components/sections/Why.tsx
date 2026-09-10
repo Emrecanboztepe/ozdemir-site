@@ -32,7 +32,13 @@ const fadeUp = {
   transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] as const },
 };
 
-export default function Why({ content }: { content: WhyContent }) {
+export default function Why({
+  content,
+  coolProofValues = false,
+}: {
+  content: WhyContent;
+  coolProofValues?: boolean;
+}) {
   const [left, right] = content.photos;
 
   return (
@@ -141,13 +147,16 @@ export default function Why({ content }: { content: WhyContent }) {
                 <div key={p.label} className="bg-ink-950 p-5 md:p-7">
                   <dt className="sr-only">{p.label}</dt>
                   <dd>
-                    {/* Rakamlar marka gradyanıyla: koyu zeminde açık uçtan başlar
-                        (cool → teal), sıcak uçta biter — hero başlığındaki
-                        vurgu diliyle aynı. Koyu zeminde `brand.blue` ile
-                        BAŞLAMA, o uç ink üstünde sönük kalır. `inline-block`
-                        şart: `block` olursa gradyan hücrenin tamamına yayılır ve
-                        sıcak uç harflerin sağındaki boşluğa düşer. */}
-                    <span className="inline-block whitespace-nowrap bg-gradient-to-r from-brand-cool via-brand-teal to-brand-heat bg-clip-text font-heading text-[clamp(1.5rem,2.8vw,2.25rem)] font-extrabold leading-none tracking-[-0.02em] text-transparent">
+                    {/* Evselde tam marka geçişi, endüstriyelde yalnız soğuk
+                        mavi→turkuaz geçiş kullanılır. `inline-block` gradyanın
+                        hücreye değil rakamın genişliğine oturmasını sağlar. */}
+                    <span
+                      className={`inline-block whitespace-nowrap font-heading text-[clamp(1.5rem,2.8vw,2.25rem)] font-extrabold leading-none tracking-[-0.02em] ${
+                        coolProofValues
+                          ? "bg-gradient-to-r from-brand-cool to-brand-teal bg-clip-text text-transparent"
+                          : "bg-gradient-to-r from-brand-cool via-brand-teal to-brand-heat bg-clip-text text-transparent"
+                      }`}
+                    >
                       {p.value}
                     </span>
                     <span className="mt-2 block text-[0.8125rem] leading-snug text-white/50">

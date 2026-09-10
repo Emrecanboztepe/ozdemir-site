@@ -51,6 +51,8 @@ const FOOTER_LINKS: FooterSection[] = [
       { title: "Endüstriyel çözümler", href: MODES.endustriyel.href },
       { title: "Bizimle yolculuk", href: ROUTES.hizmetler.href },
       { title: "Sahadan", href: ROUTES.sahadan.href },
+      { title: "Hizmet bölgeleri", href: ROUTES.bolgeler.href },
+      { title: "Blog", href: ROUTES.blog.href },
       { title: "Sıkça sorulanlar", href: "/#sss" },
     ],
   },
@@ -67,8 +69,8 @@ const FOOTER_LINKS: FooterSection[] = [
 ];
 
 const LEGAL_LINKS = [
-  { title: "Gizlilik (Taslak)", href: ROUTES.gizlilik.href },
-  { title: "KVKK (Taslak)", href: ROUTES.kvkk.href },
+  { title: "Gizlilik", href: ROUTES.gizlilik.href },
+  { title: "KVKK", href: ROUTES.kvkk.href },
   { title: "Sitemap", href: "/sitemap.xml" },
 ];
 
@@ -127,7 +129,11 @@ function FooterAnchor({ link }: { link: FooterLink }) {
   );
 }
 
-export default function EvselFooter() {
+export default function EvselFooter({
+  crossLink = MODES.endustriyel,
+}: {
+  crossLink?: { href: string; label: string } | null;
+}) {
   return (
     <footer id="iletisim" className="relative bg-surface-0 pt-4 md:pt-8">
       <div className="relative overflow-hidden rounded-t-[2rem] bg-ink-950 text-white md:rounded-t-[3rem]">
@@ -154,7 +160,7 @@ export default function EvselFooter() {
                 inceleyelim. Uygun marka, kapasite ve toplam fiyatı netleştirip vade
                 farksız 6 taksit seçeneğini birlikte planlayalım.
               </p>
-              <SolidButton href={PHONE_HREF} className="mt-6 h-12 px-6 text-[0.9375rem]">
+              <SolidButton href={WHATSAPP_HREF} external className="mt-6 h-12 px-6 text-[0.9375rem]">
                 Ücretsiz Keşif Yaptır!
                 <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-0.5" />
               </SolidButton>
@@ -174,19 +180,21 @@ export default function EvselFooter() {
                     className="h-10 w-auto"
                   />
                 </Link>
-                <Link
-                  href={MODES.endustriyel.href}
-                  className="inline-flex h-9 items-center gap-2 rounded-full border border-white/15 px-3.5 text-xs font-medium text-white/70 transition-colors duration-300 hover:border-white/30 hover:bg-white/[0.06] hover:text-white"
-                >
-                  Endüstriyel
-                  <ArrowUpRight className="size-3.5" />
-                </Link>
+                {crossLink && (
+                  <Link
+                    href={crossLink.href}
+                    className="inline-flex h-9 items-center gap-2 rounded-full border border-white/15 px-3.5 text-xs font-medium text-white/70 transition-colors duration-300 hover:border-white/30 hover:bg-white/[0.06] hover:text-white"
+                  >
+                    {crossLink.label}
+                    <ArrowUpRight className="size-3.5" />
+                  </Link>
+                )}
               </div>
 
               <p className="mt-7 max-w-[39ch] text-[0.9375rem] leading-7 text-white/55">
-                Bandırma merkezli Özdemir Mühendislik, {EXPERIENCE_YEARS} yıldır evsel
-                ısı pompası satışı, montajı ve servisi yapıyor. Kurucumuz {OWNER_NAME},
-                keşiften satış sonrasına kadar işin başında.
+                Bandırma merkezli Özdemir Mühendislik, {EXPERIENCE_YEARS} yıldır
+                Türkiye genelinde ısı pompası satışı, montajı ve servisi yapıyor.
+                Kurucumuz {OWNER_NAME}, keşiften satış sonrasına kadar işin başında.
               </p>
 
               <div className="mt-7 space-y-3">

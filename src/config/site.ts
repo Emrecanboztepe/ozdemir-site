@@ -5,15 +5,35 @@ export const OWNER_NAME = "Burak Özdemir";
 export const EXPERIENCE_YEARS = 8;
 export const BRAND_SLOGAN = "Doğalgaz yoksa ısı pompası var";
 
-export const PHONE = "+90 542 186 90 90";
-export const PHONE_HREF = "tel:+905421869090";
+export const PHONE = "+90 549 878 87 00";
+export const PHONE_HREF = "tel:+905498788700";
 export const SECONDARY_PHONE = "+90 216 606 08 70";
 export const SECONDARY_PHONE_HREF = "tel:+902166060870";
 export const WHATSAPP_HREF =
-  "https://api.whatsapp.com/send/?app_absent=0&phone=%2B905421869090&text=%C3%9Ccretsiz+ke%C5%9Fif+i%C3%A7in+sizlere+yaz%C4%B1yorum.&type=phone_number";
+  "https://api.whatsapp.com/send/?app_absent=0&phone=%2B905498788700&text=%C3%9Ccretsiz+ke%C5%9Fif+i%C3%A7in+sizlere+yaz%C4%B1yorum.&type=phone_number";
 
 export const BUSINESS_HOURS = "09.00–18.00";
+/** Ücretsiz yerinde keşifte öncelikli hizmet alanı; montaj Türkiye genelindedir. */
 export const SERVICE_AREAS = ["Balıkesir", "Bursa", "Çanakkale"] as const;
+export const INSTALLATION_AREA = "Türkiye geneli";
+
+/**
+ * Hizmet kapsamının tek kaynağı.
+ *
+ * Ayrım bilinçli: ücretsiz yerinde keşif yalnız iki şubenin günübirlik
+ * ulaşabildiği üç ilde veriliyor; montaj ve servis Türkiye geneli, ama diğer
+ * illerde randevuyla planlanıyor. Sayfalarda "3 il" demek kapsamı olduğundan
+ * dar gösteriyordu — metin bu yüzden iki parça halinde tutuluyor.
+ */
+export const SERVICE_SCOPE = {
+  /** Ücretsiz keşfin günübirlik verildiği iller */
+  surveyLabel: "Ücretsiz keşif",
+  surveyAreas: SERVICE_AREAS.join(" · "),
+  /** Üç ilin dışı — kapsam dışı değil, randevulu */
+  beyond: "diğer illerde randevuyla montaj ve servis",
+  /** Rozet gibi tek satırlık dar alanlar için sıkıştırılmış hali */
+  short: `${SERVICE_AREAS.length} ilde ücretsiz keşif · ${INSTALLATION_AREA} montaj`,
+} as const;
 export const FEATURED_BRANDS = ["Bosch", "NIBE", "Gram Power", "Varmeks"] as const;
 
 export const LOCATIONS = [

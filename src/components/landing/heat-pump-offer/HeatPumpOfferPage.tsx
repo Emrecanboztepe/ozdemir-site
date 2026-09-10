@@ -18,6 +18,7 @@ import SectionHead from "@/components/kit/SectionHead";
 import ServiceLeadForm from "@/components/services/ServiceLeadForm";
 import ContactActions from "@/components/ui/ContactActions";
 import StickyContactBar from "@/components/ui/StickyContactBar";
+import LocationLinks from "@/components/locations/LocationLinks";
 import { WhatsAppMark } from "@/components/ui/WhatsAppIcon";
 import { OFFER_FAQS, OFFER_STEPS, OFFER_TRUST_POINTS } from "@/config/heat-pump-offer";
 import { BRAND_CATALOG } from "@/config/brand-catalog";
@@ -81,10 +82,10 @@ export default function HeatPumpOfferPage() {
                 <MapPin className="size-3.5" aria-hidden /> Bandırma merkezli yerinde keşif
               </p>
               <h1 className="mt-6 max-w-[14ch] font-heading text-[clamp(2.65rem,6.3vw,5.5rem)] font-bold leading-[0.98] tracking-[-0.047em] text-ink-950">
-                Balıkesir, Bursa ve Çanakkale&apos;da evsel ısı pompası.
+                Türkiye genelinde evsel ısı pompası montajı.
               </h1>
               <p className="mt-6 max-w-[58ch] text-[1.0625rem] leading-relaxed text-ink-600 md:text-lg">
-                Isıtma, serinletme ve sıcak su ihtiyacını tek sistemde değerlendirin. Ücretsiz keşifte yapınızı ölçelim; uygun sistem ve teklifi yükümlülük oluşturmadan netleştirelim.
+                Isıtma, serinletme ve sıcak su ihtiyacını tek sistemde değerlendirin. Balıkesir, Bursa ve Çanakkale&apos;de ücretsiz keşif; diğer illerde proje kapsamına göre saha planıyla uygun sistem ve teklifi netleştirelim.
               </p>
 
               <ContactActions className="mt-8" />
@@ -224,6 +225,8 @@ export default function HeatPumpOfferPage() {
             </div>
           </div>
         </section>
+
+        <LocationLinks compact />
 
         <NumberedFaq
           items={OFFER_FAQS.map((item) => ({ question: item.q, answer: item.a }))}

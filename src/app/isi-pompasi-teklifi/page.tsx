@@ -2,9 +2,9 @@ import HeatPumpOfferPage from "@/components/landing/heat-pump-offer/HeatPumpOffe
 import JsonLd from "@/components/seo/JsonLd";
 import { OFFER_FAQS } from "@/config/heat-pump-offer";
 import { ROUTES } from "@/config/routes";
-import { SERVICE_AREAS } from "@/config/site";
 import {
   ORGANIZATION_ID,
+  SERVICE_AREA_JSON_LD,
   WEBSITE_ID,
   absoluteUrl,
   buildPageMetadata,
@@ -38,12 +38,16 @@ const schema: JsonLdValue = {
       name: "Evsel ısı pompası ücretsiz keşfi",
       serviceType: "Isı pompası keşfi, sistem seçimi ve teklif hazırlığı",
       provider: { "@id": ORGANIZATION_ID },
-      areaServed: SERVICE_AREAS.map((name) => ({ "@type": "AdministrativeArea", name })),
+      areaServed: SERVICE_AREA_JSON_LD,
       offers: {
         "@type": "Offer",
         name: "Ücretsiz yerinde keşif",
         price: "0",
         priceCurrency: "TRY",
+        eligibleRegion: ["Balıkesir", "Bursa", "Çanakkale"].map((name) => ({
+          "@type": "AdministrativeArea",
+          name,
+        })),
       },
     },
     {

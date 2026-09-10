@@ -68,7 +68,7 @@ export const BRAND_CATALOG: readonly BrandCatalogEntry[] = [
     highlights: ["8–30 kW ısı pompası", "173–290 L boyler", "Isıtma · serinletme · sıcak su"],
     seoTitle: "Bosch Isı Pompası ve Boyler | Evsel Ürün Gamı",
     seoDescription:
-      "Bosch Compress 2000 AWF ısı pompası ve Stora ısı pompası boylerlerini inceleyin. Balıkesir, Bursa ve Çanakkale'de keşif ve uygulama.",
+      "Bosch Compress 2000 AWF ısı pompası ve Stora ısı pompası boylerlerini inceleyin. Türkiye geneli montaj ve öncelikli hizmet illerinde ücretsiz keşif.",
     cardImage: "/urunler/markalar/bosch-compress-2000-awf-2.webp",
     cardImageAlt: "Bosch Compress 2000 AWF hava kaynaklı ısı pompası",
     sourceNote: "Bosch Home Comfort Türkiye resmi ürün kataloğu",
