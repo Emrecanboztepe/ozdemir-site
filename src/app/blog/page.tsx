@@ -32,23 +32,6 @@ export default function BlogPage() {
 
       {posts.length ? (
         <>
-          {/* Kırıntı yolu vitrinin üstünde ince bir şerit olarak kalır: başlığı
-              `BlogFeaturedGrid` bastığı için burada PageHero kullanılmıyor. */}
-          <nav aria-label="Kırıntı yolu" className="mx-auto max-w-7xl px-5 pt-28 md:px-8 md:pt-32">
-            <ol className="flex flex-wrap items-center gap-2 text-sm text-ink-600">
-              <li>
-                <Link
-                  href={ROUTES.home.href}
-                  className="rounded-sm transition-colors hover:text-brand-blue focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue"
-                >
-                  Ana Sayfa
-                </Link>
-              </li>
-              <li aria-hidden>/</li>
-              <li className="font-medium text-ink-900">Blog</li>
-            </ol>
-          </nav>
-
           <BlogFeaturedGrid
             title="Isı pompası hakkında bilgi ve rehberler"
             description="Bandırma, Balıkesir, Çanakkale ve Bursa'daki keşiflerde en çok sorulan konuları yazıya döktük: teklifte ne var, mevcut petek çalışır mı, kaç kW gerekir."

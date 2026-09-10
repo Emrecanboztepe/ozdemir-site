@@ -33,12 +33,12 @@ export default function BlogFeaturedGrid({
   if (!posts.length) return null;
 
   return (
-    <section className="relative overflow-hidden py-14 md:py-20">
+    <section className="relative overflow-hidden pb-14 pt-32 md:pb-20 md:pt-40">
       <div className="relative mx-auto max-w-7xl px-5 md:px-8">
         {watermark && (
           <span
             aria-hidden
-            className="pointer-events-none absolute -top-10 left-1/2 -z-10 -translate-x-1/2 select-none whitespace-nowrap font-heading text-[28vw] font-extrabold leading-none tracking-[-0.06em] text-ink-950/[0.035] lg:-left-[6%] lg:translate-x-0 lg:text-[20rem]"
+            className="pointer-events-none absolute -top-10 left-1/2 -z-10 -translate-x-1/2 select-none whitespace-nowrap font-heading text-[28vw] font-extrabold leading-none tracking-[-0.06em] text-ink-950/[0.035] lg:text-[20rem]"
           >
             {watermark}
           </span>
@@ -82,16 +82,23 @@ export default function BlogFeaturedGrid({
                   />
                 )}
 
-                {/* Okunurluk perdesi — hover'da tüm karta yayılır */}
+                {/* Okunurluk perdesi. İki katman: sahneyi bir tık geri çeken
+                    ince tint + metnin oturduğu alt yarıyı gerçekten karartan
+                    degrade. Tek zayıf degrade yetmiyordu — açık renkli
+                    fotoğraflarda (gri duvar, kar) beyaz başlık kayboluyordu. */}
+                <span aria-hidden className="absolute inset-0 bg-ink-950/15" />
                 <span
                   aria-hidden
-                  className="absolute inset-x-0 bottom-0 h-[130%] bg-gradient-to-t from-ink-950/90 via-ink-950/35 to-transparent transition-all duration-500 group-hover:h-full"
+                  className="absolute inset-x-0 bottom-0 h-4/5 bg-gradient-to-t from-ink-950/95 via-ink-950/55 to-transparent"
                 />
 
-                <article className="relative flex items-end gap-4">
+                <article className="relative flex items-end gap-4 [text-shadow:0_1px_12px_rgba(15,15,20,0.55)]">
                   <div className="flex flex-1 flex-col gap-3">
+                    {/* `text-white` ZORUNLU: globals.css başlıklara global bir
+                        `text-ink-900` uyguluyor ve bu, karttan miras alınan
+                        beyazı eziyor — başlık koyu zeminde koyu kalıyordu. */}
                     <h2
-                      className={`font-heading font-semibold leading-tight ${
+                      className={`font-heading font-semibold leading-tight text-white ${
                         isPrimary ? "text-2xl md:text-4xl" : "text-xl md:text-2xl"
                       }`}
                     >
