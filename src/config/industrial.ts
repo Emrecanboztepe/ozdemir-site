@@ -23,17 +23,21 @@ export const INDUSTRIAL_HERO = {
    * Sahnenin sessiz klibi — evsel hero'daki `hero-magnific-*` klipleriyle aynı
    * rolde, ama bu sayfaya özel: gün batımında tesis ve dış ünite.
    *
-   * Kaynak 1278×720 yataydı ve AAC ses kanalı taşıyordu. Ses `-an` ile tamamen
-   * atıldı (dosyada ses AKIŞI yok; yalnız `muted` özniteliğine güvenilmiyor).
-   * Mobil sürüm 9:16'ya kırpıldı — kırpım noktası siloyu, ışıklı ahırı ve
-   * ünitenin gövdesini birlikte tutacak şekilde seçildi; ortadan kırpmak
-   * sahneyi yalnız ünitenin metal yüzeyine indiriyordu.
+   * İki klip de AAC ses kanalı taşıyordu; ses `-an` ile dosyadan tamamen
+   * atıldı (ses AKIŞI yok; yalnız `muted` özniteliğine güvenilmiyor).
+   *
+   * Mobil sürüm ayrı çekilmiş dikey klip (768×1344). Daha önce yatay klibin
+   * 9:16'ya kırpılmış hâli kullanılıyordu; o kırpım sahnenin gün batımını
+   * kaybediyordu, bu yüzden -v2 ile değiştirildi.
+   *
+   * Süreler eşit değil (masaüstü 5,0 sn / mobil 3,5 sn) — sorun değil, ikisi
+   * aynı anda görünmüyor ve her biri kendi içinde döngüye giriyor.
    *
    * Döngü `HeroCinemagraph` içindeki `loop` özniteliğiyle sağlanır.
    */
   video: {
     desktop: "/endustriyel-hero-desktop-v1.mp4",
-    mobile: "/endustriyel-hero-mobile-v1.mp4",
+    mobile: "/endustriyel-hero-mobile-v2.mp4",
   },
 
   /**
