@@ -1,9 +1,16 @@
 /**
  * Ürün kataloğu — hem ürünler şeridi hem de "size özel" seçici bunu kullanır.
  *
- * NOT: Veriler ve görseller YER TUTUCUDUR. Görseller başka üreticilerin cihazlarını
- * gösterir; yayına çıkmadan önce Bosch / NIBE / Gram Power ürün fotoğraf ve
- * verileriyle değiştirilmelidir.
+ * ⚠️ BURADAKİ `PRODUCTS` LİSTESİ YER TUTUCUDUR ve ARTIK HİÇBİR SAYFADA
+ * RENDER EDİLMİYOR. Model adları gerçek değildi; "size özel seçim" sihirbazı
+ * bunlardan marka-model önerisi yapıyordu, o öneri kaldırıldı (bkz. Finder.tsx).
+ *
+ * Sitedeki gerçek ürünler `config/brand-catalog.ts` içindeki doğrulanmış
+ * katalogdan gelir. Buradaki listeyi yeniden kullanmadan önce verilerin
+ * üretici kaynağından doğrulanması gerekir.
+ *
+ * `BRANDS` sabiti yalnız kullanılmayan `components/Footer.tsx` tarafından
+ * import ediliyor; sitede `EvselFooter` render ediliyor.
  */
 export const BRANDS = ["Bosch", "NIBE", "Gram Power"] as const;
 export type Brand = (typeof BRANDS)[number];

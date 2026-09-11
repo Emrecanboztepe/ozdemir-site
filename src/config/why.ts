@@ -1,10 +1,13 @@
 /**
  * "Neden ısı pompası / neden biz" bölümünün içeriği.
  *
- * ⚠️ RAKAMLAR YER TUTUCUDUR. Ne verim/tasarruf değerleri ne de firma
- * sayıları doğrulanmıştır; yayına çıkmadan önce gerçek verilerle
- * değiştirilmeli, mümkünse kaynağı da yazılmalıdır. Doğrulanmamış sayı
- * sitede iddia gibi durur (bkz. skill §17).
+ * Yer tutucu rakamlar KALDIRILDI. Burada artık yalnız başka yerde de
+ * doğrulanmış kurum verisi duruyor (deneyim, şube, hizmet ili, ödüller).
+ *
+ * KURAL: Buraya ölçülmemiş tasarruf oranı, COP, geri ödeme süresi, kurulu
+ * kapasite veya proje sayısı YAZILMAZ. Böyle bir sayı ancak yazılı kaynağı
+ * varsa ve kaynağı da sayfada gösterilebiliyorsa eklenir; aksi halde sitede
+ * doğrulanmamış bir iddia olarak durur.
  */
 
 /** İkon anahtarları — içerik `.ts` dosyasında JSX duramaz, bileşende çevrilir */
@@ -43,10 +46,14 @@ export const WHY_INDUSTRIAL: WhyContent = {
       alt: "Sanayi tesisinin dış cephesindeki iklimlendirme üniteleri ve bacalar",
     },
   ],
+  /* Buradaki üç kutu daha önce "%65 yakıt düşüşü", "4.2 COP" ve "3 yıl geri
+     ödeme" diyordu. Üçü de ölçülmemiş performans iddiasıydı; tasarruf ve geri
+     ödeme tesise, yalıtıma ve tarifeye göre değişir, tek bir sayı olarak
+     yayımlanamaz. Yerlerine yalnız doğrulanabilir kurum verisi kondu. */
   stats: [
-    { value: "%65", label: "Yakıt maliyetinde düşüş" },
-    { value: "4.2", label: "Ortalama COP" },
-    { value: "3 yıl", label: "Geri ödeme süresi" },
+    { value: "8 yıl", label: "Doğrulanmış deneyim" },
+    { value: "2 şube", label: "Bandırma ve Biga" },
+    { value: "3 ödül", label: "Bosch, NIBE, Gram Power" },
   ],
   benefits: [
     {
@@ -57,7 +64,7 @@ export const WHY_INDUSTRIAL: WhyContent = {
     {
       icon: "gauge",
       title: "Verim havadan gelir",
-      text: "Isı pompası yakıt yakmaz, var olan ısıyı taşır. Harcanan her 1 kW elektriğe karşılık 4 kW'a yakın ısı — fatura farkı buradan çıkar.",
+      text: "Isı pompası yakıt yakmaz, var olan ısıyı taşır. Harcanan elektriğin birkaç katı kadar ısı taşıdığı için fatura farkı buradan çıkar; oran tesise, dış hava sıcaklığına ve çalışma rejimine göre değişir.",
     },
     {
       icon: "leaf",
@@ -69,10 +76,14 @@ export const WHY_INDUSTRIAL: WhyContent = {
   proofText:
     "Aynı cihaz, yanlış kurgulanmış bir sistemde beklediğini vermez. Yük hesabını, projeyi, montajı ve devreye almayı tek ekip yürüttüğü için sorumluluk da bölünmez.",
   proofCta: "Projenizi konuşalım",
+  /* Önceki dört kutu ("120+ proje", "18 MW kurulu kapasite", "12 yıl saha
+     tecrübesi", "48 saat servis müdahalesi") doğrulanmamıştı. "12 yıl" ayrıca
+     sitenin geri kalanıyla da çelişiyordu: EXPERIENCE_YEARS = 8.
+     Gerçek sayılar elinize geçtiğinde buraya geri konabilir. */
   proof: [
-    { value: "120+", label: "Tamamlanan proje" },
-    { value: "18 MW", label: "Kurulu kapasite" },
-    { value: "12 yıl", label: "Saha tecrübesi" },
-    { value: "48 saat", label: "Servis müdahalesi" },
+    { value: "8 yıl", label: "Kuruluştan bugüne" },
+    { value: "2 şube", label: "Bandırma ve Biga" },
+    { value: "3 il", label: "Ücretsiz keşif bölgesi" },
+    { value: "4 marka", label: "Bosch, NIBE, Gram Power, Varmeks" },
   ],
 };

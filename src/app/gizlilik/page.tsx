@@ -52,9 +52,19 @@ export default function GizlilikPage() {
           yapının büyüklüğü ve mevcut ısıtma sistemi gibi).
         </p>
         <p>
-          Sitemiz birinci taraf izleme veya analitik çerezi çalıştırmaz. Sayfalara gömülü
-          üçüncü taraf içerikleri (örneğin Instagram videoları) kendi gizlilik
-          politikaları kapsamında kendi çerezlerini kullanabilir.
+          Sitemizde ziyaret ve reklam ölçümü amacıyla çerez kullanılır. Google Tag
+          Manager üzerinden çalışan araçlar şunlardır: Google Analytics 4 (site
+          kullanım istatistiği), Google Ads (reklam dönüşüm ölçümü), Meta Pixel
+          (Facebook/Instagram reklam ölçümü) ve Microsoft Clarity (sayfa içi
+          davranış kaydı). Bu araçlar tarayıcınıza <code>_ga</code>,{" "}
+          <code>_ga_*</code>, <code>_gcl_au</code>, <code>_clck</code> ve{" "}
+          <code>_clsk</code> gibi çerezler yazabilir.
+        </p>
+        <p>
+          Bu araçlar site kullanımınıza ilişkin verileri kendi sunucularına aktarır;
+          sağlayıcılar yurt dışında bulunmaktadır. Sayfalara gömülü üçüncü taraf
+          içerikleri (örneğin Instagram videoları) da kendi gizlilik politikaları
+          kapsamında kendi çerezlerini kullanabilir.
         </p>
       </LegalSection>
 

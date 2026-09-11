@@ -3,7 +3,6 @@
 import { useMemo, useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { ArrowLeft, Check, RotateCcw } from "lucide-react";
-import { PRODUCTS } from "@/config/products";
 import { WHATSAPP_HREF } from "@/config/site";
 import { SolidButton } from "@/components/ui/Buttons";
 import { WhatsAppMark } from "@/components/ui/WhatsAppIcon";
@@ -71,10 +70,7 @@ function recommend(answers: number[]) {
   const load = (area * wPerM2) / 1000 + systemExtra + waterExtra;
   const capacity =
     CAPACITIES.find((c) => c >= load) ?? CAPACITIES[CAPACITIES.length - 1];
-  const product =
-    PRODUCTS.find((p) => p.specs.some((s) => s.value === `${capacity} kW`)) ??
-    PRODUCTS[PRODUCTS.length - 1];
-  return { load, capacity, product };
+  return { load, capacity };
 }
 
 const ease = [0.22, 1, 0.36, 1] as const;
@@ -111,8 +107,7 @@ export default function Finder({ locationName, lead }: FinderProps = {}) {
         ...answerLines,
         "",
         `Yaklaşık ısı yükü: ${result.load.toFixed(1)} kW`,
-        `Önerilen kapasite: ${result.capacity} kW`,
-        `Önerilen ürün: ${result.product.brand} ${result.product.name}`,
+        `Tahmini kapasite sınıfı: ${result.capacity} kW`,
         "",
         "Detaylı ücretsiz keşif için görüşmek istiyorum.",
       ].join("\n"),
@@ -263,35 +258,28 @@ export default function Finder({ locationName, lead }: FinderProps = {}) {
                   <span className="text-[0.8125rem] font-medium uppercase tracking-[0.14em] text-brand-teal">
                     Öneri
                   </span>
+                  {/* Marka-model önerisi BİLİNÇLİ OLARAK kaldırıldı.
+                      Buradaki isimler `products.ts` içindeki yer tutucu
+                      listeden geliyordu ve gerçekte satılmayan model adlarıydı.
+                      Ayrıca sitenin kendi söylediğiyle de çelişiyordu: keşif
+                      yapılmadan cihaz kesinleştirilemez. Kapasite aralığı
+                      tahmini kalıyor, cihaz kararı keşife bırakılıyor. */}
                   <h3 className="mt-2 font-heading text-2xl font-semibold text-ink-900 md:text-3xl">
-                    {result!.capacity} kW · {result!.product.name}
+                    Yaklaşık {result!.capacity} kW
                   </h3>
                   <p className="mt-2 max-w-[46ch] text-[0.9375rem] leading-relaxed text-ink-600">
-                    Verdiğiniz bilgilere göre yaklaşık{" "}
+                    Verdiğiniz bilgilere göre ısı yükü kabaca{" "}
                     <strong className="font-semibold text-ink-900">
                       {result!.load.toFixed(1)} kW
                     </strong>{" "}
-                    ısı yükü çıkıyor. Katalogdan en yakın kapasite{" "}
-                    {result!.product.brand} {result!.product.name}.
+                    çıkıyor; bu da yaklaşık {result!.capacity} kW sınıfı bir cihaza
+                    denk geliyor.
                   </p>
 
-                  <dl className="mt-5 space-y-2 border-t border-surface-100 pt-4">
-                    {result!.product.specs.map((sp) => (
-                      <div
-                        key={sp.label}
-                        className="flex items-baseline justify-between gap-4"
-                      >
-                        <dt className="text-[0.8125rem] text-ink-400">{sp.label}</dt>
-                        <dd className="text-[0.875rem] font-medium text-ink-900">
-                          {sp.value}
-                        </dd>
-                      </div>
-                    ))}
-                  </dl>
-
                   <p className="mt-4 rounded-xl bg-surface-50 px-4 py-3 text-[0.8125rem] leading-relaxed text-ink-600">
-                    Bu bir ön tahmindir. Kesin kapasite; ısı kaybı hesabı, tesisat ve
-                    kullanım alışkanlıklarına göre ücretsiz keşifte belirlenir.
+                    Bu bir ön tahmindir, cihaz önerisi değildir. Marka ve model;
+                    yalıtım, mevcut tesisat, petek yüzeyi ve sıcak su ihtiyacı
+                    yerinde ölçüldükten sonra ücretsiz keşifte birlikte belirlenir.
                   </p>
 
                   <div className="mt-5 flex flex-col gap-2.5 sm:flex-row sm:items-center">

@@ -49,9 +49,40 @@ const nextConfig: NextConfig = {
       ["/end%C3%BCstriyel/urunler.html", "/urunler"],
       ["/end%C3%BCstriyel/referanslar%C4%B1m%C4%B1z.html", "/sahadan"],
       ["/end%C3%BCstriyel/iletisim.html", "/iletisim"],
+
+      /* Eski sitedeki GERÇEK endüstriyel dizini ASCII: /endustriyel/.
+         Yukarıdaki ü'lü (%C3%BC) kurallar eski sitenin kendi sitemap'inden
+         türetilmiş ama o adresler sunucuda hiç var olmamış (hepsi 404).
+         Aşağıdakilerin tamamı canlıda 200 döndüğü doğrulandı.
+
+         DİKKAT: /endustriyel (uzantısız) buraya EKLENMEZ — yeni sitenin
+         kendi rotası o adres. Yalnız .html uzantılı olanlar yönlendirilir. */
+      ["/endustriyel/index.html", "/endustriyel"],
+      ["/endustriyel/hakkimizda.html", "/hakkimizda"],
+      ["/endustriyel/hizmetler.html", "/endustriyel"],
+      ["/endustriyel/isi-pompasi-ile-isitma.html", "/endustriyel"],
+      ["/endustriyel/isi-pompasi-ile-sogutma.html", "/endustriyel"],
+      ["/endustriyel/isi-pompasi-ile-sicak-su.html", "/endustriyel"],
+      ["/endustriyel/sicak-su-icin-gunes-enerjisi.html", "/hizmetler/mekanik-tesisat"],
+      ["/endustriyel/mekanik-tesisat.html", "/hizmetler/mekanik-tesisat"],
+      /* Bu ikisi ASCII değil: eski dosya adı Türkçe ı taşıyor (doğrulandı). */
+      ["/endustriyel/kalorifer-tesisat%C4%B1.html", "/hizmetler/mekanik-tesisat"],
+      ["/endustriyel/urunler.html", "/urunler"],
+      ["/endustriyel/referanslarimiz.html", "/sahadan"],
+      ["/endustriyel/iletisim.html", "/iletisim"],
     ] as const;
 
     return [
+      /* HTTP -> HTTPS. Vercel/Cloudflare gibi platformlar bunu zaten kenarda
+         yapar; o durumda bu kural hiç tetiklenmez. Kendi sunucunuza (Node,
+         Nginx, IIS) kurulursa tek şema güvencesi bu olur.
+         `x-forwarded-proto` proxy'nin isteği hangi şemayla aldığını söyler. */
+      {
+        source: "/:path*",
+        has: [{ type: "header", key: "x-forwarded-proto", value: "http" }],
+        destination: "https://ozdemirmuhendislik.net/:path*",
+        permanent: true,
+      },
       {
         source: "/:path*",
         has: [{ type: "host", value: "www.ozdemirmuhendislik.net" }],
@@ -63,6 +94,22 @@ const nextConfig: NextConfig = {
         destination,
         permanent: true,
       })),
+    ];
+  },
+  async headers() {
+    return [
+      {
+        source: "/:path*",
+        headers: [
+          /* HSTS: bir yıl. `includeSubDomains` ve `preload` BİLİNÇLİ OLARAK
+             yok — alt alan adlarının hepsinde geçerli TLS olduğu doğrulanmadan
+             eklenirse onlara erişim kesilir, preload ise geri alması çok zor
+             bir taahhüttür. İkisi de yayın sonrası ayrıca değerlendirilmeli. */
+          { key: "Strict-Transport-Security", value: "max-age=31536000" },
+          { key: "X-Content-Type-Options", value: "nosniff" },
+          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+        ],
+      },
     ];
   },
 };

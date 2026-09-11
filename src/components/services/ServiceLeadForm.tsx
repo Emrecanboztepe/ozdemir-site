@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useId, useRef, useState } from "react";
+import { FormEvent, MouseEvent, useId, useRef, useState } from "react";
 import { Phone } from "lucide-react";
 import { OutlineButton } from "@/components/ui/Buttons";
 import { PHONE_HREF } from "@/config/site";
@@ -33,27 +33,57 @@ export default function ServiceLeadForm({ serviceName }: { serviceName?: string 
     setErrors((current) => ({ ...current, [key]: undefined }));
   }
 
-  function submit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    const result = buildWhatsAppLeadUrl({
+  function buildResult() {
+    return buildWhatsAppLeadUrl({
       ...draft,
       currentHeating: serviceName
         ? `${serviceName}${draft.currentHeating ? ` — ${draft.currentHeating}` : ""}`
         : draft.currentHeating,
     });
+  }
+
+  function showErrors(fieldErrors: LeadErrors) {
+    setErrors(fieldErrors);
+    setNotice("Lütfen işaretli zorunlu alanları kontrol edin.");
+    const firstInvalid = (["fullName", "phone", "province"] as const).find(
+      (field) => fieldErrors[field],
+    );
+    window.requestAnimationFrame(() => {
+      const field = firstInvalid
+        ? formRef.current?.elements.namedItem(firstInvalid)
+        : null;
+      if (field instanceof HTMLElement) field.focus();
+    });
+  }
+
+  /**
+   * Geçersiz formda submit olayının DOĞMASINI engeller.
+   *
+   * GTM konteynerindeki "Form Gönderme" tetikleyicisi filtresiz bir All Forms
+   * tetikleyicisi: yalnız `gtm.formSubmit` olayına bakıyor. Form `noValidate`
+   * olduğu için tarayıcı doğrulaması devre dışı; `onSubmit` içinde
+   * `preventDefault()` çağırmak ise ÇOK GEÇ — olay o noktada zaten ateşlenmiş
+   * ve GTM'e Google Ads dönüşümü olarak düşmüş oluyordu. Yani zorunlu alanları
+   * boş bırakan her denemede sahte dönüşüm üretiliyordu.
+   *
+   * Click aşamasında `preventDefault()` çağırmak submit'i hiç başlatmaz, bu
+   * yüzden GTM de hiçbir şey görmez. Klavyeyle Enter'a basmak da varsayılan
+   * submit butonuna click gönderdiği için aynı kapıdan geçer.
+   */
+  function gateSubmit(event: MouseEvent<HTMLButtonElement>) {
+    const result = buildResult();
+    if (!result.ok) {
+      event.preventDefault();
+      showErrors(result.errors);
+    }
+  }
+
+  function submit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const result = buildResult();
 
     if (!result.ok) {
-      setErrors(result.errors);
-      setNotice("Lütfen işaretli zorunlu alanları kontrol edin.");
-      const firstInvalid = (["fullName", "phone", "province"] as const).find(
-        (field) => result.errors[field],
-      );
-      window.requestAnimationFrame(() => {
-        const field = firstInvalid
-          ? formRef.current?.elements.namedItem(firstInvalid)
-          : null;
-        if (field instanceof HTMLElement) field.focus();
-      });
+      showErrors(result.errors);
       return;
     }
 
@@ -186,6 +216,7 @@ export default function ServiceLeadForm({ serviceName }: { serviceName?: string 
       <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center">
         <button
           type="submit"
+          onClick={gateSubmit}
           className="inline-flex min-h-12 items-center justify-center rounded-full bg-brand-blue px-6 text-[0.9375rem] font-medium text-white transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue/45 focus-visible:ring-offset-2"
         >
           WhatsApp taslağını hazırla

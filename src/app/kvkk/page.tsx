@@ -74,7 +74,8 @@ export default function KvkkPage() {
             "Eve veya tesise özel sistem seçiminin, teklifin ve fiyatlandırmanın hazırlanması,",
             "Satış, montaj, devreye alma, bakım ve servis sözleşmelerinin kurulması ve ifası,",
             "Talep ve şikâyetlerin takibi ile iletişim süreçlerinin yürütülmesi,",
-            "Faturalandırma ve mevzuattan doğan yükümlülüklerin yerine getirilmesi.",
+            "Faturalandırma ve mevzuattan doğan yükümlülüklerin yerine getirilmesi,",
+            "Web sitesi kullanımının ölçülmesi, reklam performansının ve dönüşümlerin takibi ile pazarlama faaliyetlerinin yürütülmesi.",
           ]}
         />
       </LegalSection>
@@ -97,16 +98,33 @@ export default function KvkkPage() {
           Kişisel veriler; KVKK&apos;nın 8. maddesindeki şartlar çerçevesinde, yasal
           yükümlülüklerin yerine getirilmesi amacıyla kanunen yetkili kamu kurum ve
           kuruluşlarına ve işleme amaçlarıyla sınırlı olarak hizmet aldığımız
-          sağlayıcılara (barındırma ve altyapı hizmetleri gibi) aktarılabilir. Bunun
-          dışında kişisel veriler üçüncü kişilere aktarılmaz, satılmaz veya kiralanmaz.
+          sağlayıcılara (barındırma ve altyapı hizmetleri gibi) aktarılabilir.
+        </p>
+        <p>
+          Ayrıca web sitesi kullanımının ölçülmesi ve reklam performansının takibi
+          amacıyla, çerezler aracılığıyla toplanan veriler yurt dışında yerleşik
+          hizmet sağlayıcılara aktarılır: Google Ireland Ltd. / Google LLC (Google
+          Analytics, Google Ads), Meta Platforms Ireland Ltd. (Meta Pixel) ve
+          Microsoft Corporation (Clarity). Bu aktarımın kapsamı ve hukuki dayanağı
+          Gizlilik Politikası&apos;nda ayrıca açıklanır.
+        </p>
+        <p>
+          Bunun dışında kişisel veriler üçüncü kişilere aktarılmaz, satılmaz veya
+          kiralanmaz.
         </p>
       </LegalSection>
 
       <LegalSection title="6. Toplanma Yöntemi">
         <p>
           Kişisel verileriniz; telefon ve WhatsApp gibi iletişim kanalları üzerinden
-          sözlü veya yazılı olarak, keşif ve hizmet süreçlerinde yerinde ve kısmen
-          otomatik yollarla toplanır.
+          sözlü veya yazılı olarak, web sitemizdeki talep formu aracılığıyla, keşif ve
+          hizmet süreçlerinde yerinde ve kısmen otomatik yollarla toplanır.
+        </p>
+        <p>
+          Sitedeki talep formu verilerinizi bu siteye kaydetmez; girdiğiniz bilgilerle
+          bir WhatsApp mesaj taslağı hazırlanır ve gönderme kararı size aittir. Ayrıca
+          site kullanımınıza ilişkin veriler çerezler aracılığıyla otomatik yollarla
+          toplanır.
         </p>
       </LegalSection>
 

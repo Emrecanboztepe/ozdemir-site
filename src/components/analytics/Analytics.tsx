@@ -3,7 +3,7 @@
 import Script from "next/script";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef } from "react";
-import { GA_MEASUREMENT_ID, GTM_ID } from "@/config/analytics";
+import { GTM_ID } from "@/config/analytics";
 import { trackLead, trackLocationClick } from "@/lib/analytics";
 
 const isWhatsAppUrl = (href: string) =>
@@ -28,12 +28,6 @@ export default function Analytics() {
 
     window.dataLayer?.push({
       event: "virtual_page_view",
-      page_path: pathname,
-      page_location: window.location.href,
-      page_title: document.title,
-    });
-    window.gtag?.("event", "page_view", {
-      page_path: pathname,
       page_location: window.location.href,
       page_title: document.title,
     });
@@ -56,28 +50,95 @@ export default function Analytics() {
     return () => document.removeEventListener("click", captureClick, true);
   }, []);
 
+  /**
+   * GTM konteynerindeki WhatsApp tetikleyicisi `.whatsapp-se-btn` CSS sınıfını
+   * arıyor (seçici: ".whatsapp-se-btn, .whatsapp-se-btn *"). Bu sınıf eski
+   * siteden kalma; yeni sitede hiçbir yerde yoktu, dolayısıyla o tetikleyiciye
+   * bağlı ÜÇ etiket (GA4 "WhatsApp Tıklama", Google Ads dönüşümü, Meta olayı)
+   * yayına alındığı an sessiz kalacaktı.
+   *
+   * Sınıfı 7 bileşene elle yazmak yerine burada tek noktadan işaretliyoruz:
+   * WhatsApp adresine giden her `<a>` otomatik alıyor. MutationObserver şart —
+   * bağlantıların bir kısmı (mobil menü, sonradan açılan bölümler) DOM'a ilk
+   * boyamadan sonra giriyor ve tek seferlik bir tarama onları kaçırırdı.
+   */
+  useEffect(() => {
+    const MARK = "whatsapp-se-btn";
+
+    const mark = (root: ParentNode) => {
+      root.querySelectorAll?.("a[href]").forEach((el) => {
+        if (
+          el instanceof HTMLAnchorElement &&
+          isWhatsAppUrl(el.href) &&
+          !el.classList.contains(MARK)
+        ) {
+          el.classList.add(MARK);
+        }
+      });
+    };
+
+    mark(document);
+
+    const observer = new MutationObserver((records) => {
+      for (const record of records) {
+        for (const node of record.addedNodes) {
+          if (node instanceof HTMLElement) mark(node);
+        }
+      }
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <>
+      {/* Consent Mode v2 varsayılanları GTM'DEN ÖNCE kurulmalı; aksi halde
+          etiketler onay sinyali yokken çalışır ve çerez yazar. Bu yüzden
+          varsayılanlar ayrı bir Script'e değil, GTM yükleyicisinin HEMEN
+          ÜSTÜNE, aynı blok içine konuldu — sıralama böyle garanti.
+
+          Reklam/ölçüm sinyalleri "denied" başlar; ziyaretçi onay verince
+          `lib/consent.ts` bunları "granted"a çeker. Güvenlik ve işlevsellik
+          depoları zorunlu olduğu için açık. */}
       <Script id="google-tag-manager" strategy="afterInteractive">
-        {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        {`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+window.gtag = gtag;
+gtag('consent', 'default', {
+  ad_storage: 'denied',
+  analytics_storage: 'denied',
+  ad_user_data: 'denied',
+  ad_personalization: 'denied',
+  functionality_storage: 'granted',
+  security_storage: 'granted'
+});
+try {
+  var stored = window.localStorage.getItem('ozdemir-cookie-consent');
+  if (stored === 'granted') {
+    gtag('consent', 'update', {
+      ad_storage: 'granted',
+      analytics_storage: 'granted',
+      ad_user_data: 'granted',
+      ad_personalization: 'granted'
+    });
+  }
+} catch (e) {}
+(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','${GTM_ID}');`}
       </Script>
 
-      <Script
-        id="google-analytics-library"
-        src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
-        strategy="afterInteractive"
-      />
-      <Script id="google-analytics-config" strategy="afterInteractive">
-        {`window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-window.gtag = gtag;
-gtag('js', new Date());
-gtag('config', '${GA_MEASUREMENT_ID}', { anonymize_ip: true });`}
-      </Script>
+      {/* GA4 BİLİNÇLİ OLARAK BURADAN YÜKLENMİYOR.
+          GTM-WW8D557P konteynerinin içinde G-S6Y6JY5RXC için bir Google
+          etiketi zaten var ve gtm.init'te ateşleniyor. Burada ikinci kez
+          gtag.js yükleyip config etmek her sayfa görüntülemesini iki kez
+          saydırıyordu. Ölçüm kimliği artık tek yerden yönetiliyor: GTM.
+
+          Kaldırılan kodda ayrıca `anonymize_ip: true` vardı; o parametre
+          Universal Analytics'e aitti, GA4 onu zaten yok sayıyor. */}
 
       <noscript>
         <iframe
