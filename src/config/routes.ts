@@ -29,7 +29,7 @@ export const ROUTES = {
   endustriyel: {
     href: "/endustriyel",
     label: "Endüstriyel",
-    title: "Endüstriyel Isı Pompası ve Mekanik Tesisat | Özdemir Mühendislik",
+    title: "Endüstriyel Isı Pompası ve Chiller | Özdemir Mühendislik",
     description:
       "Fabrika, otel ve iş merkezleri için endüstriyel ısı pompası, chiller ve mekanik tesisat. Projelendirmeden devreye almaya kadar tek elden.",
     changeFrequency: "monthly",
@@ -56,7 +56,7 @@ export const ROUTES = {
   hizmetler: {
     href: "/hizmetler",
     label: "Hizmetler",
-    title: "Isı Pompası ve Mekanik Tesisat Hizmetleri | Özdemir Mühendislik",
+    title: "Isı Pompası ve Tesisat Hizmetleri | Özdemir Mühendislik",
     description:
       "Isı pompası kurulumu, mekanik tesisat, projelendirme, devreye alma, bakım ve servis hizmetlerini tek ekipten alın.",
     changeFrequency: "monthly",
@@ -65,7 +65,7 @@ export const ROUTES = {
   sahadan: {
     href: "/sahadan",
     label: "Sahadan",
-    title: "Sahadan Isı Pompası ve Tesisat Çalışmaları | Özdemir Mühendislik",
+    title: "Sahadan Isı Pompası Uygulamaları | Özdemir Mühendislik",
     description:
       "Türkiye genelindeki ısı pompası ve mekanik tesisat çalışmalarımızın ihtiyaç, yaklaşım ve uygulama çerçevesini inceleyin.",
     changeFrequency: "monthly",

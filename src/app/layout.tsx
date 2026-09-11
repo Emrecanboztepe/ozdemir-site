@@ -39,6 +39,16 @@ export default function RootLayout({
   return (
     <html lang="tr" className={`${manrope.variable} ${inter.variable}`}>
       <body>
+        {/* "İçeriğe geç" — WCAG 2.4.1. Normalde görünmez, klavyeyle Tab'a
+            basınca ortaya çıkar. Her sayfanın <main> etiketi `ana-icerik`
+            id'sini taşır; klavye kullanıcısı navbar'daki onlarca bağlantıyı
+            her sayfada baştan geçmek zorunda kalmaz. */}
+        <a
+          href="#ana-icerik"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-brand-blue focus:px-5 focus:py-3 focus:text-sm focus:font-semibold focus:text-white focus:shadow-card-lg focus:outline-none focus:ring-2 focus:ring-white"
+        >
+          İçeriğe geç
+        </a>
         <Analytics />
         <ConsentBanner />
         <RouteScrollManager />

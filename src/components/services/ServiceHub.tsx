@@ -84,7 +84,7 @@ export default function ServiceHub() {
   return (
     <>
       <Navbar />
-      <main className="bg-surface-0">
+      <main id="ana-icerik" className="bg-surface-0">
         <ServicesHero />
 
         <section aria-labelledby="hizmet-listesi" className="bg-surface-50 py-16 md:py-24">

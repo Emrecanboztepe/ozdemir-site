@@ -63,7 +63,14 @@ const COLUMN_MASK =
 
 export default function ResultsBento() {
   return (
-    <section className="py-20 md:py-28">
+    <section aria-labelledby="rakamlar-ve-isler" className="py-20 md:py-28">
+      {/* Görünmez bölüm başlığı. Tasarımda bu bento'nun yazılı bir başlığı yok,
+          ama içindeki dört kutu h3 ile başlıyordu; /hakkimizda'da sayfanın h1'i
+          ile bunlar arasında h2 kalmadığı için başlık hiyerarşisi atlıyordu.
+          Ekran okuyucu ve arama motoru için doğru basamağı buraya koyuyoruz. */}
+      <h2 id="rakamlar-ve-isler" className="sr-only">
+        Rakamlarla Özdemir Mühendislik ve tamamlanan işler
+      </h2>
       <div className="mx-auto max-w-7xl px-5 md:px-8">
         <div className="grid gap-4 lg:grid-cols-[0.85fr_1.25fr_0.85fr]">
           {/* ── Sol: rakamlar + keşif kartı ── */}

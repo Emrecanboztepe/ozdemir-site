@@ -73,7 +73,7 @@ export default function HeatPumpOfferPage() {
         </div>
       </header>
 
-      <main className="bg-surface-0">
+      <main id="ana-icerik" className="bg-surface-0">
         <section className="relative overflow-hidden border-b border-surface-100 bg-surface-50 py-14 md:py-20 lg:py-24">
           <div aria-hidden className="pointer-events-none absolute -left-36 top-16 size-[30rem] rounded-full border-[70px] border-brand-cool/15" />
           <div className="relative mx-auto grid max-w-7xl gap-10 px-5 md:px-8 lg:grid-cols-[1.02fr_0.98fr] lg:items-center lg:gap-14">

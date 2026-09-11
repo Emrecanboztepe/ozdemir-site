@@ -58,7 +58,7 @@ export default function ContactPage() {
   return (
     <>
       <Navbar />
-      <main className="bg-surface-0">
+      <main id="ana-icerik" className="bg-surface-0">
         <PageHero
           eyebrow="İLETİŞİM VE KEŞİF"
           title="Ücretsiz keşif için doğrudan ekibimize ulaşın."

@@ -2,6 +2,7 @@ import Image from "next/image";
 import { Compass, HardHat, LifeBuoy, Phone } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import EvselFooter from "@/components/EvselFooter";
+import JsonLd from "@/components/seo/JsonLd";
 import BrandStrip from "@/components/sections/BrandStrip";
 import ResultsBento from "@/components/about/ResultsBento";
 import NumberedFaq from "@/components/kit/NumberedFaq";
@@ -9,9 +10,12 @@ import { SolidButton } from "@/components/ui/Buttons";
 import { MODES, PHONE, PHONE_HREF } from "@/config/site";
 import { ROUTES } from "@/config/routes";
 import { FAQ_ABOUT } from "@/config/faq";
-import { buildPageMetadata } from "@/lib/seo";
+import { buildPageMetadata, buildWebPageJsonLd } from "@/lib/seo";
 
 export const metadata = buildPageMetadata(ROUTES.hakkimizda);
+
+/* Sayfada görünen SSS bloğu ile birebir aynı soru-cevaplar işaretlenir. */
+const schema = buildWebPageJsonLd(ROUTES.hakkimizda, FAQ_ABOUT.items);
 
 /**
  * Hakkımızda — sitenin iki koluna da hitap eden TEK sayfa.
@@ -47,9 +51,10 @@ const VALUES = [
 export default function HakkimizdaPage() {
   return (
     <>
+      <JsonLd data={schema} />
       <Navbar />
 
-      <main className="bg-surface-0">
+      <main id="ana-icerik" className="bg-surface-0">
         {/* ── Açılış ──
              Referans düzeni: SOLDA başlık + tanıtım + altında geniş fotoğraf,
              SAĞDA dikey fotoğraf ve onun altında kayan marka şeridi.

@@ -16,7 +16,7 @@ export default function FieldProofPage() {
   return (
     <>
       <Navbar />
-      <main className="bg-surface-0">
+      <main id="ana-icerik" className="bg-surface-0">
         <section className="relative overflow-hidden border-b border-surface-100 bg-surface-50 pb-14 pt-36 md:pb-20 md:pt-44">
           <div
             aria-hidden

@@ -18,7 +18,7 @@ export const PRODUCT_BRAND_PROOF = [
   {
     brand: "NIBE",
     logo: "/markalar/nibe.png",
-    image: "/nibe-ozdemir-odul.png",
+    image: "/nibe-ozdemir-odul.webp",
     imageAlt: "NIBE 2024 Güney Marmara birinciliği ödülü",
     eyebrow: "Güney Marmara",
     achievement: "Bölge satış birincisi",
@@ -26,7 +26,7 @@ export const PRODUCT_BRAND_PROOF = [
   {
     brand: "Gram Power",
     logo: "/markalar/gram-power.png",
-    image: "/grampower-odul-ozdemir.png",
+    image: "/grampower-odul-ozdemir.webp",
     imageAlt: "Gram Power Türkiye satış birinciliği ödülü",
     eyebrow: "Türkiye",
     achievement: "Türkiye satış birincisi",

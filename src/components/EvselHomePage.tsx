@@ -145,7 +145,7 @@ export default function EvselHomePage() {
         }}
       />
       <Navbar />
-      <main>
+      <main id="ana-icerik">
         {/* Akış, Ads trafiği için hazırlanan landing stratejisine göre:
             güven şeridi hero'nun hemen altında, süreç erken, yer tutucu
             katalog ve reels'lar sona doğru. */}

@@ -126,6 +126,7 @@ export default function ServiceLeadForm({ serviceName }: { serviceName?: string 
           <input
             name="fullName"
             required
+            autoComplete="name"
             value={draft.fullName}
             onChange={(event) => update("fullName", event.target.value)}
             aria-invalid={Boolean(errors.fullName)}
@@ -139,6 +140,8 @@ export default function ServiceLeadForm({ serviceName }: { serviceName?: string 
           <input
             name="phone"
             required
+            type="tel"
+            autoComplete="tel"
             inputMode="tel"
             value={draft.phone}
             onChange={(event) => update("phone", event.target.value)}
@@ -153,6 +156,7 @@ export default function ServiceLeadForm({ serviceName }: { serviceName?: string 
           <select
             name="province"
             required
+            autoComplete="address-level1"
             value={draft.province}
             onChange={(event) => update("province", event.target.value)}
             aria-invalid={Boolean(errors.province)}
@@ -171,6 +175,7 @@ export default function ServiceLeadForm({ serviceName }: { serviceName?: string 
           İlçe <span className="font-normal text-ink-400">(isteğe bağlı)</span>
           <input
             name="district"
+            autoComplete="address-level2"
             value={draft.district}
             onChange={(event) => update("district", event.target.value)}
             className="mt-2 h-12 w-full rounded-xl border border-surface-100 bg-white px-3 text-ink-900 transition focus-visible:border-brand-blue focus-visible:ring-2 focus-visible:ring-brand-blue/25"

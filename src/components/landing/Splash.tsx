@@ -47,7 +47,7 @@ export default function Splash() {
   const { props: desktop } = getImageProps({ ...common, ...IMAGE.desktop });
 
   return (
-    <main className="relative isolate h-screen-dynamic min-h-[600px] overflow-hidden bg-surface-0">
+    <main id="ana-icerik" className="relative isolate h-screen-dynamic min-h-[600px] overflow-hidden bg-surface-0">
       <h1 className="sr-only">Evsel ve endüstriyel çözümler</h1>
       {/* Sahne */}
       <picture>

@@ -31,7 +31,7 @@ export default function LocationLandingPage({ location }: { location: LocationPa
   return (
     <>
       <Navbar />
-      <main>
+      <main id="ana-icerik">
         <PageHero
           eyebrow={`${location.city.toUpperCase()} ISI POMPASI`}
           title={location.title}

@@ -31,7 +31,7 @@ export default function RouteShell({
     <>
       <JsonLd data={schema} />
       <Navbar />
-      <main className="bg-surface-0">
+      <main id="ana-icerik" className="bg-surface-0">
         <section className="pb-20 pt-36 md:pb-28 md:pt-44">
           <div className="mx-auto max-w-7xl px-5 md:px-8">
             <nav aria-label="Sayfa yolu" className="text-sm text-ink-400">

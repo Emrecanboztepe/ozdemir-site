@@ -12,7 +12,7 @@ export default function LocationHubPage() {
   return (
     <>
       <Navbar />
-      <main>
+      <main id="ana-icerik">
         <PageHero
           eyebrow="HİZMET BÖLGELERİ"
           title="Yerel keşif, Türkiye geneli montaj."

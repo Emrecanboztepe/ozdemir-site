@@ -30,7 +30,7 @@ export default function BrandDetailPage({ brand }: { brand: BrandCatalogEntry })
   return (
     <>
       <Navbar />
-      <main className="bg-surface-0">
+      <main id="ana-icerik" className="bg-surface-0">
         <PageHero
           eyebrow="BİREYSEL ÜRÜN KATALOĞU"
           title={brand.name + " evsel ürünleri"}
@@ -254,7 +254,9 @@ export default function BrandDetailPage({ brand }: { brand: BrandCatalogEntry })
             />
             <div className="mt-8">
               <Link
-                href="/urunler#marka-katalogu"
+                /* `#marka-katalogu` diye bir hedef yok; katalog bölümünün
+                   gerçek id'si `urunler` (Products.tsx -> HOME_CATALOG.id). */
+                href="/urunler#urunler"
                 className="inline-flex min-h-11 items-center gap-2 rounded-full border border-ink-900/15 px-5 text-[0.9375rem] font-medium text-ink-900 transition hover:border-brand-blue/45 hover:text-brand-blue focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue/40 focus-visible:ring-offset-2"
               >
                 Diğer markaları inceleyin <ArrowRight className="size-4" aria-hidden />

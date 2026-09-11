@@ -83,7 +83,7 @@ export const ABOUT_HOME: AboutContent = {
       description: "Kuruluştan bugüne keşif, seçim ve uygulama süreciyle bizzat ilgileniyor.",
     },
     {
-      src: "/nibe-ozdemir-odul.png",
+      src: "/nibe-ozdemir-odul.webp",
       alt: "NIBE 2024 Güney Marmara birincilik ödülü",
       sizes: "(max-width: 767px) 100vw, 33vw",
       eyebrow: "NIBE",
@@ -92,7 +92,7 @@ export const ABOUT_HOME: AboutContent = {
       description: "NIBE'nin Güney Marmara bölgesindeki satış başarısında birinci olduk.",
     },
     {
-      src: "/grampower-odul-ozdemir.png",
+      src: "/grampower-odul-ozdemir.webp",
       alt: "Gram Power Türkiye satış birinciliği ödülü",
       sizes: "(max-width: 767px) 100vw, 33vw",
       eyebrow: "GRAM POWER",

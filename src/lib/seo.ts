@@ -270,26 +270,45 @@ export function buildContactPageJsonLd(
   };
 }
 
+/**
+ * `faqs` verilirse sayfaya ayrıca FAQPage düğümü eklenir.
+ *
+ * Kural: FAQPage YALNIZ sayfada gerçekten görünen soru-cevaplar için üretilir.
+ * Google, işaretlemenin sayfadaki içerikle birebir eşleşmesini istiyor;
+ * görünmeyen soruyu işaretlemek yapılandırılmış veri ihlalidir.
+ */
 export function buildWebPageJsonLd(
   route: Pick<SiteRoute, "href" | "label" | "title" | "description">,
+  faqs?: readonly { q: string; a: string }[],
 ): JsonLdValue {
   const url = absoluteUrl(route.href);
 
-  return {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "WebPage",
-        "@id": `${url}#webpage`,
-        url,
-        name: route.title,
-        description: route.description,
-        inLanguage: "tr-TR",
-        isPartOf: { "@id": WEBSITE_ID },
-        publisher: { "@id": ORGANIZATION_ID },
-        breadcrumb: { "@id": `${url}#breadcrumb` },
-      },
-      breadcrumb(route),
-    ],
-  };
+  const graph: JsonLdValue[] = [
+    {
+      "@type": "WebPage",
+      "@id": `${url}#webpage`,
+      url,
+      name: route.title,
+      description: route.description,
+      inLanguage: "tr-TR",
+      isPartOf: { "@id": WEBSITE_ID },
+      publisher: { "@id": ORGANIZATION_ID },
+      breadcrumb: { "@id": `${url}#breadcrumb` },
+    },
+    breadcrumb(route),
+  ];
+
+  if (faqs?.length) {
+    graph.push({
+      "@type": "FAQPage",
+      "@id": `${url}#faq`,
+      mainEntity: faqs.map((faq) => ({
+        "@type": "Question",
+        name: faq.q,
+        acceptedAnswer: { "@type": "Answer", text: faq.a },
+      })),
+    });
+  }
+
+  return { "@context": "https://schema.org", "@graph": graph };
 }

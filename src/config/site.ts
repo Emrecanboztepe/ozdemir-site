@@ -7,8 +7,8 @@ export const BRAND_SLOGAN = "Doğalgaz yoksa ısı pompası var";
 
 export const PHONE = "+90 549 878 87 00";
 export const PHONE_HREF = "tel:+905498788700";
-export const SECONDARY_PHONE = "+90 216 606 08 70";
-export const SECONDARY_PHONE_HREF = "tel:+902166060870";
+export const SECONDARY_PHONE = "+90 266 606 08 70";
+export const SECONDARY_PHONE_HREF = "tel:+902666060870";
 export const WHATSAPP_HREF =
   "https://api.whatsapp.com/send/?app_absent=0&phone=%2B905498788700&text=%C3%9Ccretsiz+ke%C5%9Fif+i%C3%A7in+sizlere+yaz%C4%B1yorum.&type=phone_number";
 

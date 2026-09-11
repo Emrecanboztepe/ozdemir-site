@@ -35,7 +35,7 @@ export const BLOG_POSTS: readonly BlogPost[] = [
     status: "published",
     title: "Isı pompası teklifinde neler dahil olmalı?",
     description:
-      "İki ısı pompası teklifi neden birbirini tutmaz? Cihaz, tesisat, sıcak su, elektrik ve devreye alma kalemlerinin teklifte nasıl görünmesi gerektiğini anlatıyoruz.",
+      "İki ısı pompası teklifi neden birbirini tutmaz? Cihaz, tesisat, sıcak su, elektrik ve devreye alma kalemleri teklifte nasıl görünmeli, anlatıyoruz.",
     category: "Satın alma rehberi",
     author: { name: "Burak Özdemir", href: "/hakkimizda" },
     publishedAt: "2026-09-08T09:00:00+03:00",
@@ -214,7 +214,7 @@ export const BLOG_POSTS: readonly BlogPost[] = [
     status: "published",
     title: "Kaç kW ısı pompası gerekir? Yük hesabı nasıl yapılır?",
     description:
-      "Metrekareyi katsayıyla çarpmak neden yanıltır? Isı kaybı hesabının neye baktığını, dış hava tasarım sıcaklığının ve sıcak su talebinin kapasiteyi nasıl değiştirdiğini anlatıyoruz.",
+      "Metrekareyi katsayıyla çarpmak neden yanıltır? Isı kaybı hesabı neye bakar, dış hava sıcaklığı ve sıcak su talebi kapasiteyi nasıl değiştirir?",
     category: "Teknik rehber",
     author: { name: "Burak Özdemir", href: "/hakkimizda" },
     publishedAt: "2026-08-26T09:00:00+03:00",

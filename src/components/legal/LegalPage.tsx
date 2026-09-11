@@ -18,7 +18,7 @@ export default function LegalPage({ title, lead, updated, children }: LegalPageP
   return (
     <>
       <Navbar />
-      <main className="bg-surface-0">
+      <main id="ana-icerik" className="bg-surface-0">
         <section className="pb-20 pt-32 md:pb-28 md:pt-40">
           <div className="mx-auto max-w-3xl px-5 md:px-8">
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-blue">

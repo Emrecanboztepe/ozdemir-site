@@ -41,11 +41,15 @@ export default function ProductHub() {
   return (
     <>
       <Navbar />
-      <main className="bg-surface-0">
+      <main id="ana-icerik" className="bg-surface-0">
         <ProductMarqueeHero
           title={
             <>
-              <span className="block">Ürün seçmeyin</span>
+              {/* İki satır arasında boşluk ŞART. `block` yalnız görsel olarak
+                  ayırıyor; etiketler ayıklandığında metin "Ürün seçmeyinEvinize"
+                  diye birleşiyordu ve arama motoru, ekran okuyucu ve şema bu
+                  bozuk hâli alıyordu. */}
+              <span className="block">Ürün seçmeyin.</span>{" "}
               <span className="block md:whitespace-nowrap">Evinize doğru sistemi kurun.</span>
             </>
           }
