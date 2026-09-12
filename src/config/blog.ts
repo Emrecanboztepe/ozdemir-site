@@ -288,6 +288,187 @@ export const BLOG_POSTS: readonly BlogPost[] = [
       { title: "Balıkesir ısı pompası", href: "/bolgeler/balikesir-isi-pompasi" },
     ],
   },
+
+  {
+    slug: "monoblok-mu-split-mi",
+    status: "published",
+    title: "Monoblok mu split mi? Isı pompası dış ünite yerleşimi",
+    description:
+      "Isı pompasında monoblok ve split farkı nedir? Gaz sertifikasına, donma riskine ve dış ünite yerleşimine nasıl yansıdığını anlatıyoruz.",
+    category: "Karar rehberi",
+    author: { name: "Burak Özdemir", href: "/hakkimizda" },
+    publishedAt: "2026-09-11T09:00:00+03:00",
+    image: {
+      src: "/saha-6.jpg",
+      alt: "Kırmızı çelik sehpaya alınmış, zeminden yükseltilmiş Gram Power monoblok ısı pompası ve yanındaki boyler",
+      width: 900,
+      height: 600,
+    },
+    sections: [
+      {
+        id: "fark",
+        heading: "Aradaki gerçek fark: soğutucu akışkan nereye kadar geliyor?",
+        paragraphs: [
+          "Isı pompası seçerken monoblok–split ayrımı çoğu zaman \"tek parça mı, iki parça mı\" diye anlatılır. Asıl fark bu değil; soğutucu akışkanın evin neresine kadar geldiğidir.",
+          "Monoblokta soğutucu devresinin tamamı dış ünitenin içindedir, fabrikada kapatılır ve sahada açılmaz; eve giren şey sudur. Splitte devre ikiye bölünür: soğutucu akışkan bakır hatlarla iç üniteye kadar gelir, suyla ısı alışverişi evin içindeki eşanjörde olur.",
+          "Bu tek cümlelik fark, kurulumdan bakıma kadar zincirin her halkasını değiştiriyor.",
+        ],
+      },
+      {
+        id: "gaz-devresi",
+        heading: "Gaz devresine kim dokunuyor?",
+        paragraphs: [
+          "Splitte soğutucu hat sahada birleştirilir: hattın vakumlanması, sızdırmazlık kontrolü ve uzunluğa göre gerekiyorsa ek gaz şarjı gerekir. Florlu sera gazı içeren bir devreye müdahale belgeli personelin işidir; montaj ekibinin kimden oluştuğu bu yüzden önemlidir.",
+          "Monoblokta kurulum ekibi gaz devresine hiç dokunmaz, bağlanan şey su hattı ve elektriktir. Bu işi kendiliğinden kolaylaştırmaz, zorluğu başka tarafa taşır: orada da su tarafındaki yalıtım, havanın alınması ve don önlemleri öne çıkar.",
+          "Teklifi okurken sorun: hattı kim birleştirecek, sızdırmazlık testi yapılacak mı, gerekirse gaz şarjı kapsamda mı?",
+        ],
+      },
+      {
+        id: "donma",
+        heading: "Donma riski ve antifriz",
+        paragraphs: [
+          "Monoblokta su dışarıdadır; hem cihazın içindeki devre hem de eve giden hat don riskinin bulunduğu yerde çalışır. Cihazların don koruma fonksiyonu vardır ama o fonksiyon elektrik ve dönen bir sirkülasyon pompası ister.",
+          "Uzun elektrik kesintisi ihtimali olan yerlerde ve kışın kapalı kalan yapılarda antifriz bu yüzden konuşulur. Antifriz donma noktasını düşürür; buna karşılık suyun ısı taşıma kapasitesini azaltır ve pompanın işini büyütür. Splitte su evin içinde kaldığı için bu başlık daha rahattır — ama dış ünitenin defrost suyunun nereye gideceği yine planlanmak zorundadır.",
+        ],
+      },
+      {
+        id: "yer-ve-mesafe",
+        heading: "İç mekânda yer ve mesafe sınırı",
+        paragraphs: [
+          "Split, evin içinde bir iç ünite ister: duvarda veya zeminde yer, önünde servis boşluğu, çoğu zaman yanında da boyler. Ayrılacak teknik hacmi olmayan bir yapıda bu tek başına kararı belirleyebilir. Monoblok içeride daha az yer kaplar ama \"hiç yer istemez\" demek doğru olmaz; genleşme, emniyet grubu ve kolektör tarafı yine bir yere oturur.",
+          "Mesafede iki ayrı sınır var. Splitte soğutucu hattın uzunluğu ve iki ünite arasındaki kot farkı üretici kılavuzunda sınırlıdır. Monoblokta su hattı daha uzun gidebilir, ama yalıtım, ısı kaybı ve dışarıda kalan su hacmi mesafeyi kendiliğinden sınırlar.",
+        ],
+      },
+      {
+        id: "hangi-durumda",
+        heading: "Hangi durumda hangisi öne çıkıyor?",
+        paragraphs: [
+          "\"Hangisi daha iyi?\" sorusunun tek cevabı yok; koşul değiştikçe cevap da değişiyor. İçeride ayrılacak yer yoksa monoblok öne çıkar, çünkü evin içinde kapladığı hacim küçüktür. Teknik hacmi hazır, boyleri yerinde bir yenilemede ise split kurgusu doğal durabilir.",
+          "Kışı sert geçen ve elektrik kesintisi uzayabilen yerlerde monoblok seçilecekse don koruma ve antifriz senaryosu baştan planlanır; split bu başlıkta daha rahattır. Kışın boş kalan yazlıklarda ise sistemin kapalıyken nasıl korunacağı cihaz tipinden önce gelir. Sahada gaz devresine müdahale edilmesini istemiyorsanız, monoblokta bu adım hiç yoktur.",
+        ],
+      },
+      {
+        id: "kontrol-listesi",
+        heading: "Dış ünite yerleşimi: keşifte baktığımız başlıklar",
+        paragraphs: [
+          "Cihaz tipi ne olursa olsun, dış ünitenin nereye oturduğu sistemin ömrü boyunca hissedeceğiniz farkı yaratır. Keşifte şunları tek tek geçiyoruz:",
+        ],
+        bullets: [
+          "Hava giriş ve çıkış boşluğu; üflenen havanın dönüp tekrar emilmemesi",
+          "Duvara, köşeye ve ikinci üniteye mesafe",
+          "Yoğuşma ve defrost suyunun gideceği yer",
+          "Kaide veya sehpa: terazide, yükü taşıyan, titreşim yalıtımlı ve kar birikmesinin üstünde",
+          "Hâkim rüzgâr yönü ve fan çıkışının yönü",
+          "Ses ve komşu mesafesi; titreşimin yapıya geçmemesi",
+          "Servis erişimi: panel açılabilmeli, önde çalışma alanı kalmalı",
+          "Üstten gelen risk: saçak damlaması, yaprak ve tohum",
+          "Elektrik ve su hattının güzergâhı, duvar geçişlerinin sızdırmaz kapatılması",
+        ],
+      },
+      {
+        id: "karar",
+        heading: "Karar yerinde veriliyor",
+        paragraphs: [
+          "Monoblok–split kararını telefonda vermiyoruz. Dış ünitenin oturacağı yeri, hattın güzergâhını ve içeride ayrılabilecek hacmi görmeden söylenen her şey tahmin olur.",
+          "Kıyıya yakın yapılarda fan çıkışının denizden gelen rüzgâra göre yönlendirilmesi ve kanat temizliği aralığı ayrıca konuşulur. Keşifte yukarıdaki başlıkları birlikte geçer, sizin yapınızda hangisinin belirleyici olduğunu açıkça söyleriz. Balıkesir, Bursa ve Çanakkale'de keşif ücretsiz; diğer illerde randevuyla planlanıyor.",
+        ],
+      },
+    ],
+    relatedLinks: [
+      { title: "Ücretsiz keşif ve teklif talebi", href: "/isi-pompasi-teklifi" },
+      { title: "Isı pompası kurulumu hizmeti", href: "/hizmetler/isi-pompasi-kurulumu" },
+      { title: "Isı pompası modelleri", href: "/urunler" },
+      { title: "Çanakkale ve Biga ısı pompası", href: "/bolgeler/canakkale-isi-pompasi" },
+    ],
+  },
+
+  {
+    slug: "yerden-isitma-ve-isi-pompasi",
+    status: "published",
+    title: "Yerden ısıtma ile ısı pompası neden iyi eşleşiyor?",
+    description:
+      "Yerden ısıtma düşük su sıcaklığıyla çalışır, ısı pompası da bunu sever. Yeni yapıda ne planlanmalı, mevcut evde dönüşüm mümkün mü, anlatıyoruz.",
+    category: "Teknik rehber",
+    author: { name: "Burak Özdemir", href: "/hakkimizda" },
+    publishedAt: "2026-09-12T09:00:00+03:00",
+    image: {
+      src: "/saha-11.jpg",
+      alt: "Bosch dış ünitesi ile yanındaki iki boyler ve kolektörlü tesisat bağlantısı",
+      width: 900,
+      height: 596,
+    },
+    sections: [
+      {
+        id: "neden-esler",
+        heading: "Neden bu ikisi birbirine iyi geliyor?",
+        paragraphs: [
+          "Isı pompası suyu ısıtır; yerden ısıtma o suyu odanın tamamına yayılmış geniş bir yüzeye taşır. Uyum buradan çıkıyor: ısı döşemenin bütününe dağıldığında ılık suyla da verilebilir. Aynı ısıyı küçük bir radyatör yüzeyinden vermek isterseniz suyu daha çok ısıtmak zorunda kalırsınız.",
+          "Havadan suya çalışan bir cihazda ısı dış havadan alınıp suya taşınır. Gönderilen su sıcaklığı ile dış hava arasındaki fark büyüdükçe bu taşıma zorlaşır, aynı ısı için daha çok elektrik harcanır; fark küçüldükçe cihaz rahatlar. Yani yerden ısıtma, ısı pompasının en rahat çalıştığı koşulu zaten kuruyor. Bir evde ne kadar düşük sıcaklıkla çalışılabileceği ise yapıya göre değişir.",
+        ],
+      },
+      {
+        id: "yeni-yapi",
+        heading: "Yeni yapıda şap dökülmeden kararlaştırılması gerekenler",
+        paragraphs: [
+          "Yerden ısıtmanın avantajı şap dökülmeden rahatça planlanabilmesi. Bu yüzden sonradan değiştirilmesi güç olan ne varsa kararı öne çekmek gerekir — bunlar cihaz seçiminden bile önce gelir.",
+        ],
+        bullets: [
+          "Boru aralığı: her mahallin ısı kaybına ve zemin kaplamasına göre ayrı belirlenir",
+          "Zon ayrımı: farklı saatlerde kullanılan mahaller ayrı devreye alınır",
+          "Kolektör yeri: ulaşılabilir ve sonradan kapatılmayacak bir nokta",
+          "Şap kalınlığı ve tipi: döşemenin ısıl davranışını belirler",
+          "Döşeme altı yalıtımı: ısının aşağı kaçmasını engeller, hesabın parçasıdır",
+          "Zemin kaplaması: halı, kalın parke ve taş ısıyı farklı geçirir; kararı sistemden önce verilmeli",
+        ],
+      },
+      {
+        id: "isil-atalet",
+        heading: "En sık yanlış anlaşılan konu: aç-kapa kullanılmaz",
+        paragraphs: [
+          "Şap, içindeki boruların ısısını depolar. Sistemi açtığınızda döşemenin odaya ısı vermeye başlaması zaman alır; kapattığınızda da bir süre ısı vermeye devam eder. Buna ısıl atalet diyoruz ve yerden ısıtmanın karakteri budur.",
+          "Bu yüzden yerden ısıtma sabah açılıp akşam kapatılan bir sistem gibi kullanılmaz; sabit bir rejimde, sürekli ve düşük sıcaklıkla çalışır. Kombiden gelen kullanıcılar için alışılması gereken kısım burası: \"üşüdüm, termostatı yukarı çekeyim\" refleksi burada beklediğiniz gibi işlemez. Yaptığınız ayar saatler sonra karşınıza çıkar, bu arada ev gereğinden fazla ısınır. Doğru kullanım, sıcaklığı bir kez oturtup küçük adımlarla düzeltmektir.",
+        ],
+      },
+      {
+        id: "mevcut-yapi",
+        heading: "Mevcut evde dönüşüm: şap kırmak şart mı?",
+        paragraphs: [
+          "Klasik uygulamada evet: mevcut şapın kırılması, borunun serilmesi ve yeni şap dökülmesi gerekir. Yani iş bir ısıtma işi olmaktan çıkar, tadilata döner; zemin kaplaması, süpürgelikler ve kapı altları da kapsama girer. Şap kırmadan mevcut zeminin üzerine çıkan ince sistemler de var; bu durumda döşeme bir miktar yükselir, ne kadar yükseleceği seçilen sisteme göre değişir ve kapı altlarının bunu kaldırıp kaldırmadığına yerinde bakılır.",
+          "Asıl soru şu olmalı: amaç yerden ısıtmanın kendisi mi, yoksa düşük su sıcaklığında çalışabilen bir dağıtım sistemi mi? İkincisiyse şapı kırmadan da yol var: mevcut peteklerin yerine daha büyük yüzeyli düşük sıcaklık radyatörleri, yalnız belirleyici odalarda petek büyütme, ya da yazın serinletme de isteniyorsa fan-coil. Islak hacimlerde yerden ısıtma, evin geri kalanında radyatör şeklinde karma çözüm de sık uyguladığımız bir yol.",
+        ],
+      },
+      {
+        id: "sicak-su",
+        heading: "Sıcak kullanım suyu ayrı bir devredir",
+        paragraphs: [
+          "Yerden ısıtma düşük sıcaklıkta çalışır ama musluktan akacak su için aynı şey geçerli değil. Bu yüzden iki ihtiyaç aynı devrede birleştirilmez: ısı pompası döşeme devresini ve ayrı bir boyleri sırayla besler, hangi görevin öncelikli olacağına kontrol tarafında karar verilir. Cihaz sıcak suyu ısıtırken ısıtma devresi kısa süre bekler; döşemedeki ısıl atalet sayesinde bu bekleme odada hissedilmez.",
+          "Boyler ayrı bir seçim başlığı. Belirleyici olan evin metrekaresi değil, kaç kişinin yaşadığı ve sıcak suyun ne kadar eşzamanlı kullanıldığıdır. Serpantin yüzeyi de önemli: ısı pompası suyu kombiye göre daha düşük sıcaklıkta gönderdiği için daha geniş yüzeyli bir eşanjör ister. Kombi için alınmış mevcut bir boyler ısı pompasına bağlandığında sıcak su tarafında yetersiz kalabilir; devralınacak bir boyler varsa bunu keşifte kontrol ederiz.",
+        ],
+      },
+      {
+        id: "devreye-alma",
+        heading: "Devreye almada ne ayarlanır?",
+        paragraphs: [
+          "Montajın bitmesi işin bittiği anlamına gelmiyor; aynı cihaz, ayarı yapılmamış bir tesisatta bambaşka davranır. Çalışma eğrisi dış hava soğudukça suyun kaç derece gönderileceğini belirler ve evin gerçek davranışına göre kurulur. Hidrolik denge, kolektördeki her devreye uzunluğuna göre pay verilmesidir; yapılmazsa kısa devreler suyu kapar, uzak odalar ısınmaz.",
+          "Bunların yanında cihazın istediği su debisinin sağlanması, sistemin havasının alınması ve boylerin hangi saatlerde ısıtılacağı ayarlanır. Sirkülasyon sorunlarında sahada en sık karşılaştığımız sebeplerden biri havadır; şapın içine giren hatlar bu yüzden kontrollü doldurulur.",
+        ],
+      },
+      {
+        id: "karar",
+        heading: "Karar masabaşında değil, evde veriliyor",
+        paragraphs: [
+          "Bu yazıda bilinçli olarak boru aralığı, şap kalınlığı veya su sıcaklığı için sayı vermedik. Bu değerlerin hepsi evin ısı kaybına, zemin kaplamasına ve kullanım biçimine bağlı; görmediğimiz bir yapı için yazacağımız her sayı tahmin olur.",
+          "Yeni yapıda konuşmanın en iyi zamanı şap dökülmeden önce. Mevcut yapıda ise önce evin bugün hangi su sıcaklığıyla ısındığına bakarız; cevap çoğu zaman şapı kırmadan da çıkıyor. İlk kış bir öğrenme dönemidir, çalışma eğrisinin bir iki kademe düzeltilmesi normaldir; bunu çoğu zaman telefonda konuşarak çözeriz, yerinde kontrol gerekirse bakım ve servis kapsamında planlarız. Balıkesir, Bursa ve Çanakkale'de keşif ücretsiz; diğer illerde randevuyla planlıyoruz.",
+        ],
+      },
+    ],
+    relatedLinks: [
+      { title: "Petekli evde ısı pompası çalışır mı?", href: "/blog/petekli-evde-isi-pompasi" },
+      { title: "Projelendirme ve devreye alma", href: "/hizmetler/projelendirme-devreye-alma" },
+      { title: "Ücretsiz keşif ve teklif talebi", href: "/isi-pompasi-teklifi" },
+      { title: "Bursa ısı pompası", href: "/bolgeler/bursa-isi-pompasi" },
+    ],
+  },
 ];
 
 export function getPublishedPosts() {

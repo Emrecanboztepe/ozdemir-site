@@ -82,7 +82,12 @@ export default function HeatPumpOfferPage() {
                 <MapPin className="size-3.5" aria-hidden /> Bandırma merkezli yerinde keşif
               </p>
               <h1 className="mt-6 max-w-[14ch] font-heading text-[clamp(2.65rem,6.3vw,5.5rem)] font-bold leading-[0.98] tracking-[-0.047em] text-ink-950">
-                Türkiye genelinde evsel ısı pompası montajı.
+                {/* Ana sayfanın H1'i ile birebir AYNIYDI (yalnız nokta farkı).
+                    İkisi aynı sorguyu hedefleyip birbirini dövüyordu. Ana sayfa
+                    geniş baş terimi ("satış ve montaj") tutuyor; bu sayfa
+                    anahtar kelime haritasında kendisine verilen dar niyete
+                    çekildi: fiyat / teklif. */}
+                Isı pompası teklifi için ücretsiz keşif.
               </h1>
               <p className="mt-6 max-w-[58ch] text-[1.0625rem] leading-relaxed text-ink-600 md:text-lg">
                 Isıtma, serinletme ve sıcak su ihtiyacını tek sistemde değerlendirin. Balıkesir, Bursa ve Çanakkale&apos;de ücretsiz keşif; diğer illerde proje kapsamına göre saha planıyla uygun sistem ve teklifi netleştirelim.

@@ -61,6 +61,11 @@ const FOOTER_LINKS: FooterSection[] = [
     links: [
       { title: "Isı pompaları", href: ROUTES.urunler.href },
       { title: "Size özel seçim", href: "/#secici" },
+      /* Teklif sayfası sitemap'te 0.9 önceliğinde (ana sayfadan sonra en
+         yüksek) ama hiçbir kalıcı menüden bağlanmıyordu; footer da yalnız
+         telefona gidiyordu. Dönüşüm sayfasının site genelinde erişilebilir
+         olması gerekir. */
+      { title: "Fiyat teklifi alın", href: ROUTES.isiPompasiTeklifi.href },
       { title: "Ücretsiz keşif", href: PHONE_HREF },
       { title: "Isı pompası kurulumu", href: "/hizmetler/isi-pompasi-kurulumu" },
       { title: "Bakım ve servis", href: "/hizmetler/bakim-servis" },

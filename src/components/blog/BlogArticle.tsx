@@ -10,8 +10,12 @@ export default function BlogArticle({ post, preview = false }: { post: BlogPost;
             duruyor. Önce tam genişlik başlık + görsel, sonra iki sütuna geçen
             düzen okuyucuyu sayfanın ortasında yeniden hizalanmaya zorluyordu. */}
         <div className="grid gap-10 lg:grid-cols-[220px_minmax(0,1fr)] lg:gap-16">
+          {/* DOM sırasında bu ray h1'den ÖNCE geliyor (sol sütun). Başlığı h2
+              yapmak dokümanın ana hattını h1 yerine h2 ile başlatıyordu.
+              `<p>` + `aria-labelledby` aynı erişilebilir adı verir ama başlık
+              hiyerarşisine girmez; navigasyonun zaten `aria-label`'ı var. */}
           <nav aria-label="Yazı içindekiler" className="self-start lg:sticky lg:top-32">
-            <h2 className="font-heading text-lg font-semibold text-ink-950">Bu yazıda</h2>
+            <p className="font-heading text-lg font-semibold text-ink-950">Bu yazıda</p>
             <ol className="mt-4 space-y-1">
               {post.sections.map((section) => <li key={section.id}><a href={`#${section.id}`} className="inline-flex min-h-11 items-center rounded-sm py-2 text-sm leading-relaxed text-ink-600 transition-colors hover:text-brand-blue focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue">{section.heading}</a></li>)}
             </ol>

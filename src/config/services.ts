@@ -50,7 +50,10 @@ export const SERVICES: readonly ServiceContent[] = [
     eyebrow: "UYGULAMA HİZMETİ",
     title: "Isı pompası kurulumu",
     shortTitle: "Isı pompası kurulumu",
-    seoTitle: "Isı Pompası Satış ve Montajı | Ücretsiz Keşif",
+    /* Önceki başlık "Isı Pompası Satış ve Montajı" ile başlıyordu — ana
+       sayfanın baş terimiyle birebir aynıydı ve onunla yarışıyordu. Bu sayfa
+       haritada kendisine verilen dar niyete çekildi: kurulum uygulaması. */
+    seoTitle: "Anahtar Teslim Isı Pompası Kurulumu ve Devreye Alma",
     seoDescription:
       "Ev ve villa için ısı pompası satışı, kapasite hesabı ve anahtar teslim montaj. Balıkesir, Bursa ve Çanakkale'de ücretsiz keşif isteyin.",
     answer:
